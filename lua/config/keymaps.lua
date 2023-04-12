@@ -16,16 +16,19 @@ vim.keymap.set("n", "Z", "<c-r>", {
 vim.keymap.set("n", "Y", "y$", {
   desc = "Yank until EOL",
 })
--- Map <C-L> (redraw screen) to also turn off search highlighting until the
--- next search
-vim.keymap.set("n", "<C-L>", ":nohl<CR><C-L>", {
-  desc = "Turn off search highlighting",
-})
 
 -- Quick quit
-vim.keymap.set("n", "<C-k>", ":q<CR>", {
-  desc = "Exit",
+vim.keymap.set("n", "<leader>wq", function()
+  -- Save if possible
+  if vim.o.modifiable then
+    vim.cmd("wq")
+  else
+    vim.cmd("q")
+  end
+end, {
+  desc = "Save and exit",
 })
+
 -- Terminal allow escape to exit insert
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", {
   desc = "Exit insert",
