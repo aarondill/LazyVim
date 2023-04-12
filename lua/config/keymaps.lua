@@ -17,10 +17,10 @@ vim.keymap.set("n", "Y", "y$", {
   desc = "Yank until EOL",
 })
 
--- Quick quit
+-- Quick save and quit
 vim.keymap.set("n", "<leader>wq", function()
   -- Save if possible
-  if vim.o.modifiable then
+  if vim.o.modifiable and string.len(vim.o.bt) == 0 then
     vim.cmd("wq")
   else
     vim.cmd("q")
@@ -28,6 +28,15 @@ vim.keymap.set("n", "<leader>wq", function()
 end, {
   desc = "Save and exit",
 })
+
+-- Quick quit
+vim.keymap.set("n", "<leader>q!", function()
+  vim.cmd("q")
+end, { desc = "Exit without saving" })
+-- Quit without shift
+vim.keymap.set("n", "<leader>q1", function()
+  vim.cmd("q")
+end, { desc = "Exit without saving" })
 
 -- Terminal allow escape to exit insert
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", {
@@ -79,3 +88,15 @@ vim.keymap.set("o", "<F9>", "<C-C>za", {
 vim.keymap.set("v", "<F9>", "zf", {
   desc = "Create Fold",
 })
+
+local function DiffWithSaved()
+  local filetype = vim.o.ft
+  vim.cmd("diffthis")
+  vim.cmd("vnew | r # | normal! 1Gdd")
+  vim.cmd("diffthis")
+  vim.cmd("setlocal bt=nofile bh=wipe nobl noswf ro ft=" .. filetype)
+end
+vim.keymap.set("n", "<leader>ds", DiffWithSaved, {
+  desc = "Show the diff with last save",
+})
+vim.api.nvim_create_user_command("DiffSaved", DiffWithSaved, {})
