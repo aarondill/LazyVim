@@ -1,47 +1,34 @@
+local util = require("util")
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 vim.g.mapleader = " "
 
 -- Change z key in normal mode to undo and Z to redo
-vim.keymap.set("n", "z", "u", {
-  desc = "Undo",
-})
-vim.keymap.set("n", "Z", "<c-r>", {
-  desc = "Redo",
-})
+util.set_key_map("n", "z", "u", "Undo")
+util.set_key_map("n", "Z", "<c-r>", "Redo")
 
 -- Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 -- which is the default
-vim.keymap.set("n", "Y", "y$", {
-  desc = "Yank until EOL",
-})
+util.set_key_map("n", "Y", "y$", "Yank until EOL")
 
 -- Quick save and quit
-vim.keymap.set("n", "<leader>wq", function()
+util.set_key_map("n", "<leader>wq", function()
   -- Save if possible
   if vim.o.modifiable and vim.o.bt:len() == 0 then
     vim.cmd.wq()
   else
     vim.cmd.q()
   end
-end, {
-  desc = "Save and exit",
-})
+end, "Save and exit")
 
 -- Quick quit
-vim.keymap.set("n", "<leader>q!", function()
-  vim.cmd("q")
-end, { desc = "Exit without saving" })
+util.set_key_map("n", "<leader>q!", vim.cmd.q, "Exit without saving")
 -- Quit without shift
-vim.keymap.set("n", "<leader>q1", function()
-  vim.cmd("q")
-end, { desc = "Exit without saving" })
+util.set_key_map("n", "<leader>q1", vim.cmd.q, "Exit without saving")
 
 -- Terminal allow escape to exit insert
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", {
-  desc = "Exit insert",
-})
+util.set_key_map("t", "<Esc>", "<C-\\><C-n>", "Exit insert")
 
 local function ToggleMovement(firstOp, thenOp)
   local pos = vim.api.nvim_win_get_cursor(0)
@@ -53,50 +40,40 @@ local function ToggleMovement(firstOp, thenOp)
     vim.cmd("normal! " .. thenOp)
   end
 end
+
 -- Map 0 to go between 0 and ^
-vim.keymap.set("n", "0", function()
-  ToggleMovement("^", "0")
-end, {
-  desc = "Go to start of line",
+local silent_opt = {
   silent = true,
-})
+}
+util.set_key_map({ "n", "v" }, "0", util.bind(ToggleMovement, "^", "0"), "Go to start of line", silent_opt)
+util.set_key_map({ "n", "v" }, "^", util.bind(ToggleMovement, "0", "^"), "Go to start of line", silent_opt)
 -- Map gg to go between gg and G
-vim.keymap.set({ "n", "v" }, "gg", function()
-  ToggleMovement("gg", "G")
-end, {
-  desc = "Go to start/end of file",
-  silent = true,
-})
+util.set_key_map({ "n", "v" }, "gg", util.bind(ToggleMovement, "gg", "G"), "Go to start/end of file", silent_opt)
 -- Map G to go between G and gg
-vim.keymap.set({ "n", "v" }, "G", function()
-  ToggleMovement("G", "gg")
-end, {
-  desc = "Go to end/start of file",
-  silent = true,
-})
+util.set_key_map({ "n", "v" }, "G", util.bind(ToggleMovement, "G", "gg"), "Go to start/end of file", silent_opt)
 
 -- Remap f9 to fold control
-vim.keymap.set("i", "<F9>", "<C-O>za", {
-  desc = "Toggle Fold",
-})
-vim.keymap.set("n", "<F9>", "za", {
-  desc = "Toggle Fold",
-})
-vim.keymap.set("o", "<F9>", "<C-C>za", {
-  desc = "Toggle Fold",
-})
-vim.keymap.set("v", "<F9>", "zf", {
-  desc = "Create Fold",
-})
+util.set_key_map("i", "<F9>", "<C-O>za", "Toggle Fold")
+util.set_key_map("n", "<F9>", "za", "Toggle Fold")
+util.set_key_map("o", "<F9>", "<C-C>za", "Toggle Fold")
+util.set_key_map("v", "<F9>", "zf", "Create Fold")
 
 local function DiffWithSaved()
   local filetype = vim.o.ft
-  vim.cmd("diffthis")
-  vim.cmd("vnew | r # | normal! 1Gdd")
-  vim.cmd("diffthis")
-  vim.cmd("setlocal bt=nofile bh=wipe nobl noswf ro ft=" .. filetype)
+  vim.cmd.diffthis()
+
+  vim.cmd.vnew()
+  local orig_file = vim.fn.expand("#")
+  vim.cmd.read(orig_file)
+  vim.cmd("normal! 1Gdd")
+
+  vim.cmd.diffthis()
+  vim.opt.buftype = "nofile"
+  vim.opt.bufhidden = "wipe"
+  vim.opt.buflisted = false
+  vim.opt.swapfile = false
+  vim.opt.readonly = true
+  vim.opt.filetype = filetype
 end
-vim.keymap.set("n", "<leader>ds", DiffWithSaved, {
-  desc = "Show the diff with last save",
-})
+util.set_key_map("n", "<leader>ds", DiffWithSaved, "Show the diff with last save")
 vim.api.nvim_create_user_command("DiffSaved", DiffWithSaved, {})
