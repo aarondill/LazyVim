@@ -21,9 +21,9 @@ vim.keymap.set("n", "Y", "y$", {
 vim.keymap.set("n", "<leader>wq", function()
   -- Save if possible
   if vim.o.modifiable and vim.o.bt:len() == 0 then
-    vim.cmd("wq")
+    vim.cmd.wq()
   else
-    vim.cmd("q")
+    vim.cmd.q()
   end
 end, {
   desc = "Save and exit",
