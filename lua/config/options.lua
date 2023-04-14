@@ -66,7 +66,7 @@ set.relativenumber = true
 -- Quickly time out on keycodes, but never time out on mappings
 set.timeout = false
 set.ttimeout = true
-set.ttimeoutlen = 200
+set.ttimeoutlen = 40
 
 -- Use <F11> to toggle between 'paste' and 'nopaste'
 set.pastetoggle = "<F11>"
