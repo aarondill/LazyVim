@@ -10,6 +10,7 @@ return {
       input_buffer_type = nil, -- the type of the external input buffer to use (the only supported value is currently "dressing")
       post_hook = nil, -- callback to run after renaming, receives the result table (from LSP handler) as an argument
     },
+    cmd = "IncRename",
   },
   {
     "folke/noice.nvim", -- Use noice's menu for inc_rename bc nicer than dressing's
