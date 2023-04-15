@@ -6,6 +6,10 @@ return {
       transparent = true, -- Enable this to disable setting the background color
       dim_inactive = true, -- dims inactive windows
       style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
   },
   {
