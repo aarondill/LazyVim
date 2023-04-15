@@ -55,4 +55,31 @@ M.bind = function(f, ...)
     return f(unpack(args))
   end
 end
+
+---sets properties on orig with props
+---@param orig table?
+---@param props table
+---@return table merged
+M.setProps = function(orig, props)
+  return vim.tbl_deep_extend("force", orig or {}, props)
+end
+
+---get environemnt variables
+---@param env string
+---@generic T
+---@param default T? the value to return of env isn't present
+---@return T|string
+M.env = function(env, default)
+  local environemnt = vim.fn.environ()
+  if vim.fn.has_key(environemnt, env) then
+    return environemnt[env]
+  end
+  return default
+end
+
+M.is_tty = function()
+  -- false if display is defined, else true
+  return not M.env("DISPLAY")
+end
+
 return M

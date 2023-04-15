@@ -1,6 +1,7 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
+local util = require("util")
 local set = vim.opt
 
 -- Allows you to re-use the same window and switch from an unsaved buffer
@@ -83,7 +84,7 @@ set.scrolloff = 5 -- Auto-scroll up or down to keep context above/below cursor
 set.wrap = false -- turn off word-wrap
 set.sidescrolloff = 5 -- Auto-scroll L/R to keep context in view
 
-local dir = vim.fn.environ().HOME .. "/.cache/vimtmp"
+local dir = util.env("HOME") .. "/.cache/vimtmp"
 if not vim.fn.isdirectory(dir) then
   vim.fn.mkdir(dir, "p")
 end
@@ -97,3 +98,7 @@ set.foldmethod = "marker"
 
 -- Turn on incremenetal search in vim
 set.incsearch = true
+-- If running in tty, set menu transparency to opaque
+if util.is_tty() then
+  require("config.tty").apply()
+end
