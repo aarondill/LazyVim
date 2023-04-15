@@ -7,7 +7,7 @@ return {
       local util = require("util")
       local loc_opts = {}
       if util.is_tty() then
-        loc_opts.colorscheme = "default"
+        loc_opts.colorscheme = "elflord"
       else
         loc_opts.colorscheme = "tokyonight"
       end
