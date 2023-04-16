@@ -11,6 +11,7 @@ return {
         "make",
         "toml",
         "vimdoc",
+        "java",
       })
     end
   end,
