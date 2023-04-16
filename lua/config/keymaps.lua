@@ -77,3 +77,21 @@ local function DiffWithSaved()
 end
 util.set_key_map("n", "<leader>ds", DiffWithSaved, "Show the diff with last save")
 vim.api.nvim_create_user_command("DiffSaved", DiffWithSaved, {})
+
+local function paste_from_system_clipboard()
+  ---@diagnostic disable-next-line: param-type-mismatch # this works, but the types are wrong
+  vim.paste(vim.fn.getreg("+", 1, true), -1)
+end
+
+-- Paste system clipboard with Ctrl + v
+util.set_key_map({ "c", "i", "n", "v" }, "<C-v>", paste_from_system_clipboard, "Paste from system clipboard")
+
+-- Cut to system clipboard with Ctrl + x
+-- vnoremap <C-x> "+d
+-- nnoremap <C-x> "+dd
+-- inoremap <C-x> <ESC>"+ddi
+
+-- Copy to system clipboard with Ctr + c
+-- vnoremap <C-c> "+y
+-- nnoremap <C-c> "+yy
+-- inoremap <C-c> <ESC>"+yya
