@@ -15,9 +15,9 @@ return {
             expander_expanded = "▼",
           },
           icon = {
-            folder_closed = "📁",
-            folder_open = "📂",
-            folder_empty = "📂",
+            folder_closed = "-",
+            folder_open = "+",
+            folder_empty = "_",
           },
           git_status = {
             symbols = {
@@ -41,5 +41,54 @@ return {
   {
     "nvim-tree/nvim-web-devicons",
     enabled = false,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        prompt_prefix = "> ",
+        selection_caret = "> ",
+      },
+    },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      local symbols = util.deep_get(opts, "sections", "lualine_c", 3, "symbols")
+      if symbols then
+        symbols.modified = " + "
+      else
+        print("Check your lualine configuration! It's in a different order than predefined")
+      end
+    end,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      signs = {
+        add = { text = "+" },
+        change = { text = "|" },
+        delete = { text = "-" },
+        topdelete = { text = "-" },
+        changedelete = { text = ":" },
+        untracked = { text = "?" },
+      },
+    },
+  },
+  {
+    "goolord/alpha-nvim",
+    opts = function(_, opts)
+      local group = util.deep_get(opts, "section", "buttons", "val")
+      if not group then return end
+
+      local icons = { "", "", "", "", "" }
+      for i, v in ipairs(icons) do
+        if not group[i] then goto continue end
+        ---@type {val: string}
+        local curr_val = group[i]
+        curr_val.val = v..curr_val.val:sub(1)
+        ::continue::
+      end
+    end,
   },
 }
