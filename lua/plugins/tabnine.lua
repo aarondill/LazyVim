@@ -4,7 +4,7 @@ return {
     "aarondill/tabnine-nvim",
     branch = "all_together_now",
     build = "./dl_binaries.sh",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     main = "tabnine",
     opts = {
       disable_auto_comment = true,
