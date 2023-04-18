@@ -2,7 +2,7 @@ local M = {}
 
 --- @param table table?
 --- @param ... string | number
-M.deep_get = function(table, ...)
+function M.deep_get(table, ...)
   if not table then
     return nil
   end
@@ -12,7 +12,7 @@ end
 
 --- Return the config path (deafult path: ~/.config/nvim)
 ---@return string
-M.config_path = function()
+function M.config_path()
   ---@diagnostic disable-next-line: return-type-mismatch # Built in vim.fn.stdpath works, catppuccin messes the type up
   return vim.fn.stdpath("config")
 end
@@ -24,7 +24,7 @@ end
 ---@param desc string?         Description or opts
 ---@param opts table?          Table of |:map-arguments|. (If desc is defined, will be overwritten by arg)
 ---@overload fun(mode:string|string[], lhs:string|string[], rhs:string|function, opts:table)
-M.set_key_map = function(mode, lhs, rhs, desc, opts)
+function M.set_key_map(mode, lhs, rhs, desc, opts)
   local descOpts
   if type(desc) == "string" then
     descOpts = vim.tbl_extend("force", opts or {}, { desc = desc })
@@ -46,7 +46,7 @@ M.set_key_map = function(mode, lhs, rhs, desc, opts)
   end
 end
 
-M.bind = function(f, ...)
+function M.bind(f, ...)
   local args = { ... }
   return function(...)
     for _, v in ipairs({ ... }) do
@@ -60,7 +60,7 @@ end
 ---@param orig table?
 ---@param props table
 ---@return table merged
-M.setProps = function(orig, props)
+function M.setProps(orig, props)
   return vim.tbl_deep_extend("force", orig or {}, props)
 end
 
@@ -69,7 +69,7 @@ end
 ---@generic T
 ---@param default T? the value to return of env isn't present
 ---@return T|string
-M.env = function(env, default)
+function M.env(env, default)
   local environemnt = vim.fn.environ()
   if vim.fn.has_key(environemnt, env) then
     return environemnt[env]
@@ -77,7 +77,7 @@ M.env = function(env, default)
   return default
 end
 
-M.is_tty = function()
+function M.is_tty()
   -- false if display is defined, else true
   return not M.env("DISPLAY")
 end
