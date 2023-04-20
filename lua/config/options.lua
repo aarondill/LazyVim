@@ -98,6 +98,11 @@ opt.foldmethod = "marker"
 
 -- Turn on incremenetal search in vim
 opt.incsearch = true
+
+opt.clipboard = "" -- Set clipboard to defualt to stop copying to system clipboard on yank
+opt.autowrite = false -- Disable auto write
+opt.spelllang = { "en", "es" } -- Add Español to the spelling languages
+
 -- If running in tty, set menu transparency to opaque
 if util.is_tty() then
   require("config.tty").apply()
