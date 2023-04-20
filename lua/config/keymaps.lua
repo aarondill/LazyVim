@@ -87,11 +87,11 @@ end
 util.set_key_map({ "c", "i", "n", "x" }, "<C-v>", paste_from_system_clipboard, "Paste from system clipboard")
 
 -- Cut to system clipboard with Ctrl + x
-util.set_key_map("x", "<C-x>", '"+d"', "Cut to system clipboard")
-util.set_key_map("n", "<C-x>", '"+dd"', "Cut to system clipboard")
+util.set_key_map("x", "<C-x>", '"+d', "Cut to system clipboard")
+util.set_key_map("n", "<C-x>", '"+dd', "Cut to system clipboard")
 util.set_key_map("i", "<C-x>", '<ESC>"+ddi', "Cut to system clipboard")
 
 -- Copy to system clipboard with Ctr + c
-util.set_key_map("x", "<C-c>", '"+y"', "Copy to system clipboard")
-util.set_key_map("n", "<C-c>", '"+yy"', "Copy to system clipboard")
+util.set_key_map("x", "<C-c>", '"+y', "Copy to system clipboard")
+util.set_key_map("n", "<C-c>", '"+yy', "Copy to system clipboard")
 util.set_key_map("i", "<C-c>", '<ESC>"+yya', "Copy to system clipboard")
