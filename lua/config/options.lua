@@ -11,96 +11,65 @@ local opt = vim.opt
 -- computer crashes.
 opt.hidden = true
 
--- Better command-line completion
-opt.wildmenu = true
+opt.wildmenu = true -- Better command-line completion
 
--- Show partial commands in the last line of the screen
-opt.showcmd = true
+opt.showcmd = true -- Show partial commands in the last line of the screen
 
--- Highlight searches (use <C-L> to temporarily turn off highlighting
-opt.hlsearch = true
+opt.hlsearch = true -- Highlight searches (use <C-L> to temporarily turn off highlighting
 
 -- Use case insensitive search, except when using capital letters
 opt.ignorecase = true
 opt.smartcase = true
 
--- Allow backspacing over autoindent, line breaks and start of insert action
-opt.backspace = "indent,eol,start"
-
 -- When opening a new line and no filetype-specific indenting is enabled, keep
 -- the same indent as the line you're currently on. Useful for READMEs, etc.
 opt.autoindent = true
-
 -- Stop certain movements from always going to the first character of a line.
 -- While this behaviour deviates from that of Vi, it does what most users
 -- coming from other editors would expect.
 opt.startofline = false
 
--- Display the cursor position on the last line of the screen or in the status
--- line of a window
-opt.ruler = true
-
--- Always display the status line, even if only one window is displayed
-opt.laststatus = 2
+opt.ruler = true -- Display the cursor position on the last line of the screen or in the status line of a window
+opt.backspace = "indent,eol,start" -- Allow backspacing over autoindent, line breaks and start of insert action
+opt.laststatus = 2 -- Always display the status line, even if only one window is displayed
+opt.visualbell = true -- Use visual bell instead of beeping when doing something wrong
+opt.cmdheight = 2 -- Set the command window height to 2 lines, to avoid many cases of having to press <Enter> to continue"
+opt.number = true -- Display line numbers on the left
+opt.relativenumber = true -- Display numbers relative to the curser
+opt.pastetoggle = "<F11>" -- Use <F11> to toggle between 'paste' and 'nopaste'
+opt.updatetime = 100 -- Decrease updatetime for vim-gitgutter. Impacts swp file delay.
+opt.scrolloff = 5 -- Auto-scroll up or down to keep context above/below cursor
+opt.wrap = false -- turn off word-wrap
+opt.sidescrolloff = 5 -- Auto-scroll L/R to keep context in view
+opt.sidescroll = 1 -- Improve scrolling with nowrap
+opt.foldmethod = "marker" -- Set the fold method to obey comments
+opt.incsearch = true -- Turn on incremenetal search in vim
+opt.clipboard = "" -- Set clipboard to defualt to stop copying to system clipboard on yank
+opt.autowrite = false -- Disable auto write
 
 -- Instead of failing a command because of unsaved changes, instead raise a
 -- dialogue asking if you wish to save changed files.
 opt.confirm = true
-
--- Use visual bell instead of beeping when doing something wrong
-opt.visualbell = true
-
 -- And reset the terminal code for the visual bell. If visualbell is set, and
 -- this line is also included, vim will neither flash nor beep. If visualbell
 -- is unset, this does nothing.
 opt.vb = false
-
--- Set the command window height to 2 lines, to avoid many cases of having to press <Enter> to continue"
-opt.cmdheight = 2
-
--- Display line numbers on the left
-opt.number = true
-
--- Display numbers relative to the curser
-opt.relativenumber = true
 
 -- Quickly time out on keycodes, but never time out on mappings
 opt.timeout = false
 opt.ttimeout = true
 opt.ttimeoutlen = 40
 
--- Use <F11> to toggle between 'paste' and 'nopaste'
-opt.pastetoggle = "<F11>"
-
 -- Set tab and >> to be 2 spaces
 opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.expandtab = true
 
--- Decrease updatetime for vim-gitgutter. Impacts swp file delay.
-opt.updatetime = 100
-
-opt.scrolloff = 5 -- Auto-scroll up or down to keep context above/below cursor
-opt.wrap = false -- turn off word-wrap
-opt.sidescrolloff = 5 -- Auto-scroll L/R to keep context in view
-
 local dir = util.env("HOME") .. "/.cache/vimtmp"
 if not vim.fn.isdirectory(dir) then
   vim.fn.mkdir(dir, "p")
 end
-opt.directory = dir
-
--- Improve scrolling with nowrap
-opt.sidescroll = 1
-
--- Set the fold method to obey comments
-opt.foldmethod = "marker"
-
--- Turn on incremenetal search in vim
-opt.incsearch = true
-
-opt.clipboard = "" -- Set clipboard to defualt to stop copying to system clipboard on yank
-opt.autowrite = false -- Disable auto write
+opt.directory = dir -- Move the swap file
 
 -- If running in tty, set menu transparency to opaque
 if util.is_tty() then
