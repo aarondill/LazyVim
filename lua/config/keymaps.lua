@@ -45,18 +45,18 @@ end
 local silent_opt = {
   silent = true,
 }
-util.set_key_map({ "n", "v" }, "0", util.bind(ToggleMovement, "^", "0"), "Go to start of line", silent_opt)
-util.set_key_map({ "n", "v" }, "^", util.bind(ToggleMovement, "0", "^"), "Go to start of line", silent_opt)
+util.set_key_map({ "n", "x" }, "0", util.bind(ToggleMovement, "^", "0"), "Go to start of line", silent_opt)
+util.set_key_map({ "n", "x" }, "^", util.bind(ToggleMovement, "0", "^"), "Go to start of line", silent_opt)
 -- Map gg to go between gg and G
-util.set_key_map({ "n", "v" }, "gg", util.bind(ToggleMovement, "gg", "G"), "Go to start/end of file", silent_opt)
+util.set_key_map({ "n", "x" }, "gg", util.bind(ToggleMovement, "gg", "G"), "Go to start/end of file", silent_opt)
 -- Map G to go between G and gg
-util.set_key_map({ "n", "v" }, "G", util.bind(ToggleMovement, "G", "gg"), "Go to start/end of file", silent_opt)
+util.set_key_map({ "n", "x" }, "G", util.bind(ToggleMovement, "G", "gg"), "Go to start/end of file", silent_opt)
 
 -- Remap f9 to fold control
 util.set_key_map("i", "<F9>", "<C-O>za", "Toggle Fold")
 util.set_key_map("n", "<F9>", "za", "Toggle Fold")
 util.set_key_map("o", "<F9>", "<C-C>za", "Toggle Fold")
-util.set_key_map("v", "<F9>", "zf", "Create Fold")
+util.set_key_map("x", "<F9>", "zf", "Create Fold")
 
 local function DiffWithSaved()
   local filetype = vim.o.ft
@@ -84,14 +84,14 @@ local function paste_from_system_clipboard()
 end
 
 -- Paste system clipboard with Ctrl + v
-util.set_key_map({ "c", "i", "n", "v" }, "<C-v>", paste_from_system_clipboard, "Paste from system clipboard")
+util.set_key_map({ "c", "i", "n", "x" }, "<C-v>", paste_from_system_clipboard, "Paste from system clipboard")
 
 -- Cut to system clipboard with Ctrl + x
-util.set_key_map("v", "<C-x>", '"+d"', "Cut to system clipboard")
+util.set_key_map("x", "<C-x>", '"+d"', "Cut to system clipboard")
 util.set_key_map("n", "<C-x>", '"+dd"', "Cut to system clipboard")
 util.set_key_map("i", "<C-x>", '<ESC>"+ddi', "Cut to system clipboard")
 
 -- Copy to system clipboard with Ctr + c
-util.set_key_map("v", "<C-c>", '"+y"', "Copy to system clipboard")
+util.set_key_map("x", "<C-c>", '"+y"', "Copy to system clipboard")
 util.set_key_map("n", "<C-c>", '"+yy"', "Copy to system clipboard")
 util.set_key_map("i", "<C-c>", '<ESC>"+yya', "Copy to system clipboard")
