@@ -4,9 +4,8 @@ local util = require("util")
 -- Add any additional keymaps here
 vim.g.mapleader = " "
 
--- Change z key in normal mode to undo and Z to redo
-util.set_key_map("n", "z", "u", "Undo")
-util.set_key_map("n", "Z", "<c-r>", "Redo")
+-- Change U to redo for symetry with u
+util.set_key_map("n", "U", "<c-r>", "Redo")
 
 -- Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 -- which is the default
