@@ -1,7 +1,7 @@
 return {
   "ibhagwan/smartyank.nvim",
   opts = { highlight = { timeout = 1000 } },
-  event = "VeryLazy",
+  event = "TextYankPost",
   main = "smartyank",
   config = function(self, opts)
     -- Require main module and setup with opts
