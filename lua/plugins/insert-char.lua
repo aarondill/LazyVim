@@ -6,10 +6,10 @@ return {
   end,
   keys = {
     {
-      -- set \<key> as insert one char.
-      -- Repeatable with <count>\<key>
+      -- set <C-i><key> as insert one char.
+      -- Repeatable with <count><C-i><key>
       -- Works with period
-      "\\",
+      "<C-i>",
       "<Plug>InsertChar",
       mode = { "n" },
     },
