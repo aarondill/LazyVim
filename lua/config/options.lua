@@ -45,7 +45,6 @@ opt.sidescroll = 1 -- Improve scrolling with nowrap
 opt.foldmethod = "marker" -- Set the fold method to obey comments
 opt.incsearch = true -- Turn on incremenetal search in vim
 opt.autowrite = false -- Disable auto write
--- opt.clipboard = "" -- Set clipboard to defualt to stop copying to system clipboard on yank
 
 -- Instead of failing a command because of unsaved changes, instead raise a
 -- dialogue asking if you wish to save changed files.
