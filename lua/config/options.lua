@@ -64,7 +64,7 @@ opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.expandtab = true
 
-local dir = util.env("HOME") .. "/.cache/vimtmp"
+local dir = vim.env.HOME .. "/.cache/vimtmp"
 if not vim.fn.isdirectory(dir) then
   vim.fn.mkdir(dir, "p")
 end

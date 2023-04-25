@@ -1,21 +1,8 @@
 local M = {}
 
----get environemnt variables
----@param env string
----@generic T
----@param default T? the value to return of env isn't present
----@return T|string
-function M.env(env, default)
-  local environemnt = vim.fn.environ()
-  if vim.fn.has_key(environemnt, env) then
-    return environemnt[env]
-  end
-  return default
-end
-
 function M.is_tty()
   -- false if display is defined, else true
-  return not M.env("DISPLAY")
+  return not vim.env.DISPLAY
 end
 
 ---Sets vim.env.PATH with the path given added to it.
