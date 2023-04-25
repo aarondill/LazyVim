@@ -1,4 +1,5 @@
 local util = require("utils")
+local deep_get = require("utils.deep_get")
 -- Don't change anything if not in a tty
 if not util.is_tty() then
   return {}
@@ -54,7 +55,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
-      local symbols = util.deep_get(opts, "sections", "lualine_c", 3, "symbols")
+      local symbols = deep_get(opts, "sections", "lualine_c", 3, "symbols")
       if symbols then
         symbols.modified = " + "
       else
@@ -78,7 +79,7 @@ return {
   {
     "goolord/alpha-nvim",
     opts = function(_, opts)
-      local group = util.deep_get(opts, "section", "buttons", "val")
+      local group = deep_get(opts, "section", "buttons", "val")
       if not group then return end
 
       local icons = { "", "", "", "", "" }
