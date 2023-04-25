@@ -1,8 +1,8 @@
-local util = require("utils")
+local is_tty = require("utils.is_tty")
 local set_props = require("utils.set_props")
 local deep_get = require("utils.deep_get")
 -- Don't change anything if not in a tty
-if not util.is_tty() then
+if not is_tty() then
   return {}
 end
 

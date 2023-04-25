@@ -1,10 +1,5 @@
 local M = {}
 
-function M.is_tty()
-  -- false if display is defined, else true
-  return not vim.env.DISPLAY
-end
-
 ---Sets vim.env.PATH with the path given added to it.
 ---@param path string the path to append to the vim.env.PATH
 ---@param append? boolean whether to append or prepend the path. false means prepend. has no effect if path is empty.

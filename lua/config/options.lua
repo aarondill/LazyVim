@@ -1,7 +1,7 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
-local util = require("utils")
+local is_tty = require("utils.is_tty")
 local opt = vim.opt
 
 -- Allows you to re-use the same window and switch from an unsaved buffer
@@ -71,6 +71,6 @@ end
 opt.directory = dir -- Move the swap file
 
 -- If running in tty, set menu transparency to opaque
-if util.is_tty() then
+if is_tty() then
   require("config.tty").apply()
 end

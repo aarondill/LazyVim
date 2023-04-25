@@ -4,10 +4,10 @@ return {
   {
     "LazyVim/LazyVim",
     opts = function(_, opts)
-      local util = require("utils")
+      local is_tty = require("utils.is_tty")
       local set_props = require("utils.set_props")
       local loc_opts = {}
-      if util.is_tty() then
+      if is_tty() then
         loc_opts.colorscheme = "elflord"
       else
         loc_opts.colorscheme = "tokyonight"
