@@ -30,27 +30,14 @@ map("n", "<leader>q1", vim.cmd.q, "Exit without saving")
 -- Terminal allow escape to exit insert
 map("t", "<Esc>", "<C-\\><C-n>", "Exit insert")
 
-local function ToggleMovement(firstOp, thenOp)
-  local pos = vim.api.nvim_win_get_cursor(0)
-  vim.cmd("normal! " .. firstOp)
-  local newpos = vim.api.nvim_win_get_cursor(0)
-  vim.cmd("normal! " .. firstOp)
-  -- Compare string representations of tables. Works bc simple tables (ie {2, 3})
-  if table.concat(pos) == table.concat(newpos) then
-    vim.cmd("normal! " .. thenOp)
-  end
-end
-
+local toggle_movement = require("utils.toggle_movement")
 -- Map 0 to go between 0 and ^
-local silent_opt = {
-  silent = true,
-}
-map({ "n", "x" }, "0", bind(ToggleMovement, "^", "0"), "Go to start of line", silent_opt)
-map({ "n", "x" }, "^", bind(ToggleMovement, "0", "^"), "Go to start of line", silent_opt)
+map({ "n", "x" }, "0", bind(toggle_movement, "^", "0"), "Go to start of line", { silent = true })
+map({ "n", "x" }, "^", bind(toggle_movement, "0", "^"), "Go to start of line", { silent = true })
 -- Map gg to go between gg and G
-map({ "n", "x" }, "gg", bind(ToggleMovement, "gg", "G"), "Go to start/end of file", silent_opt)
+map({ "n", "x" }, "gg", bind(toggle_movement, "gg", "G"), "Go to start/end of file", { silent = true })
 -- Map G to go between G and gg
-map({ "n", "x" }, "G", bind(ToggleMovement, "G", "gg"), "Go to start/end of file", silent_opt)
+map({ "n", "x" }, "G", bind(toggle_movement, "G", "gg"), "Go to start/end of file", { silent = true })
 
 -- Remap f9 to fold control
 map("i", "<F9>", "<C-O>za", "Toggle Fold")
