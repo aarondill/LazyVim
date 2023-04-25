@@ -2,7 +2,10 @@
 return {
   "keyvchan/telescope-find-pickers.nvim",
   config = function()
-    require("telescope").load_extension("find_pickers")
+   local ok, mod= pcall(require("telescope"))
+   if ok then
+     mod.load_extension("find_pickers")
+   end
   end,
   keys = function(ext)
     return {
