@@ -1,5 +1,5 @@
 local is_tty = require("utils.is_tty")
-local set_props = require("utils.set_props")
+local tbl_extend = require("utils.tbl_extend")
 local deep_get = require("utils.deep_get")
 -- Don't change anything if not in a tty
 if not is_tty() then
@@ -10,7 +10,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = function(_, config)
-      return set_props(config, {
+      return tbl_extend(config, {
         default_component_configs = {
           indent = {
             expander_collapsed = "▶",
