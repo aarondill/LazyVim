@@ -30,14 +30,13 @@ map("n", "<leader>q1", vim.cmd.q, "Exit without saving")
 -- Terminal allow escape to exit insert
 map("t", "<Esc>", "<C-\\><C-n>", "Exit insert")
 
-local toggle_movement = require("utils.toggle_movement")
 -- Map 0 to go between 0 and ^
-map({ "n", "x" }, "0", bind(toggle_movement, "^", "0"), "Go to start of line", { silent = true })
-map({ "n", "x" }, "^", bind(toggle_movement, "0", "^"), "Go to start of line", { silent = true })
+map({ "n", "x" }, "0", bind(require("utils.toggle_movement"), "^", "0"), "Go to start of line", { silent = true })
+map({ "n", "x" }, "^", bind(require("utils.toggle_movement"), "0", "^"), "Go to start of line", { silent = true })
 -- Map gg to go between gg and G
-map({ "n", "x" }, "gg", bind(toggle_movement, "gg", "G"), "Go to start/end of file", { silent = true })
+map({ "n", "x" }, "gg", bind(require("utils.toggle_movement"), "gg", "G"), "Go to start/end of file", { silent = true })
 -- Map G to go between G and gg
-map({ "n", "x" }, "G", bind(toggle_movement, "G", "gg"), "Go to start/end of file", { silent = true })
+map({ "n", "x" }, "G", bind(require("utils.toggle_movement"), "G", "gg"), "Go to start/end of file", { silent = true })
 
 -- Remap f9 to fold control
 map("i", "<F9>", "<C-O>za", "Toggle Fold")
