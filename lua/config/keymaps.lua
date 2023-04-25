@@ -1,4 +1,4 @@
-local util = require("utils")
+local bind = require("utils.bind")
 local map = require("utils.set_key_map")
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
@@ -45,12 +45,12 @@ end
 local silent_opt = {
   silent = true,
 }
-map({ "n", "x" }, "0", util.bind(ToggleMovement, "^", "0"), "Go to start of line", silent_opt)
-map({ "n", "x" }, "^", util.bind(ToggleMovement, "0", "^"), "Go to start of line", silent_opt)
+map({ "n", "x" }, "0", bind(ToggleMovement, "^", "0"), "Go to start of line", silent_opt)
+map({ "n", "x" }, "^", bind(ToggleMovement, "0", "^"), "Go to start of line", silent_opt)
 -- Map gg to go between gg and G
-map({ "n", "x" }, "gg", util.bind(ToggleMovement, "gg", "G"), "Go to start/end of file", silent_opt)
+map({ "n", "x" }, "gg", bind(ToggleMovement, "gg", "G"), "Go to start/end of file", silent_opt)
 -- Map G to go between G and gg
-map({ "n", "x" }, "G", util.bind(ToggleMovement, "G", "gg"), "Go to start/end of file", silent_opt)
+map({ "n", "x" }, "G", bind(ToggleMovement, "G", "gg"), "Go to start/end of file", silent_opt)
 
 -- Remap f9 to fold control
 map("i", "<F9>", "<C-O>za", "Toggle Fold")

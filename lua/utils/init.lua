@@ -1,15 +1,5 @@
 local M = {}
 
-function M.bind(f, ...)
-  local args = { ... }
-  return function(...)
-    for _, v in ipairs({ ... }) do
-      table.insert(args, v)
-    end
-    return f(unpack(args))
-  end
-end
-
 ---Local implementation of M.copy_table. Not meant for outside usage.
 local function copy_table(obj, seen)
   if type(obj) ~= "table" then
