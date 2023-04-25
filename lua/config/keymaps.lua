@@ -45,33 +45,13 @@ map("n", "<F9>", "za", "Toggle Fold")
 map("o", "<F9>", "<C-C>za", "Toggle Fold")
 map("x", "<F9>", "zf", "Create Fold")
 
-local function DiffWithSaved()
-  local filetype = vim.o.ft
-  vim.cmd.diffthis()
-
-  vim.cmd.vnew()
-  local orig_file = vim.fn.expand("#")
-  vim.cmd.read(orig_file)
-  vim.cmd("normal! 1Gdd")
-
-  vim.cmd.diffthis()
-  vim.opt.buftype = "nofile"
-  vim.opt.bufhidden = "wipe"
-  vim.opt.buflisted = false
-  vim.opt.swapfile = false
-  vim.opt.readonly = true
-  vim.opt.filetype = filetype
-end
-map("n", "<leader>ds", DiffWithSaved, "Show the diff with last save")
-vim.api.nvim_create_user_command("DiffSaved", DiffWithSaved, {})
-
-local function paste_from_system_clipboard()
-  ---@diagnostic disable-next-line: param-type-mismatch # this works, but the types are wrong
-  vim.paste(vim.fn.getreg("+", 1, true), -1)
-end
+map("n", "<leader>ds", require("utils.diff_with_saved"), "Show the [d]iff with last [s]ave")
 
 -- Paste system clipboard with Ctrl + v
-map({ "c", "i", "n", "x" }, "<C-v>", paste_from_system_clipboard, "Paste from system clipboard")
+map({ "c", "i", "n", "x" }, "<C-v>", function()
+  ---@diagnostic disable-next-line: param-type-mismatch # this works, but the types are wrong
+  vim.paste(vim.fn.getreg("+", 1, true), -1)
+end, "Paste from system clipboard")
 
 -- Cut to system clipboard with Ctrl + x
 map("x", "<C-x>", '"+d', "Cut to system clipboard")
@@ -79,18 +59,19 @@ map("n", "<C-x>", '"+dd', "Cut to system clipboard")
 map("i", "<C-x>", '<ESC>"+ddi', "Cut to system clipboard")
 
 -- Copy to system clipboard with Ctr + c
-map("x", "<C-c>", '"+y', "Copy to system clipboard")
-map("n", "<C-c>", '"+yy', "Copy to system clipboard")
-map("i", "<C-c>", '<ESC>"+yya', "Copy to system clipboard")
+map("x", "<C-c>", '"+y', "[C]opy to system clipboard")
+map("n", "<C-c>", '"+yy', "[C]opy to system clipboard")
+map("i", "<C-c>", '<ESC>"+yya', "[C]opy to system clipboard")
 
 -- Cd shortcuts
-map("n", "<Leader>cd", "<Cmd>cd! %:h<CR>", { desc = "cd to current buffer path" })
-map("n", "<Leader>..", "<Cmd>cd! ..<CR>", { desc = "cd up a level" })
+map("n", "<Leader>cc", "<Cmd>cd! %:h<CR>", { desc = "[c]d to [c]urrent buffer path" })
+map("n", "<Leader>..", "<Cmd>cd! ..<CR>", { desc = "cd up a level [..]" })
+
 -- Edit closest
-map("n", "<Leader>ecr", function()
+map("n", "<Leader>erm", function()
   require("utils.edit_closest")("README.md")
-end, { desc = "Edit closest README.md" })
+end, { desc = "[E]dit closest [R]EAD[M]E.md" })
 
 map("n", "<Leader>epj", function()
   require("utils.edit_closest")("package.json")
-end, { desc = "Edit closest package.json" })
+end, { desc = "[E]dit closest [p]ackage.[j]son" })
