@@ -6,9 +6,9 @@ return {
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
-      local util = require("utils")
+      local setProps = require("utils.setProps")
       -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
-      return util.setProps(opts, {
+      return setProps(opts, {
         window = {
           completion = { -- rounded border
             border = "rounded",

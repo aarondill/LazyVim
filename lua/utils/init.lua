@@ -1,13 +1,5 @@
 local M = {}
 
----sets properties on orig with props
----@param orig table?
----@param props table
----@return table merged
-function M.setProps(orig, props)
-  return vim.tbl_deep_extend("force", orig or {}, props)
-end
-
 ---get environemnt variables
 ---@param env string
 ---@generic T

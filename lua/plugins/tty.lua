@@ -1,4 +1,5 @@
 local util = require("utils")
+local setProps = require("utils.setProps")
 local deep_get = require("utils.deep_get")
 -- Don't change anything if not in a tty
 if not util.is_tty() then
@@ -9,7 +10,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = function(_, config)
-      return util.setProps(config, {
+      return setProps(config, {
         default_component_configs = {
           indent = {
             expander_collapsed = "▶",
