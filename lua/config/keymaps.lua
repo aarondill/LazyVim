@@ -77,3 +77,25 @@ end, { desc = "[E]dit closest [p]ackage.[j]son" })
 
 map({ "i", "n" }, "<F1>", "<NOP>", { desc = "Disable help shortcut key" })
 
+map("n", "<Leader>yn", function()
+  local res = vim.fn.expand("%:t")
+  if res == "" then
+    vim.notify(
+      "Buffer has no filename",
+      vim.log.levels.ERROR,
+      { title = "Failed to yank filename", render = "compact" }
+    )
+    return
+  end
+  vim.fn.setreg("+", res)
+  vim.notify(res, vim.log.levels.INFO, { title = "Yanked filename" })
+end, { desc = "Yank the filename of current buffer" })
+
+map("n", "<Leader>yp", function()
+  local res = vim.fn.expand("%:p")
+  res = res == "" and vim.loop.cwd() or res
+  if res:len() then
+    vim.fn.setreg("+", res)
+    vim.notify(res, vim.log.levels.INFO, { title = "Yanked filepath" })
+  end
+end, { desc = "Yank the full filepath of current buffer" })
