@@ -2,7 +2,7 @@ return {
   "neovim/nvim-lspconfig",
   init = function()
     -- Rename with <f2>
-    local util = require("util")
+    local util = require("utils")
     local keys = require("lazyvim.plugins.lsp.keymaps").get()
 
     for _, v in ipairs(keys) do -- Loop each value

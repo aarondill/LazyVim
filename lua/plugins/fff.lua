@@ -4,7 +4,7 @@ return {
     "dylanaraps/fff",
     build = "chmod +x fff", -- should be, but make sure
     config = function()
-      local util = require("util")
+      local util = require("utils")
       local bin = vim.fn.stdpath("data") .. "/lazy/fff"
 
       if not vim.loop.fs_stat(bin) then
@@ -25,7 +25,7 @@ return {
       vim.g["fff#split"] = "10new"
       vim.g["fff#split_direction"] = "splitbelow splitright"
       -- Open fff on press of '<leader>f'
-      require("util").set_key_map("n", "<leader>f", "<CMD>F %:p:h:S<CR>", "Open fff")
+      require("utils").set_key_map("n", "<leader>f", "<CMD>F %:p:h:S<CR>", "Open fff")
     end,
   },
 }

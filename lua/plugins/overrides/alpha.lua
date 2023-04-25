@@ -1,4 +1,4 @@
-local util = require("util")
+local util = require("utils")
 return {
   "goolord/alpha-nvim",
   opts = function(_, opts)

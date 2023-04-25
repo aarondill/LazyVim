@@ -1,4 +1,4 @@
-local util = require("util")
+local util = require("utils")
 -- Don't change anything if not in a tty
 if not util.is_tty() then
   return {}
