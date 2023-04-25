@@ -4,7 +4,7 @@ return {
     "dylanaraps/fff",
     build = "chmod +x fff", -- should be, but make sure
     config = function()
-      local util = require("utils")
+      local extend_path = require("utils.extend_path")
       local bin = vim.fn.stdpath("data") .. "/lazy/fff"
 
       if not vim.loop.fs_stat(bin) then
@@ -12,7 +12,7 @@ return {
         return
       end
 
-      util.extend_path(bin)
+      extend_path(bin)
     end,
     lazy = true, -- don't load until fff.vim calls as dependency
   },
