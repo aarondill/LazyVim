@@ -29,7 +29,7 @@ return {
     "BufEnter",
     "BufDelete",
   },
-  cmds = {
+  cmd = {
     "GitBlameOpenCommitURL",
     "GitBlameToggle",
     "GitBlameEnable",
