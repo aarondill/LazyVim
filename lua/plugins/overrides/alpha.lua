@@ -1,5 +1,5 @@
-local util = require("utils")
 local deep_get = require("utils.deep_get")
+local config_path = require("utils.config_path")
 return {
   "goolord/alpha-nvim",
   opts = function(_, opts)
@@ -11,7 +11,7 @@ return {
       "  Config",
       -- Sleeps to wait for Neotree and ensure that vimrc is focused
       "<cmd>execute 'Neotree "
-        .. util.config_path()
+        .. config_path()
         .. "' <bar> sleep 100m <bar>  e $MYVIMRC<CR>"
     )
 

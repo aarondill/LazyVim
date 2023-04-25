@@ -1,12 +1,5 @@
 local M = {}
 
---- Return the config path (deafult path: ~/.config/nvim)
----@return string
-function M.config_path()
-  ---@diagnostic disable-next-line: return-type-mismatch # Built in vim.fn.stdpath works, catppuccin messes the type up
-  return vim.fn.stdpath("config")
-end
-
 -- A wrapper around |vim.keymap.set| which adds a desc arg and allows multiple lhs to be defined at the same time
 ---@param mode string|string[] Mode short-name, see |nvim_set_keymap()|.
 ---@param lhs string|string[]  Left-hand side |{lhs}| of the mapping.
