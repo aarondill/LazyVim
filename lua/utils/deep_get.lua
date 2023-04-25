@@ -1,3 +1,4 @@
+--- Get a value from a table, seemlessly handling nil values
 --- @param table table?
 --- @param ... string | number
 return function(table, ...)
