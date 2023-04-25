@@ -74,3 +74,6 @@ end, { desc = "[E]dit closest [R]EAD[M]E.md" })
 map("n", "<Leader>epj", function()
   require("utils.edit_closest")("package.json")
 end, { desc = "[E]dit closest [p]ackage.[j]son" })
+
+map({ "i", "n" }, "<F1>", "<NOP>", { desc = "Disable help shortcut key" })
+
