@@ -99,3 +99,6 @@ map("n", "<Leader>yp", function()
     vim.notify(res, vim.log.levels.INFO, { title = "Yanked filepath" })
   end
 end, { desc = "Yank the full filepath of current buffer" })
+
+map("x", "<", "<gv", "Reselect visual block after indent")
+map("x", ">", ">gv", "Reselect visual block after indent")
