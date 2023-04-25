@@ -25,7 +25,7 @@ return {
       vim.g["fff#split"] = "10new"
       vim.g["fff#split_direction"] = "splitbelow splitright"
       -- Open fff on press of '<leader>f'
-      require("utils").set_key_map("n", "<leader>f", "<CMD>F %:p:h:S<CR>", "Open fff")
+      require("utils.set_key_map")("n", "<leader>f", "<CMD>F %:p:h:S<CR>", "Open fff")
     end,
   },
 }
