@@ -7,12 +7,12 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     main = "tabnine",
     opts = {
-      disable_auto_comment = true,
-      accept_keymap = "<Tab>",
-      dismiss_keymap = "<C-]>",
-      debounce_ms = 800,
-      suggestion_color = { gui = "#808080", cterm = 244 },
-      exclude_filetypes = { "TelescopePrompt" },
+      disable_auto_comment = false, -- I already handle this. Default: true
+      accept_keymap = "<Tab>", -- Default: "<Tab>"
+      dismiss_keymap = "<C-]>", -- Default: "<C-]>"
+      debounce_ms = 500, -- Faster pls. Default: 800
+      suggestion_color = { gui = "#808080", cterm = 244 }, -- Default: { gui = "#808080", cterm = 244 }
+      exclude_filetypes = { "TelescopePrompt" }, -- Default: { "TelescopePrompt" }
     },
   },
   -- Disable LuaSnip capture of tab
