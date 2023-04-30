@@ -73,7 +73,7 @@ return {
           -- Accept without explicit selection
           ["<TAB>"] = function(fallback)
             if not require("tabnine.keymaps").accept_suggestion() then
-              cmp.mapping.confirm({ select = true })(fallback)
+              cmp.mapping.confirm({ select = false })(fallback)
             end
           end,
         },
