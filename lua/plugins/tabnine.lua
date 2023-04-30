@@ -2,7 +2,7 @@ return {
   -- Tabnine setup
   {
     "aarondill/tabnine-nvim",
-    branch = "all_together_now",
+    branch = "refactor_export_keymaps",
     build = "./dl_binaries.sh",
     event = { "BufReadPre", "BufNewFile" },
     main = "tabnine",
@@ -19,7 +19,40 @@ return {
   {
     "L3MON4D3/LuaSnip",
     keys = function()
-      return {}
+      return {
+        {
+          "<tab>",
+          function()
+            if require("luasnip").jumpable(1) then
+              require("luasnip").jump(1)
+            else
+              require("tabnine.keymaps").accept_suggestion()
+            end
+          end,
+          silent = true,
+          mode = "i",
+        },
+        {
+          "<tab>",
+          function()
+            if require("luasnip").jumpable(1) then
+              require("luasnip").jump(1)
+            else
+              require("tabnine.keymaps").accept_suggestion()
+            end
+          end,
+          mode = "s",
+        },
+        {
+          "<s-tab>",
+          function()
+            if require("luasnip").jumpable(-1) then
+              require("luasnip").jump(-1)
+            end
+          end,
+          mode = { "i", "s" },
+        },
+      }
     end,
   },
   -- Lualine show Tabnine status
