@@ -79,17 +79,15 @@ return {
   },
   {
     "goolord/alpha-nvim",
+    dependencies = { require("utils.utf8").UTF8_MODULE },
     opts = function(_, opts)
+      local utf8 = require("utils.utf8")
       local group = deep_get(opts, "section", "buttons", "val")
-      if not group then return end
-
-      local icons = { "", "", "", "", "" }
-      for i, v in ipairs(icons) do
-        if not group[i] then goto continue end
-        ---@type {val: string}
-        local curr_val = group[i]
-        curr_val.val = v..curr_val.val:sub(1)
-        ::continue::
+      if not group then
+        return
+      end
+      for _, cgroup in ipairs(group) do
+        cgroup.val = utf8.sub(cgroup.val, 2)
       end
     end,
   },
