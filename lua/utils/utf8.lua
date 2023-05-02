@@ -15,7 +15,22 @@ local function load_utf8_module()
   end
   return utf8
 end
+---Removes any non-ASCII characters, replacing with {rhs} or a space
+---@param s string
+---@param rhs? string
+---@return string
+function M.sanitize(s, rhs)
+  local r = string.gsub(s, "[\192-\255][\128-\191]*", rhs or " ")
+  return r
+end
 
+---string.sub but with utf8 support
+---@param s string
+---@param i? integer start of new string [1]
+---@param j? integer end of new string [#s]
+---@return string|nil sub
+---@see string.sub
+---@source http://lua-users.org/lists/lua-l/2014-04/msg00590.html
 function M.sub(s, i, j)
   local utf8 = load_utf8_module()
   i = i or 1
@@ -55,6 +70,7 @@ function M.sub(s, i, j)
     return ""
   end
 end
+
 -- Allow outside code to access the utf8 module directly on the export table
 setmetatable(M, {
   __index = function(t, k)
