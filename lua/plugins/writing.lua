@@ -12,10 +12,10 @@ return {
     opts = function(_, opts)
       local nls = require("null-ls")
       opts.sources = vim.list_extend(opts.sources, {
-        nls.builtins.diagnostics.proselint,
-        nls.builtins.code_actions.proselint,
-        nls.builtins.diagnostics.alex,
-        nls.builtins.diagnostics.write_good,
+        nls.builtins.diagnostics.proselint.with({ extra_filetypes = { "markdown", "text" } }),
+        nls.builtins.code_actions.proselint.with({ extra_filetypes = { "markdown", "text" } }),
+        nls.builtins.diagnostics.alex.with({ extra_filetypes = { "markdown", "text" } }),
+        nls.builtins.diagnostics.write_good.with({ extra_filetypes = { "markdown", "text" } }),
       })
     end,
   },
