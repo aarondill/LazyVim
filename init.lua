@@ -10,6 +10,9 @@ local function load_config()
   end
 end
 local ok, mod = pcall(require, "lazyvim.util")
-if ok then
-  mod.on_very_lazy(load_config)
-end
+-- stylua: ignore
+if ok then mod.on_very_lazy(load_config) end
+
+ok, mod = pcall(require, "luasnip.loaders.from_vscode")
+-- stylua: ignore
+if ok then mod.lazy_load({ paths = "./snippets/" }) end
