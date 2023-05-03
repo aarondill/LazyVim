@@ -20,3 +20,17 @@ api.nvim_create_autocmd("FileType", {
   pattern = "*",
   command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
 })
+
+api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.tmpl",
+  callback = function(ev)
+    ---@type string
+    local file = ev.file or ""
+    local ext, count = file:sub(2):gsub(".+%.(.+).tmpl$", "%1")
+    if count == 0 then
+      vim.notify("Could not determine template extension for " .. file)
+      return
+    end
+    vim.opt.filetype = ext
+  end,
+})
