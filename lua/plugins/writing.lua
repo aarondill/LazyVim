@@ -1,16 +1,25 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "uga-rosa/cmp-dictionary",
-        init = function()
-          vim.opt.dictionary:append("/usr/share/dict/words")
-        end,
-        opts = {},
-        main = "cmp_dictionary",
-      },
+    "uga-rosa/cmp-dictionary",
+    lazy = true,
+    init = function()
+      vim.opt.dictionary:append("/usr/share/dict/words")
+    end,
+    opts = {
+      debug = true,
+      first_case_insensitive = true,
     },
+    main = "cmp_dictionary",
+    config = function(self, opts)
+      local dict = require(self.main)
+      dict.setup(opts or {})
+      dict.update()
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = "uga-rosa/cmp-dictionary",
+    event = "VimEnter",
   },
   opts = function(_, opts)
     local cmp = require("cmp")
