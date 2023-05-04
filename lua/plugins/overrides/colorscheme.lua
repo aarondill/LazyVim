@@ -8,7 +8,7 @@ return {
       local tbl_extend = require("utils.tbl_extend")
       local loc_opts = {}
       if is_tty() then
-        loc_opts.colorscheme = "elflord"
+        loc_opts.colorscheme = "wildcharm"
       else
         loc_opts.colorscheme = "tokyonight"
       end
