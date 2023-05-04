@@ -13,7 +13,11 @@ return {
           end,
           cmd = { "jdtls" },
           settings = {
-            java = {},
+            java = {
+              format = {
+                settings = { url = "~/vscode/Java/java-format.xml" },
+              },
+            },
           },
         },
       },
