@@ -1,32 +1,23 @@
 return {
   {
-    "uga-rosa/cmp-dictionary",
+    "octaltree/cmp-look",
     lazy = true,
-    init = function()
-      vim.opt.dictionary:append("/usr/share/dict/words")
-    end,
-    opts = {
-      debug = true,
-      first_case_insensitive = true,
-    },
-    main = "cmp_dictionary",
-    config = function(self, opts)
-      local dict = require(self.main)
-      dict.setup(opts or {})
-      dict.update()
-    end,
   },
   {
     "hrsh7th/nvim-cmp",
-    dependencies = "uga-rosa/cmp-dictionary",
-    event = "VimEnter",
+    dependencies = "octaltree/cmp-look",
   },
   opts = function(_, opts)
     local cmp = require("cmp")
     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
       {
-        name = "dictionary",
+        name = "look",
         keyword_length = 2,
+        option = {
+          convert_case = true,
+          loud = true,
+          dict = "/usr/share/dict/words",
+        },
       },
     }))
   end,
