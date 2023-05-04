@@ -1,5 +1,27 @@
 return {
   {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "uga-rosa/cmp-dictionary",
+        init = function()
+          vim.opt.dictionary:append("/usr/share/dict/words")
+        end,
+        opts = {},
+        main = "cmp_dictionary",
+      },
+    },
+  },
+  opts = function(_, opts)
+    local cmp = require("cmp")
+    opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+      {
+        name = "dictionary",
+        keyword_length = 2,
+      },
+    }))
+  end,
+  {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       table.insert(opts.ensure_installed, "proselint")
