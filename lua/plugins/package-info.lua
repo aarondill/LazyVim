@@ -1,5 +1,5 @@
-local function silent_normal(rhs, lhs)
-  return { rhs, lhs, mode = "n", silent = true }
+local function silent_normal(rhs, lhs, desc)
+  return { rhs, lhs, mode = "n", silent = true, desc = desc }
 end
 local is_tty = require("utils.is_tty")()
 return {
@@ -27,23 +27,23 @@ return {
       -- Show dependency versionjs
       silent_normal("<leader>ns", function()
         require("package-info").show()
-      end),
+      end, "Show package versions"),
       -- Delete dependency on the line
       silent_normal("<leader>nd", function()
         require("package-info").delete()
-      end),
+      end, "Delete dependency"),
       -- Update dependency on the line
       silent_normal("<leader>nu", function()
         require("package-info").update()
-      end),
+      end, "Update dependency"),
       -- Install a different dependency version
       silent_normal("<leader>np", function()
         require("package-info").change_version()
-      end),
+      end, "Change dependency version"),
       -- Install a new dependency
       silent_normal("<leader>ni", function()
         require("package-info").install()
-      end),
+      end, "Install dependency"),
     },
     config = function(_, opts)
       require("package-info").setup(opts)
