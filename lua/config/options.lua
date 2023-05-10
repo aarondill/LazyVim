@@ -70,4 +70,5 @@ end
 opt.directory = dir -- Move the swap file
 
 -- Disable perl provider
-opt.loaded_perl_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
