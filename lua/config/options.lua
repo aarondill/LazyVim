@@ -68,3 +68,6 @@ if not vim.fn.isdirectory(dir) then
   vim.fn.mkdir(dir, "p")
 end
 opt.directory = dir -- Move the swap file
+
+-- Disable perl provider
+opt.loaded_perl_provider = 0
