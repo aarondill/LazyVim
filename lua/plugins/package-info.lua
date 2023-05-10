@@ -20,7 +20,7 @@ return {
       -- provided one, if nothing is provided it will use `yarn`
       package_manager = "pnpm",
     },
-    dependancies = { "MunifTanjim/nui.nvim", "nvim-telescope/telescope.nvim" },
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-telescope/telescope.nvim" },
 
     event = "BufEnter package.json",
     keys = {
