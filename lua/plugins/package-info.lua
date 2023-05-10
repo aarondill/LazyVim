@@ -13,7 +13,7 @@ return {
           outdated = is_tty and "X " or "|  ", -- Icon for outdated dependencies
         },
       },
-      hide_up_to_date = false, -- It hides up to date versions when displaying virtual text
+      hide_up_to_date = true, -- It hides up to date versions when displaying virtual text
       -- Can be `npm`, `yarn`, or `pnpm`. Used for `delete`, `install` etc...
       -- The plugin will try to auto-detect the package manager based on
       -- `yarn.lock` or `package-lock.json`. If none are found it will use the
