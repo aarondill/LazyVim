@@ -1,5 +1,5 @@
 return {
-  "nyngwang/ugaterm.nvim",
+  "uga-rosa/ugaterm.nvim",
   opts = {
     ---@type string The terminal buffer name prefix.
     prefix = "ugaterm",
