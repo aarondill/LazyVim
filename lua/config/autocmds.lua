@@ -10,7 +10,7 @@ api.nvim_create_autocmd({ "BufEnter", "BufRead" }, {
   desc = "Change .conf syntax highlighting to an aproximate",
   group = VimRCAutoCmds,
   pattern = "*.conf",
-  command = "setf dosini",
+  command = "set syntax=dosini",
 })
 
 -- Disable auto-comments!!!
