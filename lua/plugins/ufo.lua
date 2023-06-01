@@ -28,6 +28,21 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
   table.insert(newVirtText, { suffix, "MoreMsg" })
   return newVirtText
 end
+local ignored_filetypes = {
+  ["help"] = true,
+  ["terminal"] = true,
+  ["lazy"] = true,
+  ["lspinfo"] = true,
+  ["TelescopePrompt"] = true,
+  ["TelescopeResults"] = true,
+  ["mason"] = true,
+  ["nvdash"] = true,
+  ["nvcheatsheet"] = true,
+  ["neo-tree"] = true,
+  ["dashboard"] = true,
+  ["alpha"] = true,
+  [""] = true,
+}
 
 return {
   "kevinhwang91/nvim-ufo",
@@ -42,7 +57,10 @@ return {
   end,
   opts = {
     fold_virt_text_handler = handler,
-    provider_selector = function()
+    provider_selector = function(_, filetype)
+      if ignored_filetypes[filetype] then
+        return { "" }
+      end
       return { "treesitter", "indent" }
     end,
     preview = {
