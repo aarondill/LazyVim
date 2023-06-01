@@ -1,5 +1,5 @@
 -- handle folds
--- https://github.com/sho-87/dotfiles/blob/09872d0905883a1be33d5bb3164076e730d44466/nvim/lua/plugins/modules/ufo.lua
+-- Modified from: https://github.com/sho-87/dotfiles/blob/09872d0905883a1be33d5bb3164076e730d44466/nvim/lua/plugins/modules/ufo.lua
 
 local handler = function(virtText, lnum, endLnum, width, truncate)
   local newVirtText = {}
