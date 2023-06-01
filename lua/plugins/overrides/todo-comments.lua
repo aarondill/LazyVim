@@ -1,4 +1,4 @@
--- Modified from: https://github.com/sho-87/dotfiles/blob/master/nvim/lua/plugins/modules/todo-comments.lua
+-- Modified from: https://github.com/sho-87/dotfiles/blob/09872d0905883a1be33d5bb3164076e730d44466/nvim/lua/plugins/modules/todo-comments.lua
 return {
   "folke/todo-comments.nvim",
   opts = {
