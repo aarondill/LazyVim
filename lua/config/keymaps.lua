@@ -58,8 +58,7 @@ map("n", "<C-x>", '"+dd', "Cut to system clipboard")
 map("i", "<C-x>", '<ESC>"+ddi', "Cut to system clipboard")
 
 -- Copy to system clipboard with Ctr + c
-map("x", "<C-c>", '"+ygv', "[C]opy to system clipboard")
-map("x", "y", "ygv", "[C]opy to system clipboard")
+map("x", "<C-c>", '"+y', "[C]opy to system clipboard")
 map("n", "<C-c>", '"+yy', "[C]opy to system clipboard")
 map("i", "<C-c>", '<ESC>"+yya', "[C]opy to system clipboard")
 
