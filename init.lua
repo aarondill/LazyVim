@@ -9,10 +9,20 @@ local function load_config()
     require("config.tty")
   end
 end
-local ok, mod = pcall(require, "lazyvim.util")
+local has_lazyvim_util, mod = pcall(require, "lazyvim.util")
 -- stylua: ignore
-if ok then mod.on_very_lazy(load_config) end
+if has_lazyvim_util then
+  mod.on_very_lazy(load_config)
+else
+  load_config()
+end
 
-ok, mod = pcall(require, "luasnip.loaders.from_vscode")
+local ok, mod = pcall(require, "luasnip.loaders.from_vscode")
 -- stylua: ignore
 if ok then mod.lazy_load({ paths = "./snippets/" }) end
+
+if not has_lazyvim_util then -- Do now
+  require("config.keymaps")
+  require("config.options")
+  require("config.autocmds")
+end
