@@ -26,7 +26,11 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  install = {
+    -- install missing plugins on startup. This doesn't increase startup time.
+    missing = true,
+    colorscheme = { "tokyonight", "habamax" },
+  },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
