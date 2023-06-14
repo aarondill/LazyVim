@@ -7,10 +7,14 @@ return {
       local is_tty = require("utils.is_tty")
       local tbl_extend = require("utils.tbl_extend")
       local loc_opts = {}
-      if is_tty() then
-        loc_opts.colorscheme = "wildcharm"
-      else
-        loc_opts.colorscheme = "tokyonight"
+      loc_opts.colorscheme = function()
+        if is_tty() then
+          if pcall(vim.cmd.colorscheme, "wildcharm") then
+            pcall(vim.cmd.colorscheme, "pablo")
+          end
+        else
+          require("tokyonight").load()
+        end
       end
       return tbl_extend(opts, loc_opts)
     end,
