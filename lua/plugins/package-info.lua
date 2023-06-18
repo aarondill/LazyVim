@@ -22,7 +22,11 @@ return {
     },
     dependencies = { "MunifTanjim/nui.nvim", "nvim-telescope/telescope.nvim" },
 
-    event = "BufEnter package.json",
+    event = {
+      -- "BufEnter package.json",
+      "BufReadPre package.json",
+      "BufNewFile package.json",
+    },
     keys = {
       -- Show dependency versionjs
       silent_normal("<leader>ns", function()

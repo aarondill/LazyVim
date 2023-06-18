@@ -26,7 +26,9 @@ return {
     "CursorMovedI",
     "TextChanged",
     "InsertLeave",
-    "BufEnter",
+    -- "BufEnter",
+    "BufReadPre",
+    "BufNewFile",
     "BufDelete",
   },
   cmd = {

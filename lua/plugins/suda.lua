@@ -6,5 +6,9 @@ return {
   end,
   cmd = { "SudaRead", "SudaWrite" },
   -- Load on enter *any* file, required for smart editing.
-  event = { "BufEnter" },
+  event = {
+    "BufReadPre",
+    "BufNewFile",
+    -- "BufEnter"
+  },
 }
