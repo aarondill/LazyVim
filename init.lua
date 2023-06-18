@@ -17,10 +17,6 @@ else
   load_config()
 end
 
-local ok, luasnip = pcall(require, "luasnip.loaders.from_vscode")
--- stylua: ignore
-if ok then luasnip.lazy_load({ paths = "./snippets/" }) end
-
 if not has_lazyvim_util then -- Do now
   require("config.keymaps")
   require("config.options")
