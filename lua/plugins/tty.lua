@@ -5,7 +5,7 @@ local deep_get = require("utils.deep_get")
 if not is_tty() then
   return {
     -- Avoid attempting to clean for no reason
-    { "uga-rosa/utf8.nvim" },
+    { "uga-rosa/utf8.nvim", lazy = true },
   }
 end
 
