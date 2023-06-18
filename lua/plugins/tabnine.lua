@@ -2,7 +2,7 @@ return {
   -- Tabnine setup
   {
     "aarondill/tabnine-nvim",
-    branch = "refactor_export_keymaps",
+    branch = "all_together_now",
     build = "./dl_binaries.sh",
     event = { "BufReadPre", "BufNewFile" },
     main = "tabnine",
