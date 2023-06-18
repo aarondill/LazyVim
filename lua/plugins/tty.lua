@@ -3,7 +3,10 @@ local tbl_extend = require("utils.tbl_extend")
 local deep_get = require("utils.deep_get")
 -- Don't change anything if not in a tty
 if not is_tty() then
-  return {}
+  return {
+    -- Avoid attempting to clean for no reason
+    { "uga-rosa/utf8.nvim" },
+  }
 end
 
 return {
@@ -79,7 +82,7 @@ return {
   },
   {
     "goolord/alpha-nvim",
-    dependencies = { require("utils.utf8").UTF8_MODULE },
+    dependencies = { "uga-rosa/utf8.nvim" },
     opts = function(_, opts)
       local utf8 = require("utils.utf8")
       local group = deep_get(opts, "section", "buttons", "val")

@@ -1,7 +1,5 @@
 local M = {}
 
----This module must be loaded before usage of these functions!
-M.UTF8_MODULE = { "uga-rosa/utf8.nvim" }
 ---Loads the utf8 module, throwing a nice error message if it fails
 ---@return table
 local function load_utf8_module()
@@ -11,7 +9,7 @@ local function load_utf8_module()
 
   local ok, utf8 = pcall(require, "utf8")
   if not ok then
-    error([[ utf8.nvim module must be loaded before using this! The dependency is provided at UTF8_MODULE]])
+    error([[ utf8.nvim module must be loaded before using this!]])
   end
   return utf8
 end
