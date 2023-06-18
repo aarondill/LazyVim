@@ -37,5 +37,4 @@ return {
   dependencies = {
     { "aymericbeaumet/vim-symlink", dependencies = { "moll/vim-bbye" } },
   },
-  event = "VeryLazy",
 }
