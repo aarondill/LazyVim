@@ -9,15 +9,11 @@ local function load_config()
     require("config.tty")
   end
 end
-local has_lazyvim_util, lazyvim = pcall(require, "lazyvim.util")
--- stylua: ignore
+local has_lazyvim_util, lazyvim_util = pcall(require, "lazyvim.util")
 if has_lazyvim_util then
-  lazyvim.on_very_lazy(load_config)
+  lazyvim_util.on_very_lazy(load_config)
 else
   load_config()
-end
-
-if not has_lazyvim_util then -- Do now
   require("config.keymaps")
   require("config.options")
   require("config.autocmds")
