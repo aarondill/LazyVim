@@ -8,7 +8,7 @@ return {
     main = "tabnine",
     opts = {
       disable_auto_comment = false, -- I already handle this. Default: true
-      accept_keymap = "<Tab>", -- Default: "<Tab>"
+      accept_keymap = "<C-S-F35>", -- Default: "<Tab>" -- This is *effectively* disabled. there's no true way to disable it.
       dismiss_keymap = "<C-]>", -- Default: "<C-]>"
       debounce_ms = 500, -- Faster pls. Default: 800
       suggestion_color = { gui = "#808080", cterm = 244 }, -- Default: { gui = "#808080", cterm = 244 }
@@ -71,11 +71,17 @@ return {
       return vim.tbl_deep_extend("force", opts or {}, {
         mapping = {
           -- Accept without explicit selection
-          ["<TAB>"] = function(fallback)
-            if not require("tabnine.keymaps").accept_suggestion() then
-              cmp.mapping.confirm({ select = false })(fallback)
+          ["<TAB>"] = cmp.mapping(function(fallback)
+            if require("tabnine.keymaps").accept_suggestion() then
+              return
+            elseif cmp.visible() then
+              cmp.confirm({ select = false })
+            else
+              -- Fallback is not mapped correctly. Just hard code a tab character
+              vim.api.nvim_feedkeys("\t", "n", false)
+              -- fallback()
             end
-          end,
+          end, { "i" }),
         },
       })
     end,
