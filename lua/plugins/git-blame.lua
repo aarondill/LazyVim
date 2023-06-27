@@ -19,7 +19,7 @@ return {
     vim.g.gitblame_ignored_filetypes = {}
     -- The delay in milliseconds after which the blame info will be displayed.
     -- Note that this doesn't affect the performance of the plugin.
-    vim.g.gitblame_delay = 1500 -- 1.5 seconds
+    vim.g.gitblame_delay = 1000 -- 1 second
   end,
   event = {
     "CursorMoved",
