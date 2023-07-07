@@ -5,6 +5,20 @@ return {
     branch = "all_together_now",
     build = "./dl_binaries.sh",
     event = { "BufReadPre", "BufNewFile" },
+    cmd = {
+      "TabnineChat",
+      "TabnineChatClear",
+      "TabnineChatClose",
+      "TabnineChatNew",
+      "TabnineDisable",
+      "TabnineEnable",
+      "TabnineHub",
+      "TabnineHubUrl",
+      "TabnineLogin",
+      "TabnineLogout",
+      "TabnineStatus",
+      "TabnineToggle",
+    },
     main = "tabnine",
     opts = {
       disable_auto_comment = false, -- I already handle this. Default: true
