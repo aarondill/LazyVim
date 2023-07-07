@@ -60,7 +60,7 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
       local symbols = deep_get(opts, "sections", "lualine_c", 3, "symbols")
-      if symbols then
+      if symbols and symbols.modified then
         symbols.modified = " + "
       else
         print("Check your lualine configuration! It's in a different order than predefined")
