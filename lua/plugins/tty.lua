@@ -45,7 +45,7 @@ return {
   },
   {
     "nvim-tree/nvim-web-devicons",
-    enabled = false,
+    cond = false, -- Disable it
   },
   {
     "nvim-telescope/telescope.nvim",
