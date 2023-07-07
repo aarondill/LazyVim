@@ -31,7 +31,8 @@ return {
         mapping = {
           -- Accept without explicit selection
           ["<TAB>"] = cmp.mapping(function(fallback)
-            if require("tabnine.keymaps").accept_suggestion() then
+            local tabnine_keymaps = require("tabnine.keymaps")
+            if tabnine_keymaps.accept_suggestion and tabnine_keymaps.accept_suggestion() then
               return
             elseif cmp.visible() then
               cmp.confirm({ select = false })
