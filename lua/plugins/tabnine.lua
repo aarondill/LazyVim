@@ -2,6 +2,8 @@ return {
   -- Tabnine setup
   {
     "aarondill/tabnine-nvim",
+    -- dev = true,
+    -- branch = "chat",
     branch = "all_together_now",
     build = "./dl_binaries.sh",
     event = { "BufReadPre", "BufNewFile" },
