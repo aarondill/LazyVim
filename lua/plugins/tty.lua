@@ -58,14 +58,13 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    opts = function(_, opts)
-      local symbols = deep_get(opts, "sections", "lualine_c", 3, "symbols")
-      if symbols and symbols.modified then
-        symbols.modified = " + "
-      else
-        print("Check your lualine configuration! It's in a different order than predefined")
-      end
-    end,
+    opts = {
+      options = {
+        icons_enabled = false,
+        section_separators = { left = ">", right = "<" },
+        component_separators = { left = ">", right = "<" },
+      },
+    },
   },
   {
     "lewis6991/gitsigns.nvim",
