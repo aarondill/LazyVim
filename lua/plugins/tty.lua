@@ -103,4 +103,21 @@ return {
       },
     },
   },
+
+  {
+    "folke/noice.nvim",
+    opts = {
+      cmdline = {
+        ---@type table<string, CmdlineFormat>
+        format = {
+          cmdline = { icon = "> " },
+          search_down = { icon = "/ " },
+          search_up = { icon = "? " },
+          filter = { icon = "$" },
+          lua = { icon = "L " },
+          help = { icon = "? " },
+        },
+      },
+    },
+  },
 }
