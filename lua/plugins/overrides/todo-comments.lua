@@ -7,8 +7,8 @@ return {
       TODO = { icon = " ", color = "info" },
       HACK = { icon = " ", color = "warning", alt = { "DEV" } },
       WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-      PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-      NOTE = { icon = " ", color = "hint", alt = { "INFO", "HINT" } },
+      PERF = { icon = "󰅒 ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+      NOTE = { icon = "󰍩 ", color = "hint", alt = { "INFO", "HINT" } },
       TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
     },
     merge_keywords = true, -- when true, custom keywords will be merged with the defaults
