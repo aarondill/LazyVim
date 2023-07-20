@@ -4,6 +4,7 @@ local map = require("utils.set_key_map")
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Change U to redo for symetry with u
 map("n", "U", "<c-r>", "Redo")
