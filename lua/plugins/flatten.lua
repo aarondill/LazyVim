@@ -25,6 +25,10 @@ return {
       -- "last"         -> open last file of new files
       focus = "first",
     },
+    one_per = {
+      kitty = false, -- Flatten all instance in the current Kitty session
+      wezterm = false, -- Flatten all instance in the current Wezterm session
+    },
   },
   -- Ensure that it runs first to minimize delay when opening file from terminal
   lazy = false,
