@@ -138,3 +138,10 @@ end, { expr = true, desc = "Tab should insert spaces" })
 map("i", "<S-Tab>", "<C-d>", {
   desc = "Tab inserts a tab, shift-tab should remove it",
 })
+
+local lazyvim_util = require("lazyvim.util")
+local lazyterm = function()
+  lazyvim_util.float_term(nil, { cwd = lazyvim_util.get_root() })
+end
+map("n", { "<C-CR>", "<Leader><CR>" }, lazyterm, "Terminal (root dir)")
+map("t", { "<C-CR>" }, lazyterm, "Terminal (root dir)")
