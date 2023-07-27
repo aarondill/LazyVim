@@ -5,17 +5,24 @@ return {
       { "mfussenegger/nvim-jdtls", cond = not vim.o.diff },
     },
     opts = {
-      ---@type lspconfig.options
+      ---@type lspconfig.options | {}
       servers = {
         jdtls = {
-          on_attach = function()
-            require("jdtls.setup").add_commands()
-          end,
           cmd = { "jdtls" },
           settings = {
+            redhat = {
+              telemetry = { enabled = false },
+            },
             java = {
+              home = nil, ---@type nil This is FINE!
               format = {
-                settings = { url = "~/vscode/Java/java-format.xml" },
+                enabled = true,
+                comments = { enabled = true },
+                onType = { enabled = false },
+                settings = {
+                  url = "~/vscode/Java/java-format.xml",
+                  profile = nil, ---@type nil - the config is defined above
+                },
               },
             },
           },
@@ -23,7 +30,7 @@ return {
       },
       ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
       setup = {
-        jdtls = function(server, opts)
+        jdtls = function(_, opts)
           vim.api.nvim_create_autocmd("FileType", {
             pattern = "java",
             callback = function()
@@ -31,11 +38,11 @@ return {
               local wk = require("which-key")
               local bufnr = vim.api.nvim_get_current_buf()
 
-              local extract_variable = function()
-                jdtls.extract_variable(true)
+              local v_extract_variable = function()
+                jdtls.extract_variable({ visual = true })
               end
-              local extract_method = function()
-                jdtls.extract_method(true)
+              local v_extract_method = function()
+                jdtls.extract_method({ visual = true })
               end
 
               wk.register({
@@ -54,8 +61,8 @@ return {
               })
 
               wk.register({
-                e = { extract_variable, "Extract variable" },
-                M = { extract_method, "Extract method" },
+                e = { v_extract_variable, "Extract variable" },
+                M = { v_extract_method, "Extract method" },
               }, {
                 mode = "v",
                 prefix = "<leader>cJ",
@@ -66,7 +73,7 @@ return {
               jdtls.start_or_attach(vim.tbl_extend("force", opts, {
                 root_dir = require("jdtls.setup").find_root(root_markers),
               }))
-              jdtls.setup_dap({ hotcodereplace = "auto" })
+              jdtls.setup_dap({ hotcodereplace = "auto", config_overrides = {} })
             end,
           })
 
