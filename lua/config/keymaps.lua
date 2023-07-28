@@ -64,19 +64,19 @@ map("n", "<C-c>", '"+yy', "[C]opy to system clipboard")
 map("i", "<C-c>", '<ESC>"+yya', "[C]opy to system clipboard")
 
 -- Cd shortcuts
-map("n", "<Leader>cc", "<Cmd>cd! %:h<CR>", { desc = "[c]d to [c]urrent buffer path" })
-map("n", "<Leader>..", "<Cmd>cd! ..<CR>", { desc = "cd up a level [..]" })
+map("n", "<Leader>cc", "<Cmd>cd! %:h<CR>", "[c]d to [c]urrent buffer path")
+map("n", "<Leader>..", "<Cmd>cd! ..<CR>", "cd up a level [..]")
 
 -- Edit closest
 map("n", "<Leader>erm", function()
   require("utils.edit_closest")("README.md")
-end, { desc = "[E]dit closest [R]EAD[M]E.md" })
+end, "[E]dit closest [R]EAD[M]E.md")
 
 map("n", "<Leader>epj", function()
   require("utils.edit_closest")("package.json")
-end, { desc = "[E]dit closest [p]ackage.[j]son" })
+end, "[E]dit closest [p]ackage.[j]son")
 
-map({ "i", "n" }, "<F1>", "<NOP>", { desc = "Disable help shortcut key" })
+map({ "i", "n" }, "<F1>", "<NOP>", "Disable help shortcut key")
 
 map("n", "<Leader>yn", function()
   local res = vim.fn.expand("%:t")
@@ -90,7 +90,7 @@ map("n", "<Leader>yn", function()
   end
   vim.fn.setreg("+", res)
   vim.notify(res, vim.log.levels.INFO, { title = "Yanked filename" })
-end, { desc = "Yank the filename of current buffer" })
+end, "Yank the filename of current buffer")
 
 map("n", "<Leader>yp", function()
   local res = vim.fn.expand("%:p")
@@ -99,7 +99,7 @@ map("n", "<Leader>yp", function()
     vim.fn.setreg("+", res)
     vim.notify(res, vim.log.levels.INFO, { title = "Yanked filepath" })
   end
-end, { desc = "Yank the full filepath of current buffer" })
+end, "Yank the full filepath of current buffer")
 
 map("x", "<", "<gv", "Reselect visual block after indent")
 map("x", ">", ">gv", "Reselect visual block after indent")
@@ -133,11 +133,9 @@ map("i", "<Tab>", function()
   -- before   abc    _
   -- after    abc     _
   return (" "):rep(1 + sts - spaces_from_cursor_to_next_sts)
-end, { expr = true, desc = "Tab should insert spaces" })
+end, "Tab should insert spaces", { expr = true })
 
-map("i", "<S-Tab>", "<C-d>", {
-  desc = "Tab inserts a tab, shift-tab should remove it",
-})
+map("i", "<S-Tab>", "<C-d>", "Tab inserts a tab, shift-tab should remove it")
 
 local lazyvim_util = require("lazyvim.util")
 local lazyterm = function()
