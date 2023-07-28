@@ -1,7 +1,7 @@
 local ensure_installed_table = {
   "lua-language-server", -- lua
   "bash-language-server", -- bash
-  "clangd", -- cpp
+  -- "clangd", -- cpp
   "cspell", -- spelling
   "eslint-lsp", -- eslint
   "eslint_d", -- eslint
