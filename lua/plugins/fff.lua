@@ -7,7 +7,7 @@ return {
       local extend_path = require("utils.extend_path")
       local bin = vim.fn.stdpath("data") .. "/lazy/fff"
 
-      if not vim.uv.fs_stat(bin) then
+      if not vim.loop.fs_stat(bin) then
         vim.notify("fff folder could not be found", vim.log.levels.ERROR)
         return
       end
