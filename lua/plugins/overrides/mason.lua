@@ -5,7 +5,7 @@ local ensure_installed_table = {
   "cspell", -- spelling
   "eslint-lsp", -- eslint
   "eslint_d", -- eslint
-  "gopls", -- go
+  -- "gopls", -- go
   "jdtls", -- java
   "json-lsp", -- json
   "prettier", --prettier
