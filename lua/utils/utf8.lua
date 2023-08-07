@@ -8,9 +8,7 @@ local function load_utf8_module()
   if _G_utf8 then return _G_utf8 end
 
   local ok, utf8 = pcall(require, "utf8")
-  if not ok then
-    error([[ utf8.nvim module must be loaded before using this!]])
-  end
+  if not ok then error([[ utf8.nvim module must be loaded before using this!]]) end
   return utf8
 end
 ---Removes any non-ASCII characters, replacing with {rhs} or a space
@@ -35,15 +33,9 @@ function M.sub(s, i, j)
   j = j or -1
   if i < 1 or j < 1 then
     local n = utf8.len(s)
-    if not n then
-      return nil
-    end
-    if i < 0 then
-      i = n + 1 + i
-    end
-    if j < 0 then
-      j = n + 1 + j
-    end
+    if not n then return nil end
+    if i < 0 then i = n + 1 + i end
+    if j < 0 then j = n + 1 + j end
     if i < 0 then
       i = 1
     elseif i > n then
@@ -55,9 +47,7 @@ function M.sub(s, i, j)
       j = n
     end
   end
-  if j < i then
-    return ""
-  end
+  if j < i then return "" end
   i = utf8.offset(s, i)
   j = utf8.offset(s, j + 1)
   if i and j then
