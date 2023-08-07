@@ -1,6 +1,6 @@
+local deep_get = require("utils.deep_get")
 local is_tty = require("utils.is_tty")
 local tbl_extend = require("utils.tbl_extend")
-local deep_get = require("utils.deep_get")
 -- Don't change anything if not in a tty
 if not is_tty() then
   return {
@@ -85,9 +85,7 @@ return {
     opts = function(_, opts)
       local utf8 = require("utils.utf8")
       local group = deep_get(opts, "section", "buttons", "val")
-      if not group then
-        return
-      end
+      if not group then return end
       for _, cgroup in ipairs(group) do
         cgroup.val = utf8.sub(cgroup.val, 2)
       end

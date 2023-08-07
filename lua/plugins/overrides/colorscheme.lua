@@ -9,9 +9,7 @@ return {
       local loc_opts = {}
       loc_opts.colorscheme = function()
         if is_tty() then
-          if not pcall(vim.cmd.colorscheme, "wildcharm") then
-            pcall(vim.cmd.colorscheme, "pablo")
-          end
+          if not pcall(vim.cmd.colorscheme, "wildcharm") then pcall(vim.cmd.colorscheme, "pablo") end
         else
           require("tokyonight").load()
         end

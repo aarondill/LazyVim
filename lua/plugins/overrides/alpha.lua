@@ -1,5 +1,5 @@
-local deep_get = require("utils.deep_get")
 local config_path = require("utils.config_path")
+local deep_get = require("utils.deep_get")
 return {
   "goolord/alpha-nvim",
   opts = function(_, opts)

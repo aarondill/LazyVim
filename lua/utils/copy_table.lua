@@ -3,12 +3,8 @@
 ---@param seen table? a table to use for recursive checking
 ---@return table copied_table
 local function copy_table(obj, seen)
-  if type(obj) ~= "table" then
-    return obj
-  end
-  if seen and seen[obj] then
-    return seen[obj]
-  end
+  if type(obj) ~= "table" then return obj end
+  if seen and seen[obj] then return seen[obj] end
   local s = seen or {}
   local res = setmetatable({}, getmetatable(obj))
   s[obj] = res

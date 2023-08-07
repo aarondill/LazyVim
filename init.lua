@@ -5,9 +5,7 @@ require("config.lazy")
 local function load_config()
   require("config.commands")
   -- If running in tty, set menu transparency to opaque
-  if require("utils.is_tty")() then
-    require("config.tty")
-  end
+  if require("utils.is_tty")() then require("config.tty") end
 end
 local has_lazyvim_util, lazyvim_util = pcall(require, "lazyvim.util")
 if has_lazyvim_util then

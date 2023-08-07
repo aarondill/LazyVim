@@ -64,9 +64,7 @@ opt.softtabstop = 2
 opt.expandtab = true
 
 local dir = vim.env.HOME .. "/.cache/vimtmp"
-if not vim.fn.isdirectory(dir) then
-  vim.fn.mkdir(dir, "p")
-end
+if not vim.fn.isdirectory(dir) then vim.fn.mkdir(dir, "p") end
 opt.directory = dir -- Move the swap file
 
 -- Disable providers

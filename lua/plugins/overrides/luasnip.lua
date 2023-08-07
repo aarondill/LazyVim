@@ -33,9 +33,7 @@ return {
       {
         "<s-tab>",
         function()
-          if require("luasnip").jumpable(-1) then
-            require("luasnip").jump(-1)
-          end
+          if require("luasnip").jumpable(-1) then require("luasnip").jump(-1) end
         end,
         mode = { "i", "s" },
       },

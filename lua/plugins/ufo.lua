@@ -18,9 +18,7 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
       table.insert(newVirtText, { chunkText, hlGroup })
       chunkWidth = vim.fn.strdisplaywidth(chunkText)
       -- str width returned from truncate() may less than 2nd argument, need padding
-      if curWidth + chunkWidth < targetWidth then
-        suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
-      end
+      if curWidth + chunkWidth < targetWidth then suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth) end
       break
     end
     curWidth = curWidth + chunkWidth
@@ -58,9 +56,7 @@ return {
   opts = {
     fold_virt_text_handler = handler,
     provider_selector = function(_, filetype)
-      if ignored_filetypes[filetype] then
-        return { "" }
-      end
+      if ignored_filetypes[filetype] then return { "" } end
       return { "treesitter", "indent" }
     end,
     preview = {
