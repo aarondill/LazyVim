@@ -6,7 +6,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+local icons = require("config.icons")
 require("lazy").setup({
+  ui = {
+    icons = icons.lazy_nvim.ui.icons,
+  },
   ---@type table -- Force it. The type is wrong.
   dev = {
     -- directory where you store your local plugin projects
