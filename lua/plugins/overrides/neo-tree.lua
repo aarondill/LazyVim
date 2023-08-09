@@ -19,16 +19,16 @@ return {
       git_status = {
         symbols = {
           -- Change type
-          added = icons["neo-tree"].git_status.symbols.added, -- or "✚", but this is redundant info if you use git_status_colors on the name
-          modified = icons["neo-tree"].git_status.symbols.modified, -- or "", but this is redundant info if you use git_status_colors on the name
-          deleted = icons["neo-tree"].git_status.symbols.deleted, -- this can only be used in the git_status source
-          renamed = icons["neo-tree"].git_status.symbols.renamed, -- this can only be used in the git_status source
+          added = icons["neo-tree"].default_component_configs.git_status.symbols.added, -- or "✚", but this is redundant info if you use git_status_colors on the name
+          modified = icons["neo-tree"].default_component_configs.git_status.symbols.modified, -- or "", but this is redundant info if you use git_status_colors on the name
+          deleted = icons["neo-tree"].default_component_configs.git_status.symbols.deleted, -- this can only be used in the git_status source
+          renamed = icons["neo-tree"].default_component_configs.git_status.symbols.renamed, -- this can only be used in the git_status source
           -- Status type
-          untracked = icons["neo-tree"].git_status.symbols.untracked,
-          ignored = icons["neo-tree"].git_status.symbols.ignored,
-          unstaged = icons["neo-tree"].git_status.symbols.unstaged,
-          staged = icons["neo-tree"].git_status.symbols.staged,
-          conflict = icons["neo-tree"].git_status.symbols.conflict,
+          untracked = icons["neo-tree"].default_component_configs.git_status.symbols.untracked,
+          ignored = icons["neo-tree"].default_component_configs.git_status.symbols.ignored,
+          unstaged = icons["neo-tree"].default_component_configs.git_status.symbols.unstaged,
+          staged = icons["neo-tree"].default_component_configs.git_status.symbols.staged,
+          conflict = icons["neo-tree"].default_component_configs.git_status.symbols.conflict,
         },
       },
       modified = { symbol = icons["neo-tree"].default_component_configs.modified.symbol },
