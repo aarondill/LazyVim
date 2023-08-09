@@ -1,5 +1,10 @@
--- use latest commit!
 return {
   -- { "folke/lazy.nvim", version = false },
-  { "LazyVim/LazyVim", version = false },
+  {
+    -- use latest commit!
+    "LazyVim/LazyVim",
+    version = false,
+    ---@type LazyVimConfig
+    opts = {},
+  },
 }
