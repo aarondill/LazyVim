@@ -6,4 +6,10 @@ return {
       debug = false,
     },
   },
+  {
+    "folke/noice.nvim",
+    opts = {
+      debug = false,
+    },
+  },
 }
