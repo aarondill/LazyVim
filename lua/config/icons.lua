@@ -242,6 +242,7 @@ local gui = {
     topdelete = "",
     untracked = "▎",
   },
+  flash_prompt = "⚡",
 }
 
 ---@class icons :custom_icons
