@@ -4,9 +4,9 @@
 --- Note: this only works on the top level. if a table is returned, no such promises are made.
 local tty = {
   lualine = {
-        section_separators = { left = ">", right = "<" },
-        component_separators = { left = ">", right = "<" },
-  }
+    section_separators = { left = ">", right = "<" },
+    component_separators = { left = ">", right = "<" },
+  },
   ["neo-tree"] = {
     default_component_configs = {
       indent = {
