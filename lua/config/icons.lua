@@ -234,6 +234,14 @@ local gui = {
     prompt_prefix = " ",
     selection_caret = " ",
   },
+  gitsigns = {
+    add = "▎",
+    change = "▎",
+    changedelete = "▎",
+    delete = "",
+    topdelete = "",
+    untracked = "▎",
+  },
 }
 
 ---@class icons :custom_icons
