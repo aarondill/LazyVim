@@ -2,7 +2,7 @@
 --- Icons will be automatically pulled from tty if necessary
 --- Icons will otherwise be gotten from gui, falling back to the tty icon if not available
 --- Note: this only works on the top level. if a table is returned, no such promises are made.
-local tty = {
+local tty = { -- {{{ 1
   clock = "",
   debug = "debug ",
   lualine = {
@@ -10,11 +10,9 @@ local tty = {
     component_separators = { left = "|", right = "|" },
     filename_symbols = { modified = " M ", readonly = "RO ", unnamed = "" },
   },
-  ["neo-tree"] = {
+  ["neo-tree"] = { -- {{{ 2
     default_component_configs = {
-      modified = {
-        symbol = "[+] ",
-      },
+      modified = { symbol = "[+] " },
       indent = {
         indent_marker = "|",
         last_indent_marker = ">",
@@ -29,8 +27,7 @@ local tty = {
         default = "*",
       },
       git_status = {
-        symbols = {
-          -- Change type
+        symbols = { -- Change type
           added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
           modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
           deleted = "x", -- this can only be used in the git_status source
@@ -44,20 +41,9 @@ local tty = {
         },
       },
     },
-  },
-  telescope = {
-    prompt_prefix = "> ",
-    selection_caret = "> ",
-  },
+  }, -- }}}
+  telescope = { prompt_prefix = "> ", selection_caret = "> " },
   flash_prompt = "Flash: ",
-  noice = {
-    cmdline = "> ",
-    search_down = "/ ",
-    search_up = "? ",
-    filter = "$",
-    lua = "L ",
-    help = "? ",
-  },
   gitsigns = {
     add = "+",
     change = "|",
@@ -66,7 +52,7 @@ local tty = {
     changedelete = ":",
     untracked = "?",
   },
-  lazyvim = {
+  lazyvim = { -- {{{ 2
     dap = {
       Stopped = { "-> ", "DiagnosticWarn", "DapStoppedLine" },
       Breakpoint = "X ",
@@ -74,17 +60,8 @@ local tty = {
       BreakpointRejected = { "! ", "DiagnosticError" },
       LogPoint = ".>",
     },
-    diagnostics = {
-      Error = "X ",
-      Warn = "! ",
-      Hint = "> ",
-      Info = "I ",
-    },
-    git = {
-      added = "+ ",
-      modified = "M ",
-      removed = "- ",
-    },
+    diagnostics = { Error = "X ", Warn = "! ", Hint = "> ", Info = "I " },
+    git = { added = "+ ", modified = "M ", removed = "- " },
     kinds = {
       Array = "[] ",
       Boolean = "",
@@ -122,13 +99,54 @@ local tty = {
       Value = "ABC ",
       Variable = "<V> ",
     },
-  },
-}
+  }, -- }}}
+  noice = { -- {{{ 2
+    cmdline = {
+      format = {
+        cmdline = { icon = "> " },
+        search_down = { icon = "/ " },
+        search_up = { icon = "? " },
+        filter = { icon = "$" },
+        lua = { icon = "L " },
+        help = { icon = "? " },
+        calculator = { icon = "* " },
+        IncRename = { icon = "RENAME " },
+      },
+    },
+    format = { level = { icons = { error = "X ", info = "I ", warn = "! " } } },
+    popupmenu = {
+      kind_icons = {
+        Class = "",
+        Color = "",
+        Constant = "",
+        Constructor = "",
+        Enum = " ",
+        EnumMember = "",
+        Field = "",
+        File = "",
+        Folder = "",
+        Function = "",
+        Interface = "",
+        Keyword = "",
+        Method = "",
+        Module = "",
+        Property = "",
+        Snippet = "",
+        Struct = "",
+        Text = "",
+        Unit = "",
+        Value = "",
+        Variable = "",
+      },
+    },
+  }, -- }}}
+} -- }}} 1
+
 ---@class custom_icons
-local gui = {
+local gui = { -- {{{1
   clock = " ",
   debug = " ",
-  ["neo-tree"] = {
+  ["neo-tree"] = { -- {{{ 2
     default_component_configs = {
       git_status = {
         symbols = {
@@ -156,24 +174,15 @@ local gui = {
         indent_marker = "│",
         last_indent_marker = "└",
       },
-      modified = {
-        symbol = "[+] ",
-      },
+      modified = { symbol = "[+] " },
     },
-  },
-
+  }, -- }}}
   lualine = {
-    section_separators = {
-      left = "",
-      right = "",
-    },
-    component_separators = {
-      left = "|",
-      right = "|",
-    },
+    section_separators = { left = "", right = "" },
+    component_separators = { left = "|", right = "|" },
     filename_symbols = { modified = "  ", readonly = "󰌾 ", unnamed = "" },
   },
-  lazyvim = {
+  lazyvim = { -- {{{ 2
     dap = {
       Breakpoint = " ",
       BreakpointCondition = " ",
@@ -181,17 +190,8 @@ local gui = {
       LogPoint = ".>",
       Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
     },
-    diagnostics = {
-      Error = " ",
-      Hint = " ",
-      Info = " ",
-      Warn = " ",
-    },
-    git = {
-      added = " ",
-      modified = " ",
-      removed = " ",
-    },
+    diagnostics = { Error = " ", Hint = " ", Info = " ", Warn = " " },
+    git = { added = " ", modified = " ", removed = " " },
     kinds = {
       Array = " ",
       Boolean = " ",
@@ -229,11 +229,8 @@ local gui = {
       Value = " ",
       Variable = " ",
     },
-  },
-  telescope = {
-    prompt_prefix = " ",
-    selection_caret = " ",
-  },
+  }, -- }}}
+  telescope = { prompt_prefix = " ", selection_caret = " " },
   gitsigns = {
     add = "▎",
     change = "▎",
@@ -243,7 +240,47 @@ local gui = {
     untracked = "▎",
   },
   flash_prompt = "⚡",
-}
+  noice = { -- {{{ 2
+    cmdline = {
+      format = {
+        IncRename = { icon = " " },
+        calculator = { icon = "" },
+        cmdline = { icon = "" },
+        filter = { icon = "$" },
+        help = { icon = "" },
+        lua = { icon = "" },
+        search_down = { icon = " " },
+        search_up = { icon = " " },
+      },
+    },
+    format = { level = { icons = { error = " ", info = " ", warn = " " } } },
+    popupmenu = {
+      kind_icons = {
+        Class = " ",
+        Color = " ",
+        Constant = " ",
+        Constructor = " ",
+        Enum = "了 ",
+        EnumMember = " ",
+        Field = " ",
+        File = " ",
+        Folder = " ",
+        Function = " ",
+        Interface = " ",
+        Keyword = " ",
+        Method = "ƒ ",
+        Module = " ",
+        Property = " ",
+        Snippet = " ",
+        Struct = " ",
+        Text = " ",
+        Unit = " ",
+        Value = " ",
+        Variable = " ",
+      },
+    },
+  }, -- }}}
+} -- }}}
 
 ---@class icons :custom_icons
 ---@field TTY_ICONS custom_icons Use this special key to specify that icons should come from the tty set (only useful in gui environments)

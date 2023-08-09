@@ -27,22 +27,6 @@ return {
     end,
   },
   {
-    "folke/noice.nvim",
-    opts = {
-      cmdline = {
-        ---@type table<string, CmdlineFormat>
-        format = {
-          cmdline = { icon = icons.noice.cmdline },
-          search_down = { icon = icons.noice.search_down },
-          search_up = { icon = icons.noice.search_up },
-          filter = { icon = icons.noice.filter },
-          lua = { icon = icons.noice.lua },
-          help = { icon = icons.noice.help },
-        },
-      },
-    },
-  },
-  {
     "LazyVim/LazyVim",
     ---@type LazyVimConfig
     opts = {
