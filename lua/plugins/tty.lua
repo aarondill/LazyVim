@@ -60,6 +60,7 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = {
       options = {
+        theme = "seoul256",
         icons_enabled = false,
         section_separators = { left = ">", right = "<" },
         component_separators = { left = ">", right = "<" },
