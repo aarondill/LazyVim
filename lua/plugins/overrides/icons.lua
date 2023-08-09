@@ -83,4 +83,12 @@ return {
       },
     },
   },
+  {
+    "LazyVim/LazyVim",
+    ---@type LazyVimConfig
+    opts = {
+      -- icons used by other plugins
+      icons = icons.lazyvim,
+    },
+  },
 }

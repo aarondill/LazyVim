@@ -1,5 +1,4 @@
 local deep_get = require("utils.deep_get")
-local icons = require("config.icons")
 local is_tty = require("utils.is_tty")
 -- Don't change anything if not in a tty
 if not is_tty() then
@@ -25,13 +24,5 @@ return {
         cgroup.val = utf8.sub(cgroup.val, 2)
       end
     end,
-  },
-  {
-    "LazyVim/LazyVim",
-    ---@type LazyVimConfig
-    opts = {
-      -- icons used by other plugins
-      icons = icons.lazyvim,
-    },
   },
 }
