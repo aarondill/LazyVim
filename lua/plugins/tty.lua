@@ -24,10 +24,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     opts = {
-      defaults = {
-        prompt_prefix = "> ",
-        selection_caret = "> ",
-      },
+      defaults = icons["telescope"],
     },
   },
   {
@@ -36,8 +33,8 @@ return {
       options = {
         theme = "seoul256",
         icons_enabled = false,
-        section_separators = { left = ">", right = "<" },
-        component_separators = { left = ">", right = "<" },
+        section_separators = icons.lualine.section_separators,
+        component_separators = icons.lualine.component_separators,
       },
     },
   },
@@ -45,12 +42,12 @@ return {
     "lewis6991/gitsigns.nvim",
     opts = {
       signs = {
-        add = { text = "+" },
-        change = { text = "|" },
-        delete = { text = "-" },
-        topdelete = { text = "-" },
-        changedelete = { text = ":" },
-        untracked = { text = "?" },
+        add = { text = icons.gitsigns.add },
+        change = { text = icons.gitsigns.change },
+        delete = { text = icons.gitsigns.delete },
+        topdelete = { text = icons.gitsigns.topdelete },
+        changedelete = { text = icons.gitsigns.changedelete },
+        untracked = { text = icons.gitsigns.untracked },
       },
     },
   },
@@ -71,7 +68,7 @@ return {
     ---@type Flash.Config
     opts = {
       prompt = {
-        prefix = { { "Flash: ", "FlashPromptIcon" } },
+        prefix = { { icons.flash_prompt, "FlashPromptIcon" } },
       },
     },
   },
@@ -82,12 +79,12 @@ return {
       cmdline = {
         ---@type table<string, CmdlineFormat>
         format = {
-          cmdline = { icon = "> " },
-          search_down = { icon = "/ " },
-          search_up = { icon = "? " },
-          filter = { icon = "$" },
-          lua = { icon = "L " },
-          help = { icon = "? " },
+          cmdline = { icon = icons.noice.cmdline },
+          search_down = { icon = icons.noice.search_down },
+          search_up = { icon = icons.noice.search_up },
+          filter = { icon = icons.noice.filter },
+          lua = { icon = icons.noice.lua },
+          help = { icon = icons.noice.help },
         },
       },
     },
@@ -97,63 +94,7 @@ return {
     ---@type LazyVimConfig
     opts = {
       -- icons used by other plugins
-      icons = {
-        dap = {
-          Stopped = { "-> ", "DiagnosticWarn", "DapStoppedLine" },
-          Breakpoint = "X ",
-          BreakpointCondition = "? ",
-          BreakpointRejected = { "! ", "DiagnosticError" },
-          LogPoint = ".>",
-        },
-        diagnostics = {
-          Error = "X ",
-          Warn = "! ",
-          Hint = "> ",
-          Info = "I ",
-        },
-        git = {
-          added = "+ ",
-          modified = "M ",
-          removed = "- ",
-        },
-        kinds = {
-          Array = "[] ",
-          Boolean = "",
-          Class = "",
-          Color = "",
-          Constant = "",
-          Constructor = "",
-          Copilot = "",
-          Enum = "",
-          EnumMember = "",
-          Event = "",
-          Field = "",
-          File = "File ",
-          Folder = "Folder ",
-          Function = "Func ",
-          Interface = "",
-          Key = "ABC ",
-          Keyword = "",
-          Method = "Method ",
-          Module = "Mod ",
-          Namespace = "{} ",
-          Null = "NULL ",
-          Number = "# ",
-          Object = "{} ",
-          Operator = "+- ",
-          Package = "",
-          Property = "",
-          Reference = "",
-          Snippet = "",
-          String = "",
-          Struct = "",
-          Text = "",
-          TypeParameter = "<T> ",
-          Unit = "",
-          Value = "ABC ",
-          Variable = "<V> ",
-        },
-      },
+      icons = icons.lazyvim,
     },
   },
 }
