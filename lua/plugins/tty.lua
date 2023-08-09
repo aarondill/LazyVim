@@ -1,7 +1,6 @@
 local deep_get = require("utils.deep_get")
 local icons = require("config.icons")
 local is_tty = require("utils.is_tty")
-local tbl_extend = require("utils.tbl_extend")
 -- Don't change anything if not in a tty
 if not is_tty() then
   return {
@@ -11,12 +10,6 @@ if not is_tty() then
 end
 
 return {
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = function(_, config)
-      return tbl_extend(config, icons["neo-tree"])
-    end,
-  },
   {
     "nvim-tree/nvim-web-devicons",
     cond = false, -- Disable it
