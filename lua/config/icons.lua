@@ -12,7 +12,12 @@ local tty = {
   },
   ["neo-tree"] = {
     default_component_configs = {
+      modified = {
+        symbol = "[+] ",
+      },
       indent = {
+        indent_marker = "|",
+        last_indent_marker = ">",
         expander_collapsed = "▶",
         expander_expanded = "▼",
       },
@@ -20,6 +25,8 @@ local tty = {
         folder_closed = "-",
         folder_open = "+",
         folder_empty = "_",
+        folder_empty_open = "_>",
+        default = "*",
       },
       git_status = {
         symbols = {
@@ -121,6 +128,40 @@ local tty = {
 local gui = {
   clock = " ",
   debug = " ",
+  ["neo-tree"] = {
+    default_component_configs = {
+      git_status = {
+        symbols = {
+          added = "✚",
+          conflict = "",
+          deleted = "✖",
+          ignored = "",
+          modified = "",
+          renamed = "󰁕",
+          staged = "",
+          unstaged = "󰄱",
+          untracked = "",
+        },
+      },
+      icon = {
+        default = "*",
+        folder_closed = "",
+        folder_empty = "󰜌",
+        folder_empty_open = "󰜌",
+        folder_open = "",
+      },
+      indent = {
+        expander_collapsed = "",
+        expander_expanded = "",
+        indent_marker = "│",
+        last_indent_marker = "└",
+      },
+      modified = {
+        symbol = "[+] ",
+      },
+    },
+  },
+
   lualine = {
     section_separators = {
       left = "",
