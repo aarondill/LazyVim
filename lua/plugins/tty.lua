@@ -15,12 +15,6 @@ return {
     cond = false, -- Disable it
   },
   {
-    "nvim-telescope/telescope.nvim",
-    opts = {
-      defaults = icons["telescope"],
-    },
-  },
-  {
     "nvim-lualine/lualine.nvim",
     opts = {
       options = {

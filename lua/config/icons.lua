@@ -230,6 +230,10 @@ local gui = {
       Variable = " ",
     },
   },
+  telescope = {
+    prompt_prefix = " ",
+    selection_caret = " ",
+  },
 }
 
 ---@class icons :custom_icons
