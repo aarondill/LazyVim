@@ -15,15 +15,6 @@ return {
     cond = false, -- Disable it
   },
   {
-    "nvim-lualine/lualine.nvim",
-    opts = {
-      options = {
-        theme = "seoul256",
-        icons_enabled = false,
-      },
-    },
-  },
-  {
     "lewis6991/gitsigns.nvim",
     opts = {
       signs = {

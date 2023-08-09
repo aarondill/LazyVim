@@ -51,14 +51,14 @@ return {
           statusline = { "dashboard", "alpha" },
         },
         globalstatus = true,
-        icons_enabled = true,
+        icons_enabled = not is_tty(),
         ignore_focus = {},
         refresh = {
           statusline = 1000,
           tabline = 1000,
           winbar = 1000,
         },
-        theme = "auto",
+        theme = is_tty() and "seoul256" or "auto",
       },
       sections = {
         -- LEFT SIDE:
