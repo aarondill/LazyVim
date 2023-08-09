@@ -38,8 +38,7 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = function()
-    --HACK: Define them all to fix.
-    local lazyvim_icons = is_tty() and require("config.icons").lazyvim and require("lazyvim.config").icons
+    local lazyvim_icons = require("config.icons").lazyvim
     local lazyvim_util = require("lazyvim.util")
 
     return {
