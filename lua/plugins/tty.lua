@@ -33,8 +33,6 @@ return {
       options = {
         theme = "seoul256",
         icons_enabled = false,
-        section_separators = icons.lualine.section_separators,
-        component_separators = icons.lualine.component_separators,
       },
     },
   },

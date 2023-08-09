@@ -3,9 +3,12 @@
 --- Icons will otherwise be gotten from gui, falling back to the tty icon if not available
 --- Note: this only works on the top level. if a table is returned, no such promises are made.
 local tty = {
+  debug = "debug ",
   lualine = {
     section_separators = { left = ">", right = "<" },
-    component_separators = { left = ">", right = "<" },
+    component_separators = { left = "|", right = "|" },
+    clock = "",
+    filename_symbols = { modified = " M ", readonly = "RO ", unnamed = "" },
   },
   ["neo-tree"] = {
     default_component_configs = {
@@ -115,7 +118,21 @@ local tty = {
   },
 }
 ---@class custom_icons
-local gui = {}
+local gui = {
+  lualine = {
+    clock = " ",
+    section_separators = {
+      left = "",
+      right = "",
+    },
+    component_separators = {
+      left = "|",
+      right = "|",
+    },
+    filename_symbols = { modified = "  ", readonly = "󰌾 ", unnamed = "" },
+  },
+  debug = " ",
+}
 
 ---@class icons :custom_icons
 ---@field TTY_ICONS custom_icons Use this special key to specify that icons should come from the tty set (only useful in gui environments)

@@ -1,3 +1,5 @@
+local icons = require("config.icons")
+local is_tty = require("utils.is_tty")
 local function wordcount()
   local wordcount_dict = vim.fn.wordcount()
   -- local mins = tostring(math.ceil(words / 200)) -- 200 wpm
@@ -36,17 +38,16 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = function()
-    local lazyvim_icons = require("lazyvim.config").icons
+    --HACK: Define them all to fix.
+    local lazyvim_icons = is_tty() and require("config.icons").lazyvim and require("lazyvim.config").icons
     local lazyvim_util = require("lazyvim.util")
 
     return {
       extensions = { "neo-tree", "lazy", "fugitive", "man", "trouble" },
       options = {
         always_divide_middle = true,
-        component_separators = {
-          left = "|",
-          right = "|",
-        },
+        component_separators = icons.lualine.component_separators,
+        section_separators = icons.lualine.section_separators,
         disabled_filetypes = {
           statusline = { "dashboard", "alpha" },
         },
@@ -57,10 +58,6 @@ return {
           statusline = 1000,
           tabline = 1000,
           winbar = 1000,
-        },
-        section_separators = {
-          left = "",
-          right = "",
         },
         theme = "auto",
       },
@@ -81,7 +78,7 @@ return {
               hint = lazyvim_icons.diagnostics.Hint,
             },
           },
-          { "filename", path = 1, symbols = { modified = "  ", readonly = "󰌾 ", unnamed = "" }, separator = "-" },
+          { "filename", path = 1, symbols = icons.lualine.filename_symbols, separator = "-" },
           { "filetype" },
           {
             function()
@@ -117,7 +114,7 @@ return {
           -- Debug status
           {
             function()
-              return "  " .. require("dap").status()
+              return icons.debug .. require("dap").status()
             end,
             cond = function()
               return package.loaded["dap"] and require("dap").status() ~= ""
@@ -142,7 +139,7 @@ return {
         },
         lualine_z = {
           function()
-            return " " .. os.date("%R")
+            return icons.lualine.clock .. os.date("%R")
           end,
         },
       },
