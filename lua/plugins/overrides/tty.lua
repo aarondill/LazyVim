@@ -1,7 +1,7 @@
 local deep_get = require("utils.deep_get")
 local is_tty = require("utils.is_tty")
 -- Don't change anything if not in a tty
-if not is_tty() then return end
+if not is_tty() then return {} end
 
 return {
   {
