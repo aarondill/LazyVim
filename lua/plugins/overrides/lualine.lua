@@ -38,7 +38,7 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = function()
-    local lazyvim_icons = require("config.icons").lazyvim
+    local lazyvim_icons = icons.lazyvim
     local lazyvim_util = require("lazyvim.util")
 
     return {
