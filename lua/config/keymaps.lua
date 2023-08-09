@@ -1,4 +1,5 @@
 local bind = require("utils.bind")
+local handle_error = require("utils.handle_error")
 local map = require("utils.set_key_map")
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
@@ -14,14 +15,19 @@ map("n", "U", "<c-r>", "Redo")
 map("n", "Y", "y$", "Yank until EOL")
 
 -- Quick save and quit
-map("n", "<leader>wq", function()
-  -- Save if possible
-  if vim.o.modifiable and vim.o.bt:len() == 0 then
-    vim.cmd.wq()
-  else
-    vim.cmd.q()
-  end
-end, "Save and exit")
+map(
+  "n",
+  "<leader>wq",
+  handle_error(function()
+    -- Save if possible
+    if vim.o.bt:len() == 0 and vim.o.modifiable and not vim.readonly then
+      vim.cmd.wq()
+    else
+      vim.cmd.q()
+    end
+  end),
+  "Save and exit"
+)
 
 -- Quick quit
 map("n", "<leader>q!", vim.cmd.q, "Exit without saving")
