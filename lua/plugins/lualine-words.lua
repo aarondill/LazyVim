@@ -10,6 +10,6 @@ end
 return {
   "nvim-lualine/lualine.nvim",
   opts = function(_, opts)
-    table.insert(opts.sections.lualine_x, wordcount)
+    table.insert(opts.sections.lualine_x, { wordcount })
   end,
 }
