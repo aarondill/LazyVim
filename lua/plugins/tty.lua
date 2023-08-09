@@ -134,7 +134,7 @@ return {
         diagnostics = {
           Error = "X ",
           Warn = "! ",
-          Hint = "-? ",
+          Hint = "> ",
           Info = "I ",
         },
         git = {
