@@ -138,7 +138,7 @@ return {
         },
         lualine_z = {
           function()
-            return icons.lualine.clock .. os.date("%R")
+            return icons.clock .. os.date("%R")
           end,
         },
       },

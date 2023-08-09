@@ -3,11 +3,11 @@
 --- Icons will otherwise be gotten from gui, falling back to the tty icon if not available
 --- Note: this only works on the top level. if a table is returned, no such promises are made.
 local tty = {
+  clock = "",
   debug = "debug ",
   lualine = {
     section_separators = { left = ">", right = "<" },
     component_separators = { left = "|", right = "|" },
-    clock = "",
     filename_symbols = { modified = " M ", readonly = "RO ", unnamed = "" },
   },
   ["neo-tree"] = {
@@ -119,8 +119,9 @@ local tty = {
 }
 ---@class custom_icons
 local gui = {
+  clock = " ",
+  debug = " ",
   lualine = {
-    clock = " ",
     section_separators = {
       left = "",
       right = "",
@@ -131,7 +132,6 @@ local gui = {
     },
     filename_symbols = { modified = "  ", readonly = "󰌾 ", unnamed = "" },
   },
-  debug = " ",
   lazyvim = {
     dap = {
       Breakpoint = " ",
