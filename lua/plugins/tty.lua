@@ -1,4 +1,5 @@
 local deep_get = require("utils.deep_get")
+local icons = require("config.icons")
 local is_tty = require("utils.is_tty")
 local tbl_extend = require("utils.tbl_extend")
 -- Don't change anything if not in a tty
@@ -13,34 +14,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = function(_, config)
-      return tbl_extend(config, {
-        default_component_configs = {
-          indent = {
-            expander_collapsed = "▶",
-            expander_expanded = "▼",
-          },
-          icon = {
-            folder_closed = "-",
-            folder_open = "+",
-            folder_empty = "_",
-          },
-          git_status = {
-            symbols = {
-              -- Change type
-              added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-              modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-              deleted = "x", -- this can only be used in the git_status source
-              renamed = "->", -- this can only be used in the git_status source
-              -- Status type
-              untracked = "?",
-              ignored = "/",
-              unstaged = "_",
-              staged = "+",
-              conflict = "!",
-            },
-          },
-        },
-      })
+      return tbl_extend(config, icons["neo-tree"])
     end,
   },
   {
