@@ -5,6 +5,7 @@ return {
     vim.g.rbql_backend_language = "js"
     vim.g.disable_rainbow_hover = 1
     vim.g.rainbow_comment_prefix = "#"
+    vim.g.rcsv_max_columns = 100 -- default 30
   end,
   ft = {
     "csv",
