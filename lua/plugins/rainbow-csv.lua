@@ -4,6 +4,7 @@ return {
     vim.g.disable_rainbow_key_mappings = 1
     vim.g.rbql_backend_language = "js"
     vim.g.disable_rainbow_hover = 1
+    vim.g.rainbow_comment_prefix = "#"
   end,
   ft = {
     "csv",
