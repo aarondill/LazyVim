@@ -3,7 +3,7 @@ return {
   opts = function(_, opts)
     local cmp = require("cmp")
     -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
-    return vim.tbl_deep_extend("force", opts or {}, {
+    local new_opts = vim.tbl_deep_extend("force", opts or {}, {
       experimental = {
         -- Don't show the ghost text (shown by tabnine)
         ghost_text = false,
@@ -13,5 +13,14 @@ return {
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
       },
     })
+    new_opts.sorting = new_opts.sorting or {}
+    new_opts.sorting.comparators = new_opts.sorting.comparators or {}
+    table.insert(new_opts.sorting.comparators, 4, function(entry1, entry2)
+      local types = require("cmp.types")
+      local kind1 = entry1:get_kind()
+      local kind2 = entry2:get_kind()
+      return kind1 == types.lsp.CompletionItemKind.Text and kind2 == types.lsp.CompletionItemKind.Snippet or nil
+    end)
+    return new_opts
   end,
 }
