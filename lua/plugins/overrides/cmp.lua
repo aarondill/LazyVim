@@ -21,6 +21,9 @@ return {
       local kind2 = entry2:get_kind()
       return kind1 == types.lsp.CompletionItemKind.Text and kind2 == types.lsp.CompletionItemKind.Snippet or nil
     end)
+    for _, v in ipairs(new_opts.sources or {}) do
+      v.max_item_count = nil -- Increase the max item count
+    end
     return new_opts
   end,
 }
