@@ -1,9 +1,44 @@
+-- copied from cmp-under, but I don't think I need the plugin for this.
+-- I might add some more of my own.
+local function under_cmp(entry1, entry2)
+  local _, entry1_under = entry1.completion_item.label:find("^_+")
+  local _, entry2_under = entry2.completion_item.label:find("^_+")
+  entry1_under = entry1_under or 0
+  entry2_under = entry2_under or 0
+  if entry1_under > entry2_under then
+    return false
+  elseif entry1_under < entry2_under then
+    return true
+  end
+end
+local function snippets_down(entry1, entry2)
+  local types = require("cmp.types")
+  local kind1, kind2 = entry1:get_kind(), entry2:get_kind()
+  kind1 = kind1 == types.lsp.CompletionItemKind.Text and 100 or kind1
+  kind2 = kind2 == types.lsp.CompletionItemKind.Text and 100 or kind2
+  if kind1 == kind2 then return nil end -- no preference if same
+  if kind1 == types.lsp.CompletionItemKind.Snippet then return false end -- Discourage snippets
+  if kind2 == types.lsp.CompletionItemKind.Snippet then return true end -- Discourage snippets
+  local diff = kind1 - kind2
+  if diff < 0 then
+    return true
+  elseif diff > 0 then
+    return false
+  end
+end
+
 return {
   "hrsh7th/nvim-cmp",
   opts = function(_, opts)
     local cmp = require("cmp")
+    opts = opts or {}
+    if opts.sources then -- Increase the max item count
+      for _, v in ipairs(opts.sources) do
+        v.max_item_count = nil
+      end
+    end
     -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
-    local new_opts = vim.tbl_deep_extend("force", opts or {}, {
+    return vim.tbl_deep_extend("force", opts, {
       experimental = {
         -- Don't show the ghost text (shown by tabnine)
         ghost_text = false,
@@ -12,18 +47,21 @@ return {
         -- Accept without explicit selection
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
       },
+      sorting = {
+        priority_weight = 2,
+        comparators = {
+          cmp.config.compare.offset,
+          cmp.config.compare.exact,
+          cmp.config.compare.score,
+          cmp.config.compare.recently_used,
+          under_cmp,
+          snippets_down,
+          -- cmp.config.compare.kind, -- replaced by lsp_first
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        },
+      },
     })
-    new_opts.sorting = new_opts.sorting or {}
-    new_opts.sorting.comparators = new_opts.sorting.comparators or {}
-    table.insert(new_opts.sorting.comparators, 4, function(entry1, entry2)
-      local types = require("cmp.types")
-      local kind1 = entry1:get_kind()
-      local kind2 = entry2:get_kind()
-      return kind1 == types.lsp.CompletionItemKind.Text and kind2 == types.lsp.CompletionItemKind.Snippet or nil
-    end)
-    for _, v in ipairs(new_opts.sources or {}) do
-      v.max_item_count = nil -- Increase the max item count
-    end
-    return new_opts
   end,
 }
