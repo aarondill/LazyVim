@@ -47,6 +47,7 @@ return {
           cmp.config.compare.score,
           cmp.config.compare.recently_used,
           under_cmp,
+          cmp.config.compare.scopes, -- prioritize values in scope order
           snippets_down,
           cmp.config.compare.kind, -- superseded by lsp_first -- just used for lowering text
           cmp.config.compare.sort_text,
