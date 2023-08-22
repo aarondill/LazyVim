@@ -20,7 +20,7 @@ return {
                 comments = { enabled = true },
                 onType = { enabled = false },
                 settings = {
-                  url = "~/vscode/Java/java-format.xml",
+                  url = "~/code/Java/java-format.xml",
                   profile = nil, ---@type nil - the config is defined above
                 },
               },
