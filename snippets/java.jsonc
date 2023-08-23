@@ -32,8 +32,12 @@
     "description": "creates a new scanner with the name defined by selected text if applicable"
   },
   "Input File": {
-    "prefix": ["scan", "input", "file", "dat"],
-    "body": "Scanner ${1:scan} = new Scanner( $TM_FILENAME_BASE.class.getResourceAsStream( \"./${2:${TM_FILENAME_BASE/(.*)/${1:/downcase}/}.dat}\" ) ); $0",
+    "prefix": ["input", "file", "dat"],
+    "body": [
+      "try(Scanner ${1:scan} = new Scanner($TM_FILENAME_BASE.class.getResourceAsStream( \"./${2:${TM_FILENAME_BASE/(.*)/${1:/downcase}/}.dat}\" ))){",
+      "\t$TM_SELECTED_TEXT$0",
+      "}"
+    ],
     "description": "Creates a scanner with the contents of a file located adjacent to the class file"
   },
   "Main Class": {
@@ -94,11 +98,12 @@
   "Data Count": {
     "prefix": "data count",
     "body": [
-      "Scanner dataScanner = new Scanner( $TM_FILENAME_BASE.class.getResourceAsStream( \"./${2:${TM_FILENAME_BASE/(.*)/${1:/downcase}/}.dat}\" ) );",
-      "int dataCount = dataScanner.nextInt();",
-      "dataScanner.nextLine();",
-      "for (int i = 0; i < dataCount; i++) {",
-      "    ${0:${TM_SELECTED_TEXT:// Do Some Stuff}}",
+      "try(Scanner dataScanner = new Scanner( $TM_FILENAME_BASE.class.getResourceAsStream( \"./${2:${TM_FILENAME_BASE/(.*)/${1:/downcase}/}.dat}\" ) )){",
+      "\tint dataCount = dataScanner.nextInt();",
+      "\tdataScanner.nextLine();",
+      "\tfor (int i = 0; i < dataCount; i++) {",
+      "\t\t${0:${TM_SELECTED_TEXT:// Do Some Stuff}}",
+      "\t}",
       "}"
     ],
     "description": "Gets number of lines to read from the first line of a file, then repeats a loop that many times"
