@@ -19,12 +19,16 @@
   },
   "System.out": {
     "prefix": ["sysout", "stdout"],
-    "body": "System.out.println($1);$0",
+    "body": "System.out.println(${1:$TM_SELECTED_TEXT});$0",
     "description": "Outputs to stdout with selected text"
   },
   "Scanner": {
     "prefix": ["scan", "sysin", "sn"],
-    "body": "Scanner ${1:scan} = new Scanner(${2:System.in});$0",
+    "body": [
+      "try(Scanner ${1:scan} = new Scanner(${2:System.in})){",
+      "\t$TM_SELECTED_TEXT$0",
+      "}"
+    ],
     "description": "creates a new scanner with the name defined by selected text if applicable"
   },
   "Input File": {
@@ -37,7 +41,7 @@
     "body": [
       "public class $TM_FILENAME_BASE {",
       "\tpublic static void main(String[] args) {",
-      "\t$0",
+      "\t$TM_SELECTED_TEXT$0",
       "\t}",
       "}"
     ],
@@ -94,7 +98,7 @@
       "int dataCount = dataScanner.nextInt();",
       "dataScanner.nextLine();",
       "for (int i = 0; i < dataCount; i++) {",
-      "    ${0:// Do Some Stuff}",
+      "    ${0:${TM_SELECTED_TEXT:// Do Some Stuff}}",
       "}"
     ],
     "description": "Gets number of lines to read from the first line of a file, then repeats a loop that many times"
