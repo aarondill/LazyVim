@@ -115,7 +115,7 @@ map("x", ">", ">gv", "Reselect visual block after indent")
 map("i", "<Tab>", function()
   -- If characters all the way back to start of line were all whitespace,
   -- insert whatever expandtab setting is set to do.
-  local current_line = require("dko.utils.buffer").get_cursorline_contents()
+  local current_line = require("dko.utils.buffer").get_cursorline_contents() -- HACK: FIXME
   local all_spaces_regex = "^%s*$"
   if current_line:match(all_spaces_regex) then return "<Tab>" end
 
