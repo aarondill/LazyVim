@@ -13,13 +13,12 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
-      ---@param utils ConditionalUtils
-      local function not_is_notes(utils)
-        return not utils.root_matches("^/home/.-/notes/.*$")
-      end
       opts.sources = vim.list_extend(opts.sources, {
-        nls.builtins.diagnostics.alex.with({ extra_filetypes = { "markdown", "text" }, condition = not_is_notes }),
-        nls.builtins.diagnostics.write_good.with({ extra_filetypes = { "markdown", "text" }, condition = not_is_notes }),
+        nls.builtins.diagnostics.alex.with({ extra_filetypes = { "markdown", "text" } }),
+        nls.builtins.diagnostics.write_good.with({
+          extra_filetypes = { "markdown", "text" },
+          extra_args = { "--no-passive", "--no-adverb" },
+        }),
       })
     end,
   },
