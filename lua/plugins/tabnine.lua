@@ -1,9 +1,22 @@
+local use_tabnine = true -- Default true
+if os.getenv("USER") == "root" then -- I am root
+  local f = io.popen("getent passwd root") -- get the passwd line for root
+  if f and os.getenv("HOME") then -- HOME is defined, and previous line didn't fail
+    local line = f:read("*l")
+    f:close()
+    local _, _, _, _, _, home, _ = line:match("^(.-):(.-):(.-):(.-):(.-):(.-):(.-)$") -- get the home from the colon seperated list
+    use_tabnine = os.getenv("HOME") == home -- use tabnine if $HOME is the same as the root's actual home.
+    -- This is so root files don't get written to the home directory of another user.
+  end
+end
+
 return {
   -- Tabnine setup
   {
     "aarondill/tabnine-nvim",
     -- dev = true,
     -- branch = "chat",
+    cond = use_tabnine,
     branch = "all_together_now",
     build = "./dl_binaries.sh",
     event = { "BufReadPre", "BufNewFile" },
