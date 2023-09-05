@@ -112,10 +112,15 @@ map("x", ">", ">gv", "Reselect visual block after indent")
 
 -- Magic tab thingis - see https://github.com/davidosomething/dotfiles/blob/dev/nvim/lua/dko/mappings.lua#L215
 
+local function get_cursorline_contents()
+  local linenr = vim.api.nvim_win_get_cursor(0)[1]
+  return vim.api.nvim_buf_get_lines(0, linenr - 1, linenr, false)[1]
+end
+
 map("i", "<Tab>", function()
   -- If characters all the way back to start of line were all whitespace,
   -- insert whatever expandtab setting is set to do.
-  local current_line = require("dko.utils.buffer").get_cursorline_contents() -- HACK: FIXME
+  local current_line = get_cursorline_contents()
   local all_spaces_regex = "^%s*$"
   if current_line:match(all_spaces_regex) then return "<Tab>" end
 
