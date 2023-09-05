@@ -1,5 +1,12 @@
+local root_safe = require("utils.root_safe")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
+  if not root_safe then
+    vim.notify(
+      ("Warning: cloning lazy.nvim into another user's home directory (%s)."):format(lazypath),
+      vim.log.levels.WARN
+    )
+  end
   -- bootstrap lazy.nvim
   -- stylua: ignore
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
@@ -48,7 +55,7 @@ require("lazy").setup({
     missing = true,
     colorscheme = { "tokyonight", "habamax" },
   },
-  checker = { enabled = true }, -- automatically check for plugin updates
+  checker = { enabled = root_safe }, -- automatically check for plugin updates
   performance = {
     rtp = {
       -- disable some rtp plugins
