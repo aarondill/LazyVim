@@ -1,4 +1,5 @@
 local bind = require("utils.bind")
+local get_vtext = require("utils.vtext")
 local handle_error = require("utils.handle_error")
 local map = require("utils.set_key_map")
 -- Keymaps are automatically loaded on the VeryLazy event
@@ -6,6 +7,25 @@ local map = require("utils.set_key_map")
 -- Add any additional keymaps here
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+local function line_not_empty(input)
+  if type(input) ~= "string" then error("input is not a string") end
+  local key = vim.api.nvim_replace_termcodes(input, true, false, true)
+  local f = bind(vim.api.nvim_feedkeys, key, "n", false)
+
+  return function()
+    local vtext = get_vtext()
+    if vtext and not vtext:find("^%s*$") then
+      return f() -- not empty
+    elseif vtext then -- visual mode
+      return
+    end
+
+    local line = tostring(vim.fn.getline("."))
+    if not line:find("^%s*$") then -- insert and normal mode
+      return f()
+    end
+  end
+end
 
 -- Change U to redo for symetry with u
 map("n", "U", "<c-r>", "Redo")
@@ -60,14 +80,14 @@ map({ "c", "i", "n", "x" }, "<C-v>", function()
 end, "Paste from system clipboard")
 
 -- Cut to system clipboard with Ctrl + x
-map("x", "<C-x>", '"+d', "Cut to system clipboard")
-map("n", "<C-x>", '"+dd', "Cut to system clipboard")
-map("i", "<C-x>", '<ESC>"+ddi', "Cut to system clipboard")
+map("x", "<C-x>", line_not_empty('"+d'), "Cut to system clipboard")
+map("n", "<C-x>", line_not_empty('"+dd'), "Cut to system clipboard")
+map("i", "<C-x>", line_not_empty('<ESC>"+ddi'), "Cut to system clipboard")
 
 -- Copy to system clipboard with Ctr + c
-map("x", "<C-c>", '"+y', "[C]opy to system clipboard")
-map("n", "<C-c>", '"+yy', "[C]opy to system clipboard")
-map("i", "<C-c>", '<ESC>"+yya', "[C]opy to system clipboard")
+map("x", "<C-c>", line_not_empty('"+y'), "[C]opy to system clipboard")
+map("n", "<C-c>", line_not_empty('"+yy'), "[C]opy to system clipboard")
+map("i", "<C-c>", line_not_empty('<ESC>"+yya'), "[C]opy to system clipboard")
 
 -- Cd shortcuts
 map("n", "<Leader>cc", "<Cmd>cd! %:h<CR>", "[c]d to [c]urrent buffer path")
