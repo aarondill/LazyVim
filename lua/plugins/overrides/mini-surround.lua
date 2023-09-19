@@ -9,13 +9,13 @@ return {
     -- - Place surroundings on each line in blockwise mode.
     respect_selection_type = true,
     mappings = {
-      add = "gca", -- Add surrounding in Normal and Visual modes
-      delete = "gcd", -- Delete surrounding
-      find = "gcf", -- Find surrounding (to the right)
-      find_left = "gcF", -- Find surrounding (to the left)
-      highlight = "gch", -- Highlight surrounding
-      replace = "gcr", -- Replace surrounding
-      update_n_lines = "gcn", -- Update `n_lines`
+      add = "gza", -- Add surrounding in Normal and Visual modes
+      delete = "gzd", -- Delete surrounding
+      find = "gzf", -- Find surrounding (to the right)
+      find_left = "gzF", -- Find surrounding (to the left)
+      highlight = "gzh", -- Highlight surrounding
+      replace = "gzr", -- Replace surrounding
+      update_n_lines = "gzn", -- Update `n_lines`
     },
   },
   keys = function(_, keys)
