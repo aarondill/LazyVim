@@ -63,9 +63,12 @@ opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.expandtab = true
 
-local dir = vim.env.HOME .. "/.cache/vimtmp"
-if not vim.fn.isdirectory(dir) then vim.fn.mkdir(dir, "p") end
-opt.directory = dir -- Move the swap file
+local root_safe = require("utils.root_safe")
+if root_safe then
+  local dir = vim.env.HOME .. "/.cache/vimtmp"
+  if not vim.fn.isdirectory(dir) then vim.fn.mkdir(dir, "p") end
+  opt.directory = dir -- Move the swap file
+end
 
 -- Disable providers
 vim.g.loaded_python3_provider = 0
