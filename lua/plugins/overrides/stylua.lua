@@ -1,5 +1,5 @@
 return {
-  "jose-elias-alvarez/null-ls.nvim",
+  "nvimtools/none-ls.nvim",
   opts = function(_, opts)
     for k, v in ipairs(opts.sources) do
       local nls = require("null-ls")
