@@ -77,7 +77,19 @@ return {
               hint = lazyvim_icons.diagnostics.Hint,
             },
           },
-          { "filename", path = 1, symbols = icons.lualine.filename_symbols, separator = "-" },
+          {
+            "filename",
+            path = 1,
+            symbols = icons.lualine.filename_symbols,
+            separator = "-",
+            ---Fix E539 when opening java files. Source: https://github.com/nvim-lualine/lualine.nvim/issues/820#issuecomment-1742621370
+            fmt = function(str) ---@param str string
+              local fn = vim.fn.expand("%:~:.") ---@type string
+
+              if vim.startswith(fn, "jdt://") then return fn:gsub("?.*$", "") end
+              return str
+            end,
+          },
           { "filetype" },
           {
             function()
