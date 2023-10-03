@@ -73,7 +73,8 @@ return {
               jdtls.start_or_attach(vim.tbl_extend("force", opts, {
                 root_dir = require("jdtls.setup").find_root(root_markers),
               }))
-              jdtls.setup_dap({ hotcodereplace = "auto", config_overrides = {} })
+              -- DAP is available? set it up.
+              if pcall(require, "dap") then jdtls.setup_dap({ hotcodereplace = "auto", config_overrides = {} }) end
             end,
           })
 
