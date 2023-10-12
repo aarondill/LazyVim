@@ -110,7 +110,7 @@ return {
             cond = function()
               return package.loaded["noice"] and require("noice").api.status.command.has()
             end,
-            color = lazyvim_util.fg("Statement"),
+            color = lazyvim_util.ui.fg("Statement"),
           },
           -- Display recording status (q)
           {
@@ -120,7 +120,7 @@ return {
             cond = function()
               return package.loaded["noice"] and require("noice").api.status.mode.has()
             end,
-            color = lazyvim_util.fg("Constant"),
+            color = lazyvim_util.ui.fg("Constant"),
           },
           -- Debug status
           {
@@ -130,13 +130,13 @@ return {
             cond = function()
               return package.loaded["dap"] and require("dap").status() ~= ""
             end,
-            color = lazyvim_util.fg("Debug"),
+            color = lazyvim_util.ui.fg("Debug"),
           },
           -- Lazy.nvim update status
           {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
-            color = lazyvim_util.fg("Special"),
+            color = lazyvim_util.ui.fg("Special"),
           },
           -- File information
           { "encoding" },
