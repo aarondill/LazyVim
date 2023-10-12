@@ -4,7 +4,7 @@ return {
   { import = "lazyvim.plugins.extras.ui.mini-animate" }, -- Animations on certain actions
   { import = "lazyvim.plugins.extras.linting.eslint" }, -- Eslint linting support
   { import = "lazyvim.plugins.extras.formatting.prettier" }, -- Prettier formatting support
-  { import = "lazyvim.plugins.extras.editor.navic" }, -- Navic
+  -- { import = "lazyvim.plugins.extras.editor.navic" }, -- Navic
   { import = "lazyvim.plugins.extras.lsp.none-ls" }, -- None-ls Formatting
   -- { import = "lazyvim.plugins.extras.dap.core" }, -- DAP core support
   -- { import = "lazyvim.plugins.extras.dap.nlua" }, -- DAP Neovim Lua Adapter
