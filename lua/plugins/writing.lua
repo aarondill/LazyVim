@@ -10,16 +10,27 @@ return {
     end,
   },
   {
-    "nvimtools/none-ls.nvim",
+    "mfussenegger/nvim-lint",
     opts = function(_, opts)
-      local nls = require("null-ls")
-      opts.sources = vim.list_extend(opts.sources, {
-        nls.builtins.diagnostics.alex.with({ extra_filetypes = { "markdown", "text" } }),
-        nls.builtins.diagnostics.write_good.with({
-          extra_filetypes = { "markdown", "text" },
-          extra_args = { "--no-passive", "--no-adverb" },
-        }),
-      })
+      opts = opts or {}
+      opts.formatters = opts.formatters or {}
+      opts.linters_by_ft = opts.linters_by_ft or {}
+      opts.linters_by_ft.markdown = opts.linters_by_ft.markdown or {}
+
+      table.insert(opts.linters_by_ft.markdown, "alex")
+      opts.linters.alex = {
+        cmd = "alex",
+        args = { "--stdin", "--quiet" },
+        stdin = true,
+        stream = "stderr", ---@type ('stdout' | 'stderr' | 'both')
+        ignore_exitcode = true, -- set this to true if the linter exits with a code != 0 and that's considered normal.
+        parser = require("lint.parser").from_pattern(
+          [[ *(%d+):(%d+)-(%d+):(%d+) *(%w+) *(.+) +[%w]+ +([-%l]+)]],
+          { "lnum", "col", "end_lnum", "end_col", "severity", "message", "code" },
+          { ["warning"] = vim.diagnostic.severity.WARN },
+          { ["source"] = "alex" }
+        ),
+      }
     end,
   },
 }
