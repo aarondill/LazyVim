@@ -3,9 +3,7 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       opts = opts or {}
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "write-good", "alex" })
-      end
+      if type(opts.ensure_installed) == "table" then vim.list_extend(opts.ensure_installed, { "alex" }) end
       return opts
     end,
   },
