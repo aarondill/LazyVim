@@ -4,18 +4,12 @@ local is_tty = require("utils.is_tty")
 if not is_tty() then return {} end
 
 return {
+  { "nvim-tree/nvim-web-devicons", cond = false }, -- Disable it
   {
-    "nvim-tree/nvim-web-devicons",
-    cond = false, -- Disable it
-  },
-  {
-    "goolord/alpha-nvim",
+    "glepnir/dashboard-nvim",
     opts = function(_, opts)
-      local utf8_sanitize = require("utils.utf8-sanitize")
-      local group = deep_get(opts, "section", "buttons", "val")
-      if not group then return end
-      for _, cgroup in ipairs(group) do
-        cgroup.val = utf8_sanitize(cgroup.val, "")
+      for _, v in ipairs(opts.config.center) do
+        v.icon = nil -- No icons
       end
     end,
   },
