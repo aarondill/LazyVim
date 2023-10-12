@@ -48,7 +48,7 @@ return {
         component_separators = icons.lualine.component_separators,
         section_separators = icons.lualine.section_separators,
         disabled_filetypes = {
-          statusline = { "dashboard", "alpha" },
+          statusline = { "dashboard", "alpha", "starter" },
         },
         globalstatus = true,
         icons_enabled = not is_tty(),
