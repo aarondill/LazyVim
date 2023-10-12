@@ -1,9 +1,9 @@
 vim.lsp.set_log_level(vim.lsp.log_levels.WARN)
 return {
   {
-    "nvimtools/none-ls.nvim",
+    "stevearc/conform.nvim",
     opts = {
-      debug = false,
+      log_level = vim.log.levels.WARN,
     },
   },
   {
