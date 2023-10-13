@@ -168,7 +168,7 @@ map({ "n", "x" }, "\\", "@:", "Backslash redoes the last command")
 
 local lazyvim_util = require("lazyvim.util")
 local lazyterm = function()
-  lazyvim_util.float_term(nil, { cwd = lazyvim_util.get_root() })
+  lazyvim_util.terminal.open(nil, { cwd = lazyvim_util.root.get() })
 end
 map("n", { "<C-CR>", "<Leader><CR>" }, lazyterm, "Terminal (root dir)")
 map("t", { "<C-CR>" }, lazyterm, "Terminal (root dir)")
