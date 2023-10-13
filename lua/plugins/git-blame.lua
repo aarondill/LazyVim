@@ -21,16 +21,7 @@ return {
     -- Note that this doesn't affect the performance of the plugin.
     vim.g.gitblame_delay = 1000 -- 1 second
   end,
-  event = {
-    "CursorMoved",
-    "CursorMovedI",
-    "TextChanged",
-    "InsertLeave",
-    -- "BufEnter",
-    "BufReadPre",
-    "BufNewFile",
-    "BufDelete",
-  },
+  event = { "LazyFile" },
   cmd = {
     "GitBlameOpenCommitURL",
     "GitBlameToggle",

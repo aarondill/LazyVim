@@ -46,7 +46,7 @@ return {
   "kevinhwang91/nvim-ufo",
   enabled = true,
   dependencies = "kevinhwang91/promise-async",
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "LazyFile" },
   main = "ufo",
   config = function(plugin, opts)
     vim.o.fillchars = [[eob: ,fold: ,foldopen:▼,foldsep: ,foldclose:>]]

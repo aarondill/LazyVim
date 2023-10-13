@@ -9,7 +9,7 @@ return {
     cond = use_tabnine,
     branch = "all_together_now",
     build = "./dl_binaries.sh",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "LazyFile" },
     cmd = {
       "TabnineChat",
       "TabnineChatClear",

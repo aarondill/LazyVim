@@ -2,7 +2,7 @@ return {
   "ibhagwan/smartyank.nvim",
   opts = { highlight = { timeout = 1000 } },
   -- On open file
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "LazyFile" },
   main = "smartyank",
   config = function(self, opts)
     -- Require main module and setup with opts
