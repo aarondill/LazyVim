@@ -1,0 +1,8 @@
+Add a LSP checker for:
+- none-ls (null-ls already covered)
+- conform.nvim
+- nvim-lint
+
+
+
+<!--vim:set ft=markdown:-->
