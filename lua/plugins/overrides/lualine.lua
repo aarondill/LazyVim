@@ -23,14 +23,35 @@ end
 
 local function get_current_lsp()
   local clients = vim.lsp.get_clients()
-  if #clients == 0 then return "No Lsp" end
-
   local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
   local active_clients = {}
   for _, client in ipairs(clients) do
     local source = _get_current_lsp_for_each_client(client, buf_ft)
     if source then table.insert(active_clients, source) end
   end
+
+  -- Only if it's been required before
+  local lazyformat = package.loaded["lazyvim.util.format"] ~= nil and require("lazyvim.util.format") or nil
+  if lazyformat and lazyformat.enabled() then
+    local formatters = lazyformat.resolve()
+    for _, formatter in ipairs(formatters) do
+      if formatter.active and #formatter.resolved > 0 then
+        local s = string.format("%s[%s]", formatter.name, table.concat(formatter.resolved, ","))
+        table.insert(active_clients, s)
+      end
+    end
+  end
+
+  if package.loaded["lint"] then
+    local lint = require("lint")
+    local formatters = lint._resolve_linter_by_ft(buf_ft)
+    if #formatters > 0 then
+      local s = string.format("%s[%s]", "nvim-lint", table.concat(formatters, ","))
+      table.insert(active_clients, s)
+    end
+  end
+
+  if #active_clients == 0 then return "No Lsp" end
   return table.concat(active_clients, ",")
 end
 
