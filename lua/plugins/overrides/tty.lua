@@ -6,7 +6,7 @@ if not is_tty() then return {} end
 return {
   { "nvim-tree/nvim-web-devicons", cond = false }, -- Disable it
   {
-    "glepnir/dashboard-nvim",
+    "nvimdev/dashboard-nvim",
     opts = function(_, opts)
       for _, v in ipairs(opts.config.center) do
         v.icon = nil -- No icons

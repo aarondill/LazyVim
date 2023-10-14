@@ -1,6 +1,6 @@
 local config_path = require("utils.config_path")
 return {
-  "glepnir/dashboard-nvim",
+  "nvimdev/dashboard-nvim",
   opts = function(_, opts)
     opts = opts or {}
     -- Change the config button
