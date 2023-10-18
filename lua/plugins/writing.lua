@@ -14,21 +14,10 @@ return {
       opts.formatters = opts.formatters or {}
       opts.linters_by_ft = opts.linters_by_ft or {}
       opts.linters_by_ft.markdown = opts.linters_by_ft.markdown or {}
+      opts.linters_by_ft.text = opts.linters_by_ft.text or {}
 
       table.insert(opts.linters_by_ft.markdown, "alex")
-      opts.linters.alex = {
-        cmd = "alex",
-        args = { "--stdin", "--quiet" },
-        stdin = true,
-        stream = "stderr", ---@type ('stdout' | 'stderr' | 'both')
-        ignore_exitcode = true, -- set this to true if the linter exits with a code != 0 and that's considered normal.
-        parser = require("lint.parser").from_pattern(
-          [[ *(%d+):(%d+)-(%d+):(%d+) *(%w+) *(.+) +[%w]+ +([-%l]+)]],
-          { "lnum", "col", "end_lnum", "end_col", "severity", "message", "code" },
-          { ["warning"] = vim.diagnostic.severity.WARN },
-          { ["source"] = "alex" }
-        ),
-      }
+      table.insert(opts.linters_by_ft.text, "alex")
     end,
   },
 }
