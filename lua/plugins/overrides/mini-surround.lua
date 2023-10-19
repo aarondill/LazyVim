@@ -7,7 +7,7 @@ return {
     -- Whether to respect selection type:
     -- - Place surroundings on separate lines in linewise mode.
     -- - Place surroundings on each line in blockwise mode.
-    respect_selection_type = true,
+    --    respect_selection_type = true,
     mappings = {
       add = "gza", -- Add surrounding in Normal and Visual modes
       delete = "gzd", -- Delete surrounding
