@@ -27,6 +27,11 @@
     "body": "System.out.printf(${1:$TM_SELECTED_TEXT});$0",
     "description": "Outputs to stdout with selected text (Using printf)"
   },
+  "System.err.printf": {
+    "prefix": ["syserrf", "stderrf"],
+    "body": "System.err.printf(${1:$TM_SELECTED_TEXT});$0",
+    "description": "outputs to stderr with selected text (Using printf)"
+  },
   "Scanner": {
     "prefix": ["scan", "sysin", "sn"],
     "body": [
