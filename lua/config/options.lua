@@ -74,3 +74,6 @@ end
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+
+--- Disable checking for capital letters at start of sentance (this is frustrating in git commit messages)
+opt.spellcapcheck = ""
