@@ -16,3 +16,7 @@ else
   require("config.options")
   require("config.autocmds")
 end
+
+--- Handle regenerating helptags in new VIMRUNTIMEs
+local rt = os.getenv("VIMRUNTIME")
+if rt then vim.cmd.helptags(string.format("%s/doc", rt)) end
