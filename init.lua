@@ -19,4 +19,7 @@ end
 
 --- Handle regenerating helptags in new VIMRUNTIMEs
 local rt = os.getenv("VIMRUNTIME")
-if rt then vim.cmd.helptags(string.format("%s/doc", rt)) end
+if rt and vim.uv.fs_access(rt, "W") then
+  --- Regen the helptags
+  vim.cmd.helptags(string.format("%s/doc", rt))
+end
