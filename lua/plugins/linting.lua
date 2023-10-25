@@ -16,6 +16,7 @@ return {
     opts = function(_, opts)
       --- Set up the table. Don't overwrite any existing values!
       opts = vim.tbl_deep_extend("keep", opts or {}, {
+        linters = {},
         linters_by_ft = {
           markdown = {},
           text = {},
