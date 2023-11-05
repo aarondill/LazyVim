@@ -3,12 +3,19 @@ return {
   "folke/todo-comments.nvim",
   opts = {
     keywords = {
+      -- FIX: This note
       FIX = { icon = " ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
+      -- TODO: This note
       TODO = { icon = " ", color = "info" },
+      -- HACK: This note
       HACK = { icon = " ", color = "warning", alt = { "DEV" } },
+      -- WARN: This note
       WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+      -- PERF: This note
       PERF = { icon = "󰅒 ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+      -- NOTE: This note
       NOTE = { icon = "󰍩 ", color = "hint", alt = { "INFO", "HINT" } },
+      -- TEST: This note
       TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
     },
     merge_keywords = true, -- when true, custom keywords will be merged with the defaults
