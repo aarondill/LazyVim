@@ -22,13 +22,27 @@ local function tbl_join(...)
   return t
 end
 
+local M = {}
+---returns a curried function that represents f(args)
+---Note: The types here don't actually work. Don't rely on them for diagnostic purposes.
+---@generic args, return
+---@param f fun(...:args): return
+---@param ... args
+---@return fun(): return
+function M.with(f, ...)
+  local args = table.pack(...)
+  return function()
+    return f(table.unpack(args, 1, args.n))
+  end
+end
+
 ---returns a curried function that represents f(args, other_args)
 ---Note: The types here don't actually work. Don't rely on them for diagnostic purposes.
 ---@generic args, rest, return
 ---@param f fun(...:args, ...:rest): return
 ---@param ... args
 ---@return fun(...:rest): return
-return function(f, ...)
+function M.bind(f, ...)
   local len = select("#", ...)
   local outer = len > 0 and table.pack(...) or nil -- nil if no arguments are passed
   return function(...)
@@ -37,3 +51,9 @@ return function(f, ...)
     return f(table.unpack(args, 1, args.n))
   end
 end
+
+return setmetatable(M, {
+  __call = function(_, ...)
+    return M.bind(...)
+  end,
+})
