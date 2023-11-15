@@ -69,10 +69,20 @@ return {
                 buffer = bufnr,
               })
 
+              -- If you started neovim within `~/dev/xy/project-1` this would resolve to `project-1`
+              local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+              local XDG_DATA_HOME = os.getenv("XDG_DATA_HOME") or (os.getenv("HOME") .. "/.local/share")
+              local workspace_dir = vim.fn.simplify(("%s/%s/%s"):format(XDG_DATA_HOME, "/jdtls/", project_name))
+
               local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", "package.json" }
-              jdtls.start_or_attach(vim.tbl_extend("force", opts, {
-                root_dir = require("jdtls.setup").find_root(root_markers),
-              }))
+              local root_dir = require("jdtls.setup").find_root(root_markers)
+              local config = vim.tbl_extend(
+                "force",
+                opts,
+                { root_dir = root_dir, cmd = vim.tbl_flatten({ opts.cmd, { "-data", workspace_dir } }) }
+              )
+              vim.notify(vim.inspect(config))
+              jdtls.start_or_attach(config)
               -- DAP is available? set it up.
               if pcall(require, "dap") then jdtls.setup_dap({ hotcodereplace = "auto", config_overrides = {} }) end
             end,
