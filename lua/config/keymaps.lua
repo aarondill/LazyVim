@@ -10,7 +10,7 @@ vim.g.maplocalleader = " "
 local function line_not_empty(input)
   if type(input) ~= "string" then error("input is not a string") end
   local key = vim.api.nvim_replace_termcodes(input, true, false, true)
-  local f = bind(vim.api.nvim_feedkeys, key, "n", false)
+  local f = bind.with(vim.api.nvim_feedkeys, key, "n", false)
 
   return function()
     local vtext = get_vtext()
@@ -58,12 +58,24 @@ map("n", "<leader>q1", vim.cmd.q, "Exit without saving")
 map("t", "<Esc>", "<C-\\><C-n>", "Exit insert")
 
 -- Map 0 to go between 0 and ^
-map({ "n", "x" }, "0", bind(require("utils.toggle_movement"), "^", "0"), "Go to start of line", { silent = true })
-map({ "n", "x" }, "^", bind(require("utils.toggle_movement"), "0", "^"), "Go to start of line", { silent = true })
+map({ "n", "x" }, "0", bind.with(require("utils.toggle_movement"), "^", "0"), "Go to start of line", { silent = true })
+map({ "n", "x" }, "^", bind.with(require("utils.toggle_movement"), "0", "^"), "Go to start of line", { silent = true })
 -- Map gg to go between gg and G
-map({ "n", "x" }, "gg", bind(require("utils.toggle_movement"), "gg", "G"), "Go to start/end of file", { silent = true })
+map(
+  { "n", "x" },
+  "gg",
+  bind.with(require("utils.toggle_movement"), "gg", "G"),
+  "Go to start/end of file",
+  { silent = true }
+)
 -- Map G to go between G and gg
-map({ "n", "x" }, "G", bind(require("utils.toggle_movement"), "G", "gg"), "Go to start/end of file", { silent = true })
+map(
+  { "n", "x" },
+  "G",
+  bind.with(require("utils.toggle_movement"), "G", "gg"),
+  "Go to start/end of file",
+  { silent = true }
+)
 
 -- Remap f9 to fold control
 map("i", "<F9>", "<C-O>za", "Toggle Fold")
