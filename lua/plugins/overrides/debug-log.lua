@@ -1,4 +1,4 @@
-vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
+vim.lsp.set_log_level(vim.lsp.log_levels.ERROR)
 return {
   {
     "stevearc/conform.nvim",
