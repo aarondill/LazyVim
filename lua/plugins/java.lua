@@ -20,7 +20,7 @@ return {
                 comments = { enabled = true },
                 onType = { enabled = false },
                 settings = {
-                  url = "~/code/Java/java-format.xml",
+                  url = "~/code/java/java-format.xml",
                   profile = nil, ---@type nil - the config is defined above
                 },
               },
