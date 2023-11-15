@@ -1,3 +1,9 @@
+-- Fowards compatability:
+table.pack = table.pack or function(...)
+  return { n = select("#", ...), ... }
+end
+table.unpack = table.unpack or unpack
+
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
