@@ -81,7 +81,6 @@ return {
                 opts,
                 { root_dir = root_dir, cmd = vim.tbl_flatten({ opts.cmd, { "-data", workspace_dir } }) }
               )
-              vim.notify(vim.inspect(config))
               jdtls.start_or_attach(config)
               -- DAP is available? set it up.
               if pcall(require, "dap") then jdtls.setup_dap({ hotcodereplace = "auto", config_overrides = {} }) end
