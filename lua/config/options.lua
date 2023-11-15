@@ -53,8 +53,12 @@ opt.confirm = true
 -- is unset, this does nothing.
 opt.vb = false
 
--- Quickly time out on keycodes, but never time out on mappings
-opt.timeout = false
+--Never time out on mappings
+opt.timeout = true
+opt.timeoutlen = 300
+-- opt.timeout = false
+
+-- Quickly time out on keycodes
 opt.ttimeout = true
 opt.ttimeoutlen = 40
 
