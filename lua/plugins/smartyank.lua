@@ -5,8 +5,8 @@ return {
   event = { "LazyFile" },
   main = "smartyank",
   init = function()
-    -- Set clipboard to nil to stop copying to system clipboard on yank
-    vim.opt.clipboard = nil
+    -- Set clipboard to '' to stop copying to system clipboard on yank
+    vim.opt.clipboard = ""
   end,
   config = true,
 }
