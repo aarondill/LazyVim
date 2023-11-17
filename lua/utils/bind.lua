@@ -1,3 +1,6 @@
+local pack = table.pack or vim.F.pack_len
+local unpack = table.unpack or unpack
+
 --- return a new array containing the concatenation of all of its
 --- parameters. Array parameters have their values shallow-copied
 --- to the final array. All parameters are must be tables, or else
@@ -30,9 +33,9 @@ local M = {}
 ---@param ... args
 ---@return fun(): return
 function M.with(f, ...)
-  local args = table.pack(...)
+  local args = pack(...)
   return function()
-    return f(table.unpack(args, 1, args.n))
+    return f(unpack(args, 1, args.n))
   end
 end
 
@@ -44,11 +47,11 @@ end
 ---@return fun(...:rest): return
 function M.bind(f, ...)
   local len = select("#", ...)
-  local outer = len > 0 and table.pack(...) or nil -- nil if no arguments are passed
+  local outer = len > 0 and pack(...) or nil -- nil if no arguments are passed
   return function(...)
     if not outer then return f(...) end -- save processing/memory in storing the above table
-    local args = select("#", ...) > 0 and tbl_join(outer, table.pack(...)) or outer -- Avoid the copy if possible
-    return f(table.unpack(args, 1, args.n))
+    local args = select("#", ...) > 0 and tbl_join(outer, pack(...)) or outer -- Avoid the copy if possible
+    return f(unpack(args, 1, args.n))
   end
 end
 

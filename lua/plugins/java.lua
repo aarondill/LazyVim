@@ -25,10 +25,10 @@ end
 
 ---@param method string
 local function lazy_method(method, ...)
-  local args = select("#", ...) > 0 and table.pack(...) or nil
+  local args = select("#", ...) > 0 and vim.F.pack_len(...) or nil
   return function()
     if not args then return require("jdtls")[method]() end
-    return require("jdtls")[method](table.unpack(args, 1, args.n))
+    return require("jdtls")[method](unpack(args, 1, args.n))
   end
 end
 return {
