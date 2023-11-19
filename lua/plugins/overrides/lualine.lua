@@ -23,7 +23,7 @@ end
 
 local function get_current_lsp()
   local clients = vim.lsp.get_clients()
-  local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+  local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
   local active_clients = {}
   for _, client in ipairs(clients) do
     local source = _get_current_lsp_for_each_client(client, buf_ft)
@@ -105,7 +105,7 @@ return {
             separator = "-",
             ---Fix E539 when opening java files. Source: https://github.com/nvim-lualine/lualine.nvim/issues/820#issuecomment-1742621370
             fmt = function(str) ---@param str string
-              local fn = vim.fn.expand("%:~:.") ---@type string
+              local fn = vim.fn.expand("%:~:.") --[[@as string]]
 
               if vim.startswith(fn, "jdt://") then return fn:gsub("?.*$", "") end
               return str

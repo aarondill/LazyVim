@@ -9,3 +9,23 @@ vim.api.nvim_create_user_command("UniqLines", function()
   pcall(vim.api.nvim_exec2, [[%s/^\(.*\)\(\n\1\)\+$/\1/]])
   pcall(vim.api.nvim_exec2, [[%s/\v^(.*)(\n\1)+$/\1/]])
 end, {})
+
+local function loop(client)
+  if client.name == "null-ls" then return end
+  local capAsList = {}
+  for key, value in pairs(client.server_capabilities) do
+    if value and key:find("Provider") then
+      local capability = key:gsub("Provider$", "")
+      table.insert(capAsList, capability)
+    end
+  end
+  table.sort(capAsList) -- sorts alphabetically
+
+  local msg = ("# %s\n%s"):format(client.name, table.concat(capAsList, "\n"))
+  vim.notify(msg, vim.log.levels.INFO, { timeout = 14 * 1000 })
+end
+vim.api.nvim_create_user_command("LspCapabilities", function()
+  local curBuf = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients({ bufnr = curBuf })
+  vim.tbl_map(loop, clients)
+end, {})
