@@ -34,6 +34,7 @@ return {
       debounce_ms = 500, -- Faster pls. Default: 800
       suggestion_color = { gui = "#808080", cterm = 244 }, -- Default: { gui = "#808080", cterm = 244 }
       exclude_filetypes = { "TelescopePrompt" }, -- Default: { "TelescopePrompt" }
+      codelens_enabled = false,
     },
   },
   -- Lualine show Tabnine status
