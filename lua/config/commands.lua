@@ -1,4 +1,4 @@
--- Setup user commands here. This is laoded by init.lua
+-- Setup user commands here. This is loaded by init.lua
 
 vim.api.nvim_create_user_command("DiffSaved", require("utils.diff_with_saved"), {})
 vim.api.nvim_create_user_command("RandomLine", function()
@@ -30,9 +30,10 @@ vim.api.nvim_create_user_command("LspCapabilities", function()
   vim.tbl_map(loop, clients)
 end, {})
 
-vim.api.nvim_create_user_command("TSOrganizeImports", function()
+vim.api.nvim_create_user_command("OrganizeImports", function()
+  local tsserver_is_attached = next(vim.lsp.get_clients({ bufnr = 0, name = "tsserver" })) ~= nil
   return vim.lsp.buf.execute_command({
-    command = "_typescript.organizeImports",
-    arguments = { vim.fn.expand("%:p") },
+    command = tsserver_is_attached and "_typescript.organizeImports" or "source.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
   })
 end, {})
