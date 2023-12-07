@@ -29,3 +29,10 @@ vim.api.nvim_create_user_command("LspCapabilities", function()
   local clients = vim.lsp.get_clients({ bufnr = curBuf })
   vim.tbl_map(loop, clients)
 end, {})
+
+vim.api.nvim_create_user_command("TSOrganizeImports", function()
+  return vim.lsp.buf.execute_command({
+    command = "_typescript.organizeImports",
+    arguments = { vim.fn.expand("%:p") },
+  })
+end, {})
