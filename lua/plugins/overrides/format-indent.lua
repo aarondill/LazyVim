@@ -5,7 +5,7 @@ return {
       -- Set stylua to use the current shift width
       ---@type conform.FormatterConfigOverride
       stylua = {
-        prepend_args = function(ctx)
+        prepend_args = function(_self, ctx)
           local bufutils = require("utils.buf")
           local i = bufutils.get_indent(ctx.buf)
           return {
@@ -20,7 +20,7 @@ return {
       -- Set shfmt to use the current shift width
       ---@type conform.FormatterConfigOverride
       shfmt = {
-        prepend_args = function(ctx)
+        prepend_args = function(_self, ctx)
           local bufutils = require("utils.buf")
           local i = bufutils.get_indent(ctx.buf)
           return { "-i", i.tabs and 0 or i.size }
