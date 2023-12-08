@@ -17,10 +17,7 @@ return {
       function() -- lazy require!
         local ctx = require("treesitter-context")
         ctx.toggle()
-        if not ctx.is_enabled then return vim.notify("Toggled context") end -- Function's not available. Notify of success.
-
-        local action = "Enabled"
-        if not ctx.is_enabled() then action = "Disabled" end
+        local action = ctx.enabled() and "Enabled" or "Disabled"
         vim.notify(action .. " context")
       end,
       desc = "Toggle context",
