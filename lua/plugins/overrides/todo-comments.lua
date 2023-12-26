@@ -6,7 +6,7 @@ return {
       -- FIX: This note
       FIX = { icon = " ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
       -- TODO: This note
-      TODO = { icon = " ", color = "info", alt = "WIP" },
+      TODO = { icon = " ", color = "info", alt = { "WIP" } },
       -- HACK: This note
       HACK = { icon = " ", color = "warning", alt = { "DEV" } },
       -- WARN: This note
