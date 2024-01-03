@@ -23,6 +23,7 @@ api.nvim_create_autocmd("FileType", {
 
 api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.tmpl",
+  group = VimRCAutoCmds,
   callback = function(ev)
     ---@type string
     local file = ev.file or ""
@@ -32,5 +33,16 @@ api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
       return
     end
     vim.opt.filetype = ext
+  end,
+})
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  desc = "hack to work around Neovim bug",
+  pattern = "*",
+  group = VimRCAutoCmds,
+  callback = function()
+    -- HACK: Work around https://github.com/neovim/neovim/issues/21856
+    -- causing exit code 134 on :wq
+    vim.cmd.sleep({ args = { "1m" } })
   end,
 })
