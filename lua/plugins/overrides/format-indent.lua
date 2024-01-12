@@ -12,11 +12,12 @@ return {
           self = self
           local bufutils = require("utils.buf")
           local i = bufutils.get_indent(ctx.buf)
+          if i.tabs then return { "--indent-type", "Tabs" } end
           return {
             "--indent-width",
             i.size,
             "--indent-type",
-            i.tabs and "Tabs" or "Spaces",
+            "Spaces",
           }
         end,
       },
