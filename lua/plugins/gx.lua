@@ -7,10 +7,13 @@ end
 ---@type LazySpec
 return {
   "chrishrb/gx.nvim",
-  event = { "LazyFile" },
   dependencies = { "nvim-lua/plenary.nvim" },
+  cmd = { "Browse" },
+  init = function()
+    vim.g.netrw_nogx = 1 -- disable netrw gx
+  end,
   keys = {
-    { "gx" },
+    { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } },
     {
       "gf",
       function()
@@ -25,7 +28,7 @@ return {
         if ok then return end
         return vim.notify(get_err_str(err), vim.log.levels.ERROR) -- notify on error
       end,
-      mode = { "v", "n" },
+      mode = { "n", "x" },
     },
   },
   config = true,
