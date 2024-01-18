@@ -6,12 +6,12 @@ local use_upstream = false
 return {
   -- Tabnine setup
   {
-    (use_upstream and "codota" or "aarondill") .. "/tabnine-nvim",
+    ("%s/tabnine-nvim"):format(use_upstream and "codota" or "aarondill"),
     dev = false,
 
     cond = use_tabnine,
     branch = use_upstream and "master" or "all_together_now",
-    build = use_upstream and "./dl_binaries.sh" or nil, -- Note: nil means use build.lua
+    build = "./dl_binaries.sh",
     event = { "LazyFile" },
     cmd = {
       "TabnineChat",
