@@ -1,16 +1,17 @@
 local use_tabnine = require("utils.root_safe")
 
+local use_upstream = false
+
 ---@type LazySpec
 return {
   -- Tabnine setup
   {
-    "aarondill/tabnine-nvim",
-    -- dev = true,
-    -- dir = os.getenv("HOME") .. "/code/repos/tabnine-nvim/",
+    (use_upstream and "codota" or "aarondill") .. "/tabnine-nvim",
+    dev = false,
 
     cond = use_tabnine,
-    branch = "all_together_now",
-    build = "./dl_binaries.sh",
+    branch = use_upstream and "master" or "all_together_now",
+    build = use_upstream and "./dl_binaries.sh" or nil, -- Note: nil means use build.lua
     event = { "LazyFile" },
     cmd = {
       "TabnineChat",
@@ -48,7 +49,6 @@ return {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
       local cmp = require("cmp")
-      -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
       return vim.tbl_deep_extend("force", opts or {}, {
         mapping = {
           -- Accept without explicit selection
