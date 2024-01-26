@@ -21,5 +21,10 @@
       "${0: true # User wants to continue}",
       "fi"
     ]
+  },
+  "split null seperated input": {
+    "prefix": "null",
+    "body": "while IFS= read -r -d ''; do ${1:array}+=(\"\\$REPLY\"); done <${2:./file}",
+    "description": "Splits a file, process output, or stdin by nulls and appends to an array"
   }
 }
