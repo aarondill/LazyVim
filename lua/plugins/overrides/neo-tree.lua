@@ -6,6 +6,7 @@ return {
     window = {
       mappings = {
         ["o"] = "open", -- Open on 'o'
+        ["/"] = "noop", -- Don't fuzzy find on '/', use neovim's search instead
       },
     },
     filesystem = {
