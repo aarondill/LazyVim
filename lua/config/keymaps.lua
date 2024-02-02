@@ -133,10 +133,9 @@ end, "Yank the filename of current buffer")
 map("n", "<Leader>yp", function()
   local res = vim.fn.expand("%:p")
   res = res == "" and vim.loop.cwd() or res
-  if res:len() then
-    vim.fn.setreg("+", res)
-    vim.notify(res, vim.log.levels.INFO, { title = "Yanked filepath" })
-  end
+  if res == "" then return end
+  vim.fn.setreg("+", res)
+  vim.notify(res, vim.log.levels.INFO, { title = "Yanked filepath" })
 end, "Yank the full filepath of current buffer")
 
 map("x", "<", "<gv", "Reselect visual block after indent")
