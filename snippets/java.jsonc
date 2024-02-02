@@ -106,7 +106,7 @@
     "description": "Inserts doc comment for CS UIL"
   },
   "Data Count": {
-    "prefix": "data count",
+    "prefix": "data_count",
     "body": [
       "try(Scanner dataScanner = new Scanner( $TM_FILENAME_BASE.class.getResourceAsStream( \"./${2:${TM_FILENAME_BASE/(.*)/${1:/downcase}/}.dat}\" ) )){",
       "\tint dataCount = dataScanner.nextInt();",
