@@ -1,8 +1,6 @@
-local icons = require("config.icons")
-local neoicons = icons["neo-tree"] or {}
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  opts = vim.tbl_deep_extend("force", neoicons, {
+  opts = {
     window = {
       mappings = {
         ["o"] = "open", -- Open on 'o'
@@ -17,5 +15,5 @@ return {
         hide_hidden = false,
       },
     },
-  }),
+  },
 }

@@ -1,18 +1,11 @@
 local function silent_normal(rhs, lhs, desc)
   return { rhs, lhs, mode = "n", silent = true, desc = desc }
 end
-local is_tty = require("utils.is_tty")()
 return {
   {
     "vuki656/package-info.nvim",
     opts = {
-      icons = {
-        enable = true, -- Whether to display icons
-        style = {
-          up_to_date = is_tty and "| " or "|  ", -- Icon for up to date dependencies
-          outdated = is_tty and "X " or "|  ", -- Icon for outdated dependencies
-        },
-      },
+      icons = { enable = true },
       hide_up_to_date = true, -- It hides up to date versions when displaying virtual text
       -- Can be `npm`, `yarn`, or `pnpm`. Used for `delete`, `install` etc...
       -- The plugin will try to auto-detect the package manager based on

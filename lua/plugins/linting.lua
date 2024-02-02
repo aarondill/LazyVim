@@ -2,13 +2,10 @@ return {
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
-      opts = vim.tbl_deep_extend("keep", opts or {}, {
-        ensure_installed = {},
-      })
-      return vim.list_extend(opts.ensure_installed, {
-        "alex",
-        "gitlint",
-      })
+      opts = opts or {}
+      opts.ensure_installed = opts.ensure_installed or {}
+      table.insert(opts.ensure_installed, "alex")
+      table.insert(opts.ensure_installed, "gitlint")
     end,
   },
   {
@@ -17,16 +14,11 @@ return {
       --- Set up the table. Don't overwrite any existing values!
       opts = vim.tbl_deep_extend("keep", opts or {}, {
         linters = {},
-        linters_by_ft = {
-          markdown = {},
-          text = {},
-          gitcommit = {},
-        },
+        linters_by_ft = { markdown = {}, text = {}, gitcommit = {} },
       })
-
-      vim.list_extend(opts.linters_by_ft.markdown, { "alex" })
-      vim.list_extend(opts.linters_by_ft.text, { "alex" })
-      vim.list_extend(opts.linters_by_ft.gitcommit, { "gitlint" })
+      table.insert(opts.linters_by_ft.markdown, "alex")
+      table.insert(opts.linters_by_ft.text, "alex")
+      table.insert(opts.linters_by_ft.gitcommit, "gitlint")
       return opts
     end,
   },

@@ -6,17 +6,18 @@ return {
   lazy = true,
   init = function()
     vim.g.navic_silence = true
-    require("lazyvim.util").lsp.on_attach(function(client, buffer)
-      if client.supports_method("textDocument/documentSymbol") then require("nvim-navic").attach(client, buffer) end
+    require("lazyvim.util.lsp").on_attach(function(client, buffer)
+      if not client.supports_method("textDocument/documentSymbol") then return end
+      return require("nvim-navic").attach(client, buffer)
     end)
   end,
-  opts = function()
-    return {
+  opts = function(_, opts)
+    return vim.tbl_deep_extend("force", opts or {}, {
       separator = " ",
       highlight = true,
       depth_limit = 5,
       icons = require("lazyvim.config").icons.kinds,
       lazy_update_context = true,
-    }
+    })
   end,
 }
