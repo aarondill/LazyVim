@@ -2,8 +2,10 @@ local icons = require("config.icons")
 local is_tty = require("utils.is_tty")
 local function wordcount()
   local wordcount_dict = vim.fn.wordcount()
+  local words, chars = wordcount_dict.words, wordcount_dict.chars
+  local lines = vim.fn.line("$")
   -- local mins = tostring(math.ceil(words / 200)) -- 200 wpm
-  return string.format("%dw%dc", wordcount_dict.words, wordcount_dict.chars)
+  return string.format("%dw%dc%dl", words, chars, lines)
 end
 
 local function _get_current_lsp_for_each_client(client, buf_ft)
