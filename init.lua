@@ -28,5 +28,5 @@ end
 local rt = os.getenv("VIMRUNTIME")
 if rt and vim.loop.fs_access(rt, "W") then
   --- Regen the helptags
-  vim.cmd.helptags(string.format("%s/doc", rt))
+  vim.cmd.helptags(vim.fs.joinpath(rt, "doc"))
 end

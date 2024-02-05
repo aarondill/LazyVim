@@ -50,3 +50,65 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
     vim.cmd.sleep({ args = { "1m" } })
   end,
 })
+
+---------------------------------------------------------------
+---------------------------------------------------------------
+-------------------- Loading Docs into RTP --------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
+
+---@param src string the plugin dir (not /doc!)
+---@param dest string the destination directory (without plugin name)
+local function lndoc(src, dest)
+  local src_doc = vim.fs.joinpath(src, "doc")
+  if not vim.uv.fs_access(src_doc .. "/", "W") then return nil end
+  local name = assert(vim.fs.basename(src))
+  local dest_dir = vim.fs.joinpath(dest, name)
+  local dest_doc = vim.fs.joinpath(dest_dir, "doc")
+  vim.fn.mkdir(dest_dir, "p") -- throws on fail
+
+  local stat = vim.uv.fs_stat(dest_doc)
+  if not stat or stat.type ~= "link" or vim.uv.fs_readlink(dest_doc) ~= src_doc then
+    vim.fn.delete(dest_doc, "rf")
+    assert(vim.uv.fs_symlink(src_doc, dest_doc))
+  end
+  vim.cmd.helptags(dest_doc)
+  vim.opt.rtp:append(dest_dir)
+end
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  callback = function()
+    local datapath = vim.fn.stdpath("data") --[[@as string]]
+    local doc_path = vim.fs.joinpath(datapath, "doc")
+    local lazypath = vim.fs.joinpath(datapath, "lazy")
+
+    -- Remove old doc directories/files.
+    if vim.fn.isdirectory(doc_path) == 1 then
+      for name, type in vim.fs.dir(doc_path) do
+        local lazydoc = vim.fs.joinpath(lazypath, name, "doc")
+        local docdoc = vim.fs.joinpath(doc_path, name)
+        if vim.fn.isdirectory(lazydoc) ~= 1 then vim.fn.delete(docdoc, "rf") end
+      end
+    end
+
+    -- Copy documentation to the opt_docs directory and generate helptags
+    for name in vim.fs.dir(lazypath) do
+      lndoc(vim.fs.joinpath(lazypath, name), doc_path)
+    end
+  end,
+})
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LazyLoad",
+  callback = function(ev)
+    local name = ev.data
+    local datapath = vim.fn.stdpath("data") --[[@as string]]
+    local doc_path = vim.fs.joinpath(datapath, "doc")
+    local dir = vim.fs.joinpath(doc_path, name)
+    if vim.fn.isdirectory(dir) ~= 1 then return end
+
+    ---- This is disabled because it breaks multiple instances!
+    -- assert(vim.fn.delete(dir, "rf") == 0, "failed to rm doc_path")
+    vim.opt.rtp:remove(dir)
+  end,
+})
