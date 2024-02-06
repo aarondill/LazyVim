@@ -177,9 +177,10 @@ map("i", "<S-Tab>", "<C-d>", "Tab inserts a tab, shift-tab should remove it")
 
 map({ "n", "x" }, "\\", "@:", "Backslash redoes the last command")
 
-local lazyvim_util = require("lazyvim.util")
 local lazyterm = function()
-  lazyvim_util.terminal.open(nil, { cwd = lazyvim_util.root.get() })
+  local root = require("lazyvim.util.root")
+  local terminal = require("lazyvim.util.terminal")
+  return terminal.open(nil, { cwd = root.get() })
 end
 map("n", { "<C-CR>", "<Leader><CR>" }, lazyterm, "Terminal (root dir)")
 map("t", { "<C-CR>" }, lazyterm, "Terminal (root dir)")
