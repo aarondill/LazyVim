@@ -78,6 +78,8 @@ end
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
+  group = VimRCAutoCmds,
+  desc = "Load documentation for lazyloaded plugins",
   callback = function()
     local datapath = vim.fn.stdpath("data") --[[@as string]]
     local doc_path = vim.fs.joinpath(datapath, "doc")
@@ -100,6 +102,8 @@ vim.api.nvim_create_autocmd("User", {
 })
 vim.api.nvim_create_autocmd("User", {
   pattern = "LazyLoad",
+  group = VimRCAutoCmds,
+  desc = "Unload documentation when lazy loading plugins",
   callback = function(ev)
     local name = ev.data
     local datapath = vim.fn.stdpath("data") --[[@as string]]
