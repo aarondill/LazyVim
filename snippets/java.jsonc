@@ -117,5 +117,10 @@
       "}"
     ],
     "description": "Gets number of lines to read from the first line of a file, then repeats a loop that many times"
+  },
+  "New ArrayList": {
+    "prefix": "list",
+    "body": "List<${1:String}> list = new ArrayList<>();\n$0",
+    "description": "Creates a new ArrayList"
   }
 }
