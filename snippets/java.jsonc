@@ -120,7 +120,7 @@
   },
   "New ArrayList": {
     "prefix": "list",
-    "body": "List<${1:String}> list = new ArrayList<>();\n$0",
+    "body": "List<${1:String}> ${2:list} = new ArrayList<>();\n$0",
     "description": "Creates a new ArrayList"
   }
 }
