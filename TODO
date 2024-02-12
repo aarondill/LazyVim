@@ -1,1 +1,2 @@
 <!--vim:set ft=markdown:-->
+- vim.fs.joinpath is a nightly feature. Make it forwards compatible!
