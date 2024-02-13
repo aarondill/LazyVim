@@ -1,19 +1,10 @@
--- Fowards compatability:
-table.pack = table.pack or function(...)
-  return { n = select("#", ...), ... }
-end
-table.unpack = table.unpack or unpack
-vim.uv = vim.uv or vim.loop
+require("future") -- Fowards compatability
 
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+-- This needs to come first!
+require("config.lazy") -- bootstrap lazy.nvim, LazyVim and your plugins
 
--- If running in tty, set menu transparency to opaque
-if require("utils.is_tty")() then require("config.tty") end
-require("config.commands")
-require("config.keymaps")
-require("config.options")
-require("config.autocmds")
+-- Require all the files in ./config
+require("lazy.core.util").lsmod("config", require)
 
 --- Handle regenerating helptags in new VIMRUNTIMEs
 local rt = os.getenv("VIMRUNTIME")
