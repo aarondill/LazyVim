@@ -24,25 +24,34 @@ end
 ---@param keep_last boolean?
 ---@return integer count of lines removed
 function M.dedupe_lines(start, _end, keep_last)
-  keep_last = keep_last or false
+  local reverse = keep_last or false
   local i = start or 1
-  local lines = _end or vim.fn.line("$")
-  local initial_lines = lines
+  local lines = _end or assert(vim.fn.line("$"))
+  local initial_lines = math.max(lines, i)
+  if reverse then -- loop backwards
+    local tmp = lines
+    lines, i = i, tmp
+  end
 
   local seen_lines = {} ---@type table<string, integer>
-  while i <= lines do -- we can't use a i=0,lines because lines changes
+  while true do -- we can't use a i=0,lines because lines changes
+    if reverse and i < lines then break end
+    if not reverse and i > lines then break end
     --- NOTE: i is 1-indexed, vim.api.nvim_* are 0-indexed
     local line = vim.api.nvim_buf_get_lines(0, i - 1, i, true)[1]
 
     if not seen_lines[line] then
       seen_lines[line] = i
-      i = i + 1 -- incr i only when we haven't removed the line
+      -- incr i only when we haven't removed the line
+      i = i + (reverse and -1 or 1)
     else -- Remove the line
       -- If reverse, remove the first instance, else remove the current instance
-      local li = keep_last and seen_lines[line] or i
-      vim.api.nvim_buf_set_lines(0, li - 1, li, true, {})
-      if keep_last then seen_lines[line] = i end -- the new line
-      lines = lines - 1 -- we've removed one
+      vim.api.nvim_buf_set_lines(0, i - 1, i, true, {})
+      if reverse then
+        i = i - 1
+      else
+        lines = lines - 1
+      end
     end
   end
   return initial_lines - lines
