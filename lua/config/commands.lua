@@ -5,9 +5,19 @@ vim.api.nvim_create_user_command("RandomLine", function()
   local l = math.random(1, vim.fn.line("$") or 1) -- Get random number upto last line
   vim.cmd("normal! " .. l .. "G")
 end, {})
+
+local nvim_cmd = vim.api.nvim_cmd ---@type fun(cmd:vim.api.keyset.cmd, opts:vim.api.keyset.cmd_opts): string
+
 vim.api.nvim_create_user_command("UniqLines", function()
-  pcall(vim.api.nvim_exec2, [[%s/^\(.*\)\(\n\1\)\+$/\1/]])
-  pcall(vim.api.nvim_exec2, [[%s/\v^(.*)(\n\1)+$/\1/]])
+  -- Source: https://vim.fandom.com/wiki/Uniq_-_Removing_duplicate_lines
+  local patterns = { [[/^\(.*\)\(\n\1\)\+$/\1/]], [[/\v^(.*)(\n\1)+$/\1/]] }
+  for _, p in ipairs(patterns) do
+    pcall(nvim_cmd, {
+      args = { p },
+      cmd = "substitute",
+      range = { 1, vim.fn.line("$") },
+    }, {})
+  end
 end, {})
 
 local function loop(client)
