@@ -67,6 +67,9 @@ opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.expandtab = true
 
+-- Use s/match/sub/g by default
+opt.gdefault = true
+
 local root_safe = require("utils.root_safe")
 if root_safe then
   local dir = vim.env.HOME .. "/.cache/vimtmp"
