@@ -2,6 +2,7 @@ local bind = require("utils.bind")
 local get_vtext = require("utils.vtext")
 local handle_error = require("utils.handle_error")
 local map = require("utils.set_key_map")
+local text = require("utils.text")
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
@@ -27,6 +28,14 @@ local function line_not_empty(input)
   end
 end
 
+map({ "i", "n" }, "<F3>", function()
+  local cmd = vim.fn.getreg(":", 1) --[[@as string]]
+  if not cmd or cmd == "" then return vim.notify("No previous command line", vim.log.levels.ERROR) end
+  local parsed = vim.api.nvim_parse_cmd(cmd, {})
+  local res = vim.api.nvim_cmd(parsed, { output = true })
+  return text.insert(res, true)
+end, "Insert last command output into buffer")
+
 -- Change U to redo for symetry with u
 map("n", "U", "<c-r>", "Redo")
 
@@ -35,19 +44,11 @@ map("n", "U", "<c-r>", "Redo")
 map("n", "Y", "y$", "Yank until EOL")
 
 -- Quick save and quit
-map(
-  "n",
-  "<leader>wq",
-  handle_error(function()
-    -- Save if possible
-    if vim.o.bt:len() == 0 and vim.o.modifiable and not vim.readonly then
-      vim.cmd.wq()
-    else
-      vim.cmd.q()
-    end
-  end),
-  "Save and exit"
-)
+map("n", "<leader>wq", function()
+  -- Save if possible
+  local cmd = (vim.o.bt:len() == 0 and vim.o.modifiable and not vim.readonly) and vim.cmd.wq or vim.cmd.q
+  handle_error(cmd)()
+end, "Save and exit")
 
 -- Quick quit
 map("n", "<leader>q!", vim.cmd.q, "Exit without saving")
