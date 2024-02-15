@@ -22,10 +22,12 @@ end
 ---@param start? integer first line to include (1-indexed)
 ---@param _end? integer last line to include (1-indexed)
 ---@param keep_last boolean?
+---@return integer count of lines removed
 function M.dedupe_lines(start, _end, keep_last)
   keep_last = keep_last or false
   local i = start or 1
   local lines = _end or vim.fn.line("$")
+  local initial_lines = lines
 
   local seen_lines = {} ---@type table<string, integer>
   while i <= lines do -- we can't use a i=0,lines because lines changes
@@ -43,6 +45,7 @@ function M.dedupe_lines(start, _end, keep_last)
       lines = lines - 1 -- we've removed one
     end
   end
+  return initial_lines - lines
 end
 
 return M

@@ -13,7 +13,9 @@ vim.api.nvim_create_user_command("UniqLines", function(opts)
     start = opts.line1
     last = opts.line2
   end
-  return text.dedupe_lines(start, last, opts.bang)
+  local removed = text.dedupe_lines(start, last, opts.bang)
+  local linecount = last - start + 1
+  return vim.notify(("Removed %d duplicates over %d lines"):format(removed, linecount), vim.log.levels.INFO)
 end, { desc = "Remove duplicate lines, keeping the first", bang = true, range = true, bar = true })
 
 local function loop(client)
