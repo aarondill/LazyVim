@@ -1,24 +1,20 @@
 -- Setup user commands here. This is loaded by init.lua
 
 vim.api.nvim_create_user_command("DiffSaved", require("utils.diff_with_saved"), {})
+local text = require("utils.text")
 vim.api.nvim_create_user_command("RandomLine", function()
   local l = math.random(1, vim.fn.line("$") or 1) -- Get random number upto last line
   vim.cmd("normal! " .. l .. "G")
 end, {})
 
-local nvim_cmd = vim.api.nvim_cmd ---@type fun(cmd:vim.api.keyset.cmd, opts:vim.api.keyset.cmd_opts): string
-
-vim.api.nvim_create_user_command("UniqLines", function()
-  -- Source: https://vim.fandom.com/wiki/Uniq_-_Removing_duplicate_lines
-  local patterns = { [[/^\(.*\)\(\n\1\)\+$/\1/]], [[/\v^(.*)(\n\1)+$/\1/]] }
-  for _, p in ipairs(patterns) do
-    pcall(nvim_cmd, {
-      args = { p },
-      cmd = "substitute",
-      range = { 1, vim.fn.line("$") },
-    }, {})
+vim.api.nvim_create_user_command("UniqLines", function(opts)
+  local start, last = 1, vim.fn.line("$")
+  if opts.range == 2 then
+    start = opts.line1
+    last = opts.line2
   end
-end, {})
+  return text.dedupe_lines(start, last, opts.bang)
+end, { desc = "Remove duplicate lines, keeping the first", bang = true, range = true, bar = true })
 
 local function loop(client)
   if client.name == "null-ls" then return end
