@@ -77,6 +77,12 @@ if root_safe then
   opt.directory = dir -- Move the swap file
 end
 
+-- Reset to default value
+if vim.fn.executable("rg") then
+  opt.grepprg = "rg --vimgrep --smart-case --hidden"
+  opt.grepformat = "%f:%l:%c:%m"
+end
+
 -- Disable providers
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_perl_provider = 0
