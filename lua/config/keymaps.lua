@@ -39,6 +39,9 @@ end, "Insert last command output into buffer")
 -- Change U to redo for symetry with u
 map("n", "U", "<c-r>", "Redo")
 
+--- Map Ctrl+Shift+A to decrement, since Ctrl+A is increment (and Ctrl+X is remapped later)
+map("n", "<c-s-a>", "<c-x>", "Decrement")
+
 -- Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 -- which is the default
 map("n", "Y", "y$", "Yank until EOL")
