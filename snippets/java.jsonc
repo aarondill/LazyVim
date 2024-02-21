@@ -14,17 +14,17 @@
   // }
   "System.out": {
     "prefix": ["sysout", "stdout"],
-    "body": "System.out.println",
+    "body": "System.out.println(${1:$TM_SELECTED_TEXT});$0",
     "description": "Outputs to stdout with selected text",
   },
   "System.out.printf": {
     "prefix": ["sysoutf", "stdoutf"],
-    "body": "System.out.printf",
+    "body": "System.out.printf(${1:$TM_SELECTED_TEXT});$0",
     "description": "Outputs to stdout with selected text (Using printf)",
   },
   "System.err.printf": {
     "prefix": ["syserrf", "stderrf"],
-    "body": "System.err.printf",
+    "body": "System.err.printf(${1:$TM_SELECTED_TEXT});$0",
     "description": "outputs to stderr with selected text (Using printf)",
   },
   "Scanner": {
