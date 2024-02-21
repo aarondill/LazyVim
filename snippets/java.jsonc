@@ -28,7 +28,7 @@
     "description": "outputs to stderr with selected text (Using printf)",
   },
   "Scanner": {
-    "prefix": ["scan", "sysin", "sn"],
+    "prefix": ["scan", "sysin", "sn", "stdin"],
     "body": [
       "try(Scanner ${1:scan} = new Scanner(${2:System.in})){",
       "\t$TM_SELECTED_TEXT$0",
