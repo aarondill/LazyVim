@@ -68,4 +68,3 @@ require("lazy").setup({
   },
 })
 require("lazyvim.util.root").spec = require("consts").lazy_root_spec
-
