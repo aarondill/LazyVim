@@ -13,8 +13,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-require("lazyvim.util.root").spec = require("consts").lazy_root_spec
-
 local icons = require("config.icons")
 require("lazy").setup({
   ui = {
@@ -69,3 +67,5 @@ require("lazy").setup({
     },
   },
 })
+require("lazyvim.util.root").spec = require("consts").lazy_root_spec
+
