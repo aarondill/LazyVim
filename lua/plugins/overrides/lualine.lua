@@ -1,5 +1,4 @@
 local icons = require("config.icons")
-local is_tty = require("utils.is_tty")
 local lazyvim_util = require("lazyvim.util")
 
 local function wordcount()
@@ -69,7 +68,7 @@ return {
     extensions = { "neo-tree", "lazy", "fugitive", "man", "trouble" },
     options = {
       always_divide_middle = true,
-      disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
+      disabled_filetypes = { statusline = { "alpha", "dashboard", "starter", "nvdash" } },
       globalstatus = true,
       ignore_focus = {},
       refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },

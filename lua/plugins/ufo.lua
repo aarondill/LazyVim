@@ -1,5 +1,6 @@
 -- handle folds
 -- Modified from: https://github.com/sho-87/dotfiles/blob/09872d0905883a1be33d5bb3164076e730d44466/nvim/lua/plugins/modules/ufo.lua
+local consts = require("consts")
 
 local handler = function(virtText, lnum, endLnum, width, truncate)
   local newVirtText = {}
@@ -26,21 +27,6 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
   table.insert(newVirtText, { suffix, "MoreMsg" })
   return newVirtText
 end
-local ignored_filetypes = {
-  ["help"] = true,
-  ["terminal"] = true,
-  ["lazy"] = true,
-  ["lspinfo"] = true,
-  ["TelescopePrompt"] = true,
-  ["TelescopeResults"] = true,
-  ["mason"] = true,
-  ["nvdash"] = true,
-  ["nvcheatsheet"] = true,
-  ["neo-tree"] = true,
-  ["dashboard"] = true,
-  ["alpha"] = true,
-  [""] = true,
-}
 
 return {
   "kevinhwang91/nvim-ufo",
@@ -56,8 +42,7 @@ return {
   opts = {
     fold_virt_text_handler = handler,
     provider_selector = function(_, filetype)
-      if ignored_filetypes[filetype] then return { "" } end
-      return { "treesitter", "indent" }
+      return vim.tbl_contains(consts.ignored_filetypes, filetype) and { "" } or { "treesitter", "indent" }
     end,
     preview = {
       win_config = {

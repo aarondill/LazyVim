@@ -1,5 +1,6 @@
 local function setup_jdtls(opts)
   local jdtls = require("jdtls")
+  local consts = require("consts")
   local bufnr = vim.api.nvim_get_current_buf()
 
   local has_wk, wk = pcall(require, "which-key")
@@ -7,8 +8,7 @@ local function setup_jdtls(opts)
     ["<leader>cJ"] = { name = "+java", buffer = bufnr, mode = { "n", "v" } },
   }) end
 
-  local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", "package.json" }
-  local root_dir = require("jdtls.setup").find_root(root_markers)
+  local root_dir = require("jdtls.setup").find_root(consts.root_markers)
 
   -- If you started neovim within `~/dev/xy/project-1` this would resolve to `project-1`
   local project_name = vim.fn.fnamemodify(root_dir or vim.fn.getcwd(), ":p:h:t")

@@ -16,7 +16,7 @@ return {
     vim.g.gitblame_display_virtual_text = 1
     -- A list of filetypes for which gitblame information will not be displayed.
     -- Empty for now
-    vim.g.gitblame_ignored_filetypes = {}
+    vim.g.gitblame_ignored_filetypes = require("consts").ignored_filetypes
     -- The delay in milliseconds after which the blame info will be displayed.
     -- Note that this doesn't affect the performance of the plugin.
     vim.g.gitblame_delay = 1000 -- 1 second
