@@ -9,8 +9,11 @@ return {
       desc = "Toggle Undotree",
     },
   },
-  init = function() -- ensure undofile is true
-    if vim.fn.has("persistent_undo") ~= 1 then return end
+  init = function()
+    vim.g.undotree_WindowLayout = 2 -- put the window on the left, and the diff across the bottom
+    vim.g.undotree_SetFocusWhenToggle = 1 -- Focus the tree!
+    vim.g.undotree_ShortIndicators = 1 -- Shorter indicators pls
+    vim.g.undotree_SplitWidth = 24 -- wider window pls
     vim.opt.undofile = true
   end,
 }
