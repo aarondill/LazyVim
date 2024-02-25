@@ -187,6 +187,11 @@ map("t", "<C-CR>", lazyterm, "Terminal (root dir)")
 
 map("v", "<C-/>", "<Cmd>Telescope grep_string<Cr>", "Grep for the selected string")
 
+map("n", "<bs>", function()
+  if vim.fn.getreg("#") == "" then return "<cmd>bn<cr>" end
+  return "<c-^>"
+end, { silent = true, noremap = true, expr = true })
+
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   once = true,
