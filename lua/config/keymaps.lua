@@ -198,6 +198,12 @@ map("c", "<c-n>", "<down>")
 map("c", "<up>", "<c-p>")
 map("c", "<down>", "<c-n>")
 
+-- Use Ctrl+hjkl to move in insert mode!
+map("i", "<c-h>", "<left>")
+map("i", "<c-j>", "<down>")
+map("i", "<c-k>", "<up>")
+map("i", "<c-l>", "<right>")
+
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   once = true,
