@@ -186,3 +186,11 @@ map("n", { "<C-CR>", "<Leader><CR>" }, lazyterm, "Terminal (root dir)")
 map("t", "<C-CR>", lazyterm, "Terminal (root dir)")
 
 map("v", "<C-/>", "<Cmd>Telescope grep_string<Cr>", "Grep for the selected string")
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  once = true,
+  callback = function() -- Undo LazyVim things I don't like
+    vim.keymap.del("n", "<leader>ub") -- Don't blind me on a typo
+  end,
+})
