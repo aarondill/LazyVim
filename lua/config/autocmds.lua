@@ -80,6 +80,7 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   group = VimRCAutoCmds,
   desc = "Load documentation for lazyloaded plugins",
+  once = true,
   callback = function()
     local datapath = vim.fn.stdpath("data") --[[@as string]]
     local doc_path = vim.fs.joinpath(datapath, "doc")
@@ -87,7 +88,7 @@ vim.api.nvim_create_autocmd("User", {
 
     -- Remove old doc directories/files.
     if vim.fn.isdirectory(doc_path) == 1 then
-      for name, type in vim.fs.dir(doc_path) do
+      for name in vim.fs.dir(doc_path) do
         local lazydoc = vim.fs.joinpath(lazypath, name, "doc")
         local docdoc = vim.fs.joinpath(doc_path, name)
         if vim.fn.isdirectory(lazydoc) ~= 1 then vim.fn.delete(docdoc, "rf") end
