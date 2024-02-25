@@ -192,6 +192,12 @@ map("n", "<bs>", function()
   return "<c-^>"
 end, { silent = true, noremap = true, expr = true })
 
+-- Allow scrolling through autocomplete with up and down arrows!
+map("c", "<c-p>", "<up>")
+map("c", "<c-n>", "<down>")
+map("c", "<up>", "<c-p>")
+map("c", "<down>", "<c-n>")
+
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   once = true,
