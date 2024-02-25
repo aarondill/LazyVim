@@ -35,9 +35,7 @@ return {
           end
         end
       else
-        opts.colorscheme = function()
-          return require("tokyonight").load()
-        end
+        opts.colorscheme = function() return require("tokyonight").load() end
       end
     end,
   },

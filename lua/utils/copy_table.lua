@@ -17,6 +17,4 @@ end
 ---Deep copies a table. Avoid doing this for performance and memory reasons.
 ---@param obj table a table to copy
 ---@return table copied_table
-return function(obj)
-  return copy_table(obj)
-end
+return function(obj) return copy_table(obj) end

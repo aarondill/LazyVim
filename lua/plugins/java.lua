@@ -81,9 +81,7 @@ return {
         jdtls = function(_, opts)
           vim.api.nvim_create_autocmd("FileType", {
             pattern = "java",
-            callback = function()
-              return setup_jdtls(opts)
-            end,
+            callback = function() return setup_jdtls(opts) end,
           })
           return true
         end,

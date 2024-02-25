@@ -1,6 +1,4 @@
-local function silent_normal(rhs, lhs, desc)
-  return { rhs, lhs, mode = "n", silent = true, desc = desc }
-end
+local function silent_normal(rhs, lhs, desc) return { rhs, lhs, mode = "n", silent = true, desc = desc } end
 return {
   {
     "vuki656/package-info.nvim",
@@ -22,25 +20,15 @@ return {
     },
     keys = {
       -- Show dependency versionjs
-      silent_normal("<leader>ns", function()
-        require("package-info").show()
-      end, "Show package versions"),
+      silent_normal("<leader>ns", function() require("package-info").show() end, "Show package versions"),
       -- Delete dependency on the line
-      silent_normal("<leader>nd", function()
-        require("package-info").delete()
-      end, "Delete dependency"),
+      silent_normal("<leader>nd", function() require("package-info").delete() end, "Delete dependency"),
       -- Update dependency on the line
-      silent_normal("<leader>nu", function()
-        require("package-info").update()
-      end, "Update dependency"),
+      silent_normal("<leader>nu", function() require("package-info").update() end, "Update dependency"),
       -- Install a different dependency version
-      silent_normal("<leader>np", function()
-        require("package-info").change_version()
-      end, "Change dependency version"),
+      silent_normal("<leader>np", function() require("package-info").change_version() end, "Change dependency version"),
       -- Install a new dependency
-      silent_normal("<leader>ni", function()
-        require("package-info").install()
-      end, "Install dependency"),
+      silent_normal("<leader>ni", function() require("package-info").install() end, "Install dependency"),
     },
     config = function(_, opts)
       require("package-info").setup(opts)

@@ -10,9 +10,7 @@ return {
   keys = {
     {
       "<leader>cg",
-      function()
-        require("neogen").generate({ type = "func" })
-      end,
+      function() require("neogen").generate({ type = "func" }) end,
       desc = "[G]enerate function documentation",
     },
   },

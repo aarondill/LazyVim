@@ -182,7 +182,5 @@ local M = {
 
 --- If index not found, try the tty table
 return setmetatable(M, {
-  __index = function(_, key)
-    return require("config.icons.tty")[key]
-  end,
+  __index = function(_, key) return require("config.icons.tty")[key] end,
 })

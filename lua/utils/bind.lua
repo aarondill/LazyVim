@@ -34,9 +34,7 @@ local M = {}
 ---@return fun(): return
 function M.with(f, ...)
   local args = pack(...)
-  return function()
-    return f(unpack(args, 1, args.n))
-  end
+  return function() return f(unpack(args, 1, args.n)) end
 end
 
 ---returns a curried function that represents f(args, other_args)
@@ -56,7 +54,5 @@ function M.bind(f, ...)
 end
 
 return setmetatable(M, {
-  __call = function(_, ...)
-    return M.bind(...)
-  end,
+  __call = function(_, ...) return M.bind(...) end,
 })

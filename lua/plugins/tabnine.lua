@@ -49,9 +49,7 @@ return {
   -- Lualine show Tabnine status
   {
     "nvim-lualine/lualine.nvim",
-    opts = function(_, opts)
-      table.insert(opts.sections.lualine_b, "tabnine")
-    end,
+    opts = function(_, opts) table.insert(opts.sections.lualine_b, "tabnine") end,
   },
   {
     "hrsh7th/nvim-cmp",

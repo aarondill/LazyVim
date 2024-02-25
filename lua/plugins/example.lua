@@ -43,9 +43,7 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = { "hrsh7th/cmp-emoji" },
     ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "emoji" })
-    end,
+    opts = function(_, opts) table.insert(opts.sources, { name = "emoji" }) end,
   },
 
   -- change some telescope options and a keymap to browse plugin files
@@ -77,9 +75,7 @@ return {
     dependencies = {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
+      config = function() require("telescope").load_extension("fzf") end,
     },
   },
 
@@ -176,9 +172,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    opts = function(_, opts)
-      table.insert(opts.sections.lualine_x, "😄")
-    end,
+    opts = function(_, opts) table.insert(opts.sections.lualine_x, "😄") end,
   },
 
   -- or you can return new options to override all the defaults
@@ -215,9 +209,7 @@ return {
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
     "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
-    end,
+    keys = function() return {} end,
   },
   -- then: setup supertab in cmp
   {

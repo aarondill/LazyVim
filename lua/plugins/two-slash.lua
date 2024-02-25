@@ -27,9 +27,7 @@ return {
         ---@type lspconfig.options.tsserver
         tsserver = {
           settings = nil, ---@diagnostic disable-line :assign-type-mismatch
-          on_attach = function(client, bufnr)
-            return require("twoslash-queries").attach(client, bufnr)
-          end,
+          on_attach = function(client, bufnr) return require("twoslash-queries").attach(client, bufnr) end,
         },
       },
     },

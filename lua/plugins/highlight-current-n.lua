@@ -9,41 +9,31 @@ return {
     -- toggle hlsearch with the following autocommands
     vim.api.nvim_create_autocmd("CmdlineEnter", {
       pattern = { "/", "\\?" },
-      callback = function()
-        vim.opt.hlsearch = true
-      end,
+      callback = function() vim.opt.hlsearch = true end,
       group = ClearSearchHL,
     })
     vim.api.nvim_create_autocmd("CmdlineLeave", {
       pattern = { "/", "\\?" },
-      callback = function()
-        vim.opt.hlsearch = false
-      end,
+      callback = function() vim.opt.hlsearch = false end,
       group = ClearSearchHL,
     })
     -- this will apply similar n|N highlighting to the first search result
     -- careful with escaping ? in lua, you may need \\?
     vim.api.nvim_create_autocmd("CmdlineLeave", {
       pattern = { "/", "\\?" },
-      callback = function()
-        require("highlight_current_n")["/,?"]()
-      end,
+      callback = function() require("highlight_current_n")["/,?"]() end,
       group = ClearSearchHL,
     })
   end,
   keys = {
     {
       "n",
-      function()
-        require("highlight_current_n").n()
-      end,
+      function() require("highlight_current_n").n() end,
       mode = "n",
     },
     {
       "N",
-      function()
-        require("highlight_current_n").N()
-      end,
+      function() require("highlight_current_n").N() end,
       mode = "n",
     },
   },

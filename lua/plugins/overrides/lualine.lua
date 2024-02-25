@@ -8,9 +8,7 @@ local function wordcount()
   -- local mins = tostring(math.ceil(words / 200)) -- 200 wpm
   return string.format("%dw%dc%dl", words, chars, lines)
 end
-local function time()
-  return icons.clock .. os.date("%R")
-end
+local function time() return icons.clock .. os.date("%R") end
 
 local function _get_current_lsp_for_each_client(client, buf_ft)
   local filetypes = client.config.filetypes
@@ -93,41 +91,25 @@ return {
         },
         "filetype",
         {
-          function()
-            return require("nvim-navic").get_location()
-          end,
-          cond = function()
-            return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
-          end,
+          function() return require("nvim-navic").get_location() end,
+          cond = function() return package.loaded["nvim-navic"] and require("nvim-navic").is_available() end,
         },
       },
       -- RIGHT SIDE:
       lualine_x = {
         { -- Display keys as they're pressed
-          function()
-            return require("noice").api.status.command.get()
-          end,
-          cond = function()
-            return package.loaded["noice"] and require("noice").api.status.command.has()
-          end,
+          function() return require("noice").api.status.command.get() end,
+          cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
           color = lazyvim_util.ui.fg("Statement"),
         },
         { -- Display recording status (q)
-          function()
-            return require("noice").api.status.mode.get()
-          end,
-          cond = function()
-            return package.loaded["noice"] and require("noice").api.status.mode.has()
-          end,
+          function() return require("noice").api.status.mode.get() end,
+          cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
           color = lazyvim_util.ui.fg("Constant"),
         },
         { -- Debug status
-          function()
-            return icons.debug .. require("dap").status()
-          end,
-          cond = function()
-            return package.loaded["dap"] and require("dap").status() ~= ""
-          end,
+          function() return icons.debug .. require("dap").status() end,
+          cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
           color = lazyvim_util.ui.fg("Debug"),
         },
         { -- Lazy.nvim update status

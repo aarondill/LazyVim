@@ -110,13 +110,9 @@ map("n", "<Leader>cc", "<Cmd>cd! %:h<CR>", "[c]d to [c]urrent buffer path")
 map("n", "<Leader>..", "<Cmd>cd! ..<CR>", "cd up a level [..]")
 
 -- Edit closest
-map("n", "<Leader>erm", function()
-  require("utils.edit_closest")("README.md")
-end, "[E]dit closest [R]EAD[M]E.md")
+map("n", "<Leader>erm", function() require("utils.edit_closest")("README.md") end, "[E]dit closest [R]EAD[M]E.md")
 
-map("n", "<Leader>epj", function()
-  require("utils.edit_closest")("package.json")
-end, "[E]dit closest [p]ackage.[j]son")
+map("n", "<Leader>epj", function() require("utils.edit_closest")("package.json") end, "[E]dit closest [p]ackage.[j]son")
 
 map({ "i", "n" }, "<F1>", "<NOP>", "Disable help shortcut key")
 
