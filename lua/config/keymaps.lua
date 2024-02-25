@@ -183,4 +183,6 @@ local lazyterm = function()
   return terminal.open(nil, { cwd = root.get() })
 end
 map("n", { "<C-CR>", "<Leader><CR>" }, lazyterm, "Terminal (root dir)")
-map("t", { "<C-CR>" }, lazyterm, "Terminal (root dir)")
+map("t", "<C-CR>", lazyterm, "Terminal (root dir)")
+
+map("v", "<C-/>", "<Cmd>Telescope grep_string<Cr>", "Grep for the selected string")
