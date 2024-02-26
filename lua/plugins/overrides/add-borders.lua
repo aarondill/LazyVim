@@ -6,9 +6,8 @@ return {
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
-      local tbl_extend = require("utils.tbl_extend")
       -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
-      return tbl_extend(opts, {
+      return vim.tbl_deep_extend("force", opts or {}, {
         window = {
           completion = { -- rounded border
             border = "rounded",
