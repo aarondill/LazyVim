@@ -13,9 +13,13 @@ api.nvim_create_autocmd(NEW_BUF_EVENTS, {
   pattern = "*.conf",
   command = "set syntax=dosini",
 })
--- api.nvim_create_autocmd(NEW_BUF_EVENTS, {
---   desc = "Disable formatting if .noformat file"
--- })
+-- Change .pluto to .lua
+api.nvim_create_autocmd(NEW_BUF_EVENTS, {
+  desc = "Change .pluto to .lua filetype",
+  group = VimRCAutoCmds,
+  pattern = "*.pluto",
+  command = "set ft=lua",
+})
 
 -- Disable auto-comments!!!
 api.nvim_create_autocmd("FileType", {
