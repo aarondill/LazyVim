@@ -41,6 +41,8 @@ return {
       ADD = function(state)
         return vim.notify(("Added %s to harpoon"):format(state.item.value), vim.log.levels.INFO) -- Notify on add
       end,
+      ---@param state { buffer = integer, }
+      NAVIGATE = function(state) vim.cmd.ls("%") end,
     })
   end,
   keys = {
