@@ -6,8 +6,6 @@ local text = require("utils.text")
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 local function line_not_empty(input)
   if type(input) ~= "string" then error("input is not a string") end
   local key = vim.api.nvim_replace_termcodes(input, true, false, true)
