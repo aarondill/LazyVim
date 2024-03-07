@@ -52,12 +52,12 @@ return {
     { "<leader>h", toggle_quick_menu, desc = "Harpoon quick menu" },
     {
       "<c-,>", -- comma is the same key as '<'
-      function() require("harpoon"):list():prev() end,
+      function() require("harpoon"):list():prev({ ui_nav_wrap = true }) end,
       desc = "Harpoon to previous",
     },
     {
       "<c-.>", -- period is the same key as '>'
-      function() require("harpoon"):list():next() end,
+      function() require("harpoon"):list():next({ ui_nav_wrap = true }) end,
       desc = "Harpoon to next",
     },
     nav_map("<c-%d>", 1, 2, 3, 4, 5, 6, 7, 8, 9),
