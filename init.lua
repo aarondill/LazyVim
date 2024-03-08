@@ -1,7 +1,4 @@
 require("future") -- Fowards compatability
---- This has to be set before loading lazy
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- This needs to come first!
 require("config.lazy") -- bootstrap lazy.nvim, LazyVim and your plugins

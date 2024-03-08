@@ -3,6 +3,10 @@
 -- Add any additional options here
 local opt = vim.opt
 
+--- This has to be set before loading lazy
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- Allows you to re-use the same window and switch from an unsaved buffer
 -- without saving it first. Also allows you to keep an undo history for
 -- multiple files when re-using the same window in this way. Vim will complain
