@@ -1,5 +1,19 @@
 local icons = require("config.icons")
-local lazyvim_util = require("lazyvim.util")
+---@param name string
+---@return fun(): {fg: string}?
+local function getfg(name)
+  return function() -- Use a function to allow updating if the hl changes
+    local hl
+    if vim.api.nvim_get_hl then
+      hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+    else ---@diagnostic disable-next-line: deprecated
+      hl = vim.api.nvim_get_hl_by_name(name, true) ---@type {foreground?:number}?
+    end
+    local fg = hl and (hl.foreground or hl.fg)
+    if not fg then return end
+    return { fg = string.format("#%06x", fg) }
+  end
+end
 
 local function wordcount()
   local wordcount_dict = vim.fn.wordcount()
@@ -100,22 +114,22 @@ return {
         { -- Display keys as they're pressed
           function() return require("noice").api.status.command.get() end,
           cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-          color = lazyvim_util.ui.fg("Statement"),
+          color = getfg("Statement"),
         },
         { -- Display recording status (q)
           function() return require("noice").api.status.mode.get() end,
           cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-          color = lazyvim_util.ui.fg("Constant"),
+          color = getfg("Constant"),
         },
         { -- Debug status
           function() return icons.debug .. require("dap").status() end,
           cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
-          color = lazyvim_util.ui.fg("Debug"),
+          color = getfg("Debug"),
         },
         { -- Lazy.nvim update status
           require("lazy.status").updates,
           cond = require("lazy.status").has_updates,
-          color = lazyvim_util.ui.fg("Special"),
+          color = getfg("Special"),
         },
         -- File information
         "encoding",
