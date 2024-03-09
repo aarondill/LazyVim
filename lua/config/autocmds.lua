@@ -121,3 +121,10 @@ vim.api.nvim_create_autocmd("User", {
     vim.opt.rtp:remove(dir)
   end,
 })
+
+--- Show diagnostic messages when the cursor stops over it
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+  pattern = "*",
+  group = VimRCAutoCmds,
+  callback = function() return vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" }) end,
+})
