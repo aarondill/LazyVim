@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
   {
-    "https://github.com/marilari88/twoslash-queries.nvim",
+    "marilari88/twoslash-queries.nvim",
     lazy = true,
     opts = {
       multi_line = true, -- to print types in multi line mode
@@ -15,18 +15,14 @@ return {
       "TwoslashQueriesInspect",
       "TwoslashQueriesRemove",
     },
-    -- config = function(_, opts)
-    -- require('lazyvim.util').lsp.on_attach(on_attach)
-    -- require("twoslash-queries").setup(opts),
-    -- end
   },
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
         ---@type lspconfig.options.tsserver
+        ---@diagnostic disable-next-line: missing-fields
         tsserver = {
-          settings = nil, ---@diagnostic disable-line :assign-type-mismatch
           on_attach = function(client, bufnr) return require("twoslash-queries").attach(client, bufnr) end,
         },
       },
