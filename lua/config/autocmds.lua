@@ -128,3 +128,13 @@ vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
   group = VimRCAutoCmds,
   callback = function() return vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" }) end,
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "COMMIT_EDITMSG",
+  group = VimRCAutoCmds,
+  callback = function()
+    vim.b.spell = true -- enable spell check
+    vim.api.nvim_win_set_cursor(0, { 1, 0 }) -- go to top line
+    vim.cmd.startinsert() -- start in insert mode
+  end,
+})
