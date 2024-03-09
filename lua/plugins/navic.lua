@@ -6,10 +6,13 @@ return {
   lazy = true,
   init = function()
     vim.g.navic_silence = true
-    require("lazyvim.util.lsp").on_attach(function(client, buffer)
-      if not client.supports_method("textDocument/documentSymbol") then return end
-      return require("nvim-navic").attach(client, buffer)
-    end)
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        local buffer = args.buf ---@type number
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        return require("nvim-navic").attach(client, buffer)
+      end,
+    })
   end,
   opts = function(_, opts)
     return vim.tbl_deep_extend("force", opts or {}, {
