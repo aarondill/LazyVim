@@ -126,7 +126,7 @@ vim.api.nvim_create_autocmd("User", {
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
   pattern = "*",
   group = VimRCAutoCmds,
-  callback = function() return vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" }) end,
+  callback = function() vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" }) end,
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
