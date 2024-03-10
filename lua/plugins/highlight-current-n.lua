@@ -18,7 +18,6 @@ return {
       group = ClearSearchHL,
     })
     -- this will apply similar n|N highlighting to the first search result
-    -- careful with escaping ? in lua, you may need \\?
     vim.api.nvim_create_autocmd("CmdlineLeave", {
       pattern = { "/", "\\?" },
       callback = function() require("highlight_current_n")["/,?"]() end,
@@ -26,18 +25,7 @@ return {
     })
   end,
   keys = {
-    {
-      "n",
-      function() require("highlight_current_n").n() end,
-      mode = "n",
-    },
-    {
-      "N",
-      function() require("highlight_current_n").N() end,
-      mode = "n",
-    },
+    { "n", function() require("highlight_current_n").n() end, mode = "n" },
+    { "N", function() require("highlight_current_n").N() end, mode = "n" },
   },
-  -- config = function(_, opts)
-  --   local hcn = require("highlight_current_n")
-  -- end,
 }
