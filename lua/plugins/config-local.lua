@@ -5,12 +5,6 @@
 return {
   "klen/nvim-config-local",
   main = "config-local",
-  init = function(self)
-    local config_local = require(self.main) ---@module "config-local"
-    config_local.setup(self.opts)
-    config_local.source() -- force load on startup
-  end,
-  config = function() end,
   lazy = false,
   opts = {
     -- Config file patterns to load (lua supported)
