@@ -38,7 +38,7 @@ return {
     main = "tabnine",
     opts = {
       disable_auto_comment = false, -- I already handle this. Default: true
-      accept_keymap = "<C-[>", -- Default: "<Tab>" -- This is *effectively* disabled. there's no true way to disable it.
+      accept_keymap = "<F22>", -- Default: "<Tab>" -- This is *effectively* disabled. there's no true way to disable it.
       dismiss_keymap = "<C-]>", -- Default: "<C-]>"
       debounce_ms = 500, -- Faster pls. Default: 800
       suggestion_color = { gui = "#808080", cterm = 244 }, -- Default: { gui = "#808080", cterm = 244 }
