@@ -57,18 +57,13 @@ return {
       local cmp = require("cmp")
       return vim.tbl_deep_extend("force", opts or {}, {
         mapping = {
-          -- Accept without explicit selection
           ["<TAB>"] = cmp.mapping(function(fallback)
             local tabnine_keymaps = require("tabnine.keymaps")
-            if tabnine_keymaps.accept_suggestion and tabnine_keymaps.accept_suggestion() then
-              return
-            elseif cmp.visible() then
-              cmp.confirm({ select = false })
-            else
-              -- Fallback is not mapped correctly. Just hard code a tab character
-              vim.api.nvim_feedkeys("\t", "n", false)
-              -- fallback()
-            end
+            if tabnine_keymaps.accept_suggestion and tabnine_keymaps.accept_suggestion() then return end
+            if cmp.visible() then return cmp.confirm({ select = false }) end
+            -- Fallback is not mapped correctly. Just hard code a tab character
+            vim.api.nvim_feedkeys("\t", "n", false)
+            -- fallback()
           end, { "i" }),
         },
       })
