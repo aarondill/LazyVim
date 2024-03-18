@@ -209,3 +209,8 @@ vim.api.nvim_create_autocmd("User", {
     vim.keymap.del("n", "<leader>ub") -- Don't blind me on a typo
   end,
 })
+
+map("i", "<c-a>", "<c-o>^", "Beginning of line")
+map("i", "<c-e>", "<End>", "End of line")
+map("c", "<c-a>", "<Home>", "Beginning of line")
+map("c", "<c-e>", "<End>", "End of line")
